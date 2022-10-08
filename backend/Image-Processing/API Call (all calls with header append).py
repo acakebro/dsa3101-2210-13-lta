@@ -81,21 +81,21 @@ def traffic_speedbands_json2csv(data, path, header):
 #traffic images
 uri = "http://datamall2.mytransport.sg/ltaodataservice/Traffic-Imagesv2"
 jsonfilename = "temporary_traffic_images.json"
-jsonfiledir = '/Users/rebecca/temporary_traffic_images.json'
+jsonfiledir = '/Users/rebecca/temporary_traffic_images.json' #change to your desired dir
 csvfilename = 'traffic_images.csv'
 get_data(uri, jsonfilename, jsonfiledir, csvfilename, traffic_images_json2csv)
 
 #traffic incidents
 uri = "http://datamall2.mytransport.sg/ltaodataservice/TrafficIncidents"
 jsonfilename = "temporary_traffic_incidents.json"
-jsonfiledir = '/Users/rebecca/temporary_traffic_incidents.json'
+jsonfiledir = '/Users/rebecca/temporary_traffic_incidents.json' #change to your desired dir
 csvfilename = 'traffic_incidents.csv'
 get_data(uri, jsonfilename, jsonfiledir, csvfilename, traffic_incidents_json2csv) 
 
 #traffic speedbands
 uri = "http://datamall2.mytransport.sg/ltaodataservice/TrafficSpeedBandsv2"
 jsonfilename = "temporary_traffic_speedbands.json"
-jsonfiledir = '/Users/rebecca/temporary_traffic_speedbands.json'
+jsonfiledir = '/Users/rebecca/temporary_traffic_speedbands.json' #change to your desired dir
 csvfilename = 'traffic_speedbands.csv'
 get_data(uri, jsonfilename, jsonfiledir, csvfilename, traffic_speedbands_json2csv) 
 
@@ -114,16 +114,16 @@ def rm_dup(file_name, file_name_output, keys):
     df.to_csv(file_name_output, index=False) #sep =';' puts it in cols
 
 file_name = 'traffic_incidents.csv'
-file_name_output = 'traffic_incidents_no_dup.csv'
+file_name_output = 'traffic_incidents_no_dup.csv' #change to your desired dir
 incident_keys = None
 rm_dup(file_name, file_name_output,incident_keys)
 
 file_name = 'traffic_speedbands.csv'
-file_name_output = 'traffic_speedbands_no_dup.csv'
+file_name_output = 'traffic_speedbands_no_dup.csv' #change to your desired dir
 speedband_keys = None
 rm_dup(file_name, file_name_output,speedband_keys)
 
 file_name = 'traffic_images.csv'
-file_name_output = 'traffic_images_no_dup.csv'
+file_name_output = 'traffic_images_no_dup.csv' #change to your desired dir
 images_keys = ['CameraID', 'Timestamp'] #None also can, 'CameraID', 'Timestamp' 
 rm_dup(file_name, file_name_output,images_keys)
