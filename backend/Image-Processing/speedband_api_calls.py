@@ -31,6 +31,7 @@ def api_get_json(uri, path) :
         jsonObj = json.loads(content) # dictonary
         data = jsonObj['value']
         df = pd.DataFrame(data)
+        df['Location'] = df['Location'].apply(lambda x: x.split(' '))
         return df, datetime_str
 
 # api parameters
