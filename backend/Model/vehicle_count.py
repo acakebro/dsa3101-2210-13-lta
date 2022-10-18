@@ -44,10 +44,12 @@ vehicles_folder_count = 0
 
 # file containing all the roi boundary boxes and direction labels
 image_roi_df = pd.read_csv('ROI/Image_ROI.csv')
-
+images_folder[0]
+result_list = []
 # Lopp through all the images
 for img_path in images_folder:
     camera_id = int(img_path.split('/')[-1].split('_')[0])
+    timestamp = img_path.split('/')[-1].split('_')[2]
     rois = image_roi_df[image_roi_df.Camera_Id == camera_id]
     img = cv2.imread(img_path)
     for i in range(len(rois)):
@@ -70,3 +72,8 @@ for img_path in images_folder:
         cv2.imshow("LTA", roi_img)
         # keep image on hold
         cv2.waitKey(1)
+        result_list.append([camera_id, direction, vehicle_count, timestamp])
+
+result_df = pd.DataFrame(result_list, columns=[
+                         'Camera_Id', 'Direction', 'Vehicle_Count', 'Timestamp'])
+result_df
