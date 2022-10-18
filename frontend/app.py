@@ -17,7 +17,7 @@ app.base_layer(
 app.base_layer(provider="CartoDB Positron")
 
 regions = gpd.read_file("/Users/xiaohan/dsa3101-2210-13-lta/frontend/boundary.geojson")
-roads = gpd.read_file("/Users/xiaohan/dsa3101-2210-13-lta/frontend/singapore_roads_without_residential_unclassified_tertiary_with_link_secondary_with_link_primary_with_link.geojson")
+roads = gpd.read_file("/Users/xiaohan/dsa3101-2210-13-lta/frontend/singapore_roads_cleaned_up.geojson")
 cameras = gpd.read_file("/Users/xiaohan/dsa3101-2210-13-lta/frontend/singapore_camera.geojson")
 
 app.vector_layer(
