@@ -1,4 +1,5 @@
-API Exploration (as of 18 Oct):
+#API Exploration
+(as of 18 Oct)
 1. roads and cams
     -> use folium to visualise the speedbands and cameras we have so that we can decide which points to use and how to calculate the speed
 2. geospatial layers 
