@@ -28,8 +28,8 @@ traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
 
-cameras = [dict(title = str(traffic_images['CameraID'][0]),
-                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
+#cameras = [dict(title = str(traffic_images['CameraID'][0]),
+#                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
 
 cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
                 children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
