@@ -15,7 +15,7 @@ Instructions: </br>
 4. edit directories in `dummy_20_oct.py` </br>
 5. run `dummy_20_oct.py` </br>
 6. at the car counting section, the image window will appear, this is just to view the image and understand the results better (may be removed in final code) </br>
-7. click any key to go to the next image </br>
+7. click any key to go to the next image (6 times) </br> 
 
 
 *** instructions to upload large files on github (try later) </br>
