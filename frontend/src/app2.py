@@ -11,7 +11,7 @@ from PIL import Image
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
-
+'''
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
@@ -145,4 +145,4 @@ def filter_image(camera_id,datetime):
 
 if __name__ == '__main__':
     app.run_server(debug=True,port=8051)
-
+'''

@@ -5,8 +5,11 @@
 from dash import Dash, html, dcc, dash_table
 import plotly.express as px
 import pandas as pd
+import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 from datetime import datetime, date
+import dash_leaflet as dl
+
 
 app = Dash(__name__, title="frontend")
 
@@ -25,9 +28,22 @@ traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
 
+cameras = [dict(title = str(traffic_images['CameraID'][0]),
+                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
+
+
+#maps = px.scatter_geo(traffic_images, lon = "Longitude",
+ #                     lat = "Latitude",
+ #                     scope = "asia")
+
+#maps.update_layout({
+#    'geo': {
+#        'resolution': 50
+#    }
+#})
 
 d_table_in = dash_table.DataTable(
             data=traffic_incidents.to_dict('records'),
@@ -121,6 +137,11 @@ app.layout = html.Div(children=[
                         ],
              style = {'text-align':'center', 'font-size':18}
              ),
+
+    html.Div(children = [
+        dl.Map([dl.TileLayer()] + [dl.Marker(**i) for i in cameras],
+               style={'width': '1000px', 'height': '500px'})
+                  ]),
     
 
     # tables
