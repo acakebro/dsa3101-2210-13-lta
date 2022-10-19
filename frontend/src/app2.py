@@ -11,7 +11,7 @@ from datetime import datetime, date
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
-
+'''
 app = dash.Dash(__name__)
 
 app.layout = html.Div(
@@ -170,5 +170,3 @@ def update_output(camera_id,traffic_value,time):
 
 if __name__ == '__main__':
     app.run_server(debug=True,port=8052)
-
-
