@@ -28,8 +28,12 @@ traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
 
-cameras = [dict(title = str(traffic_images['CameraID'][0]),
-                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
+#cameras = [dict(title = str(traffic_images['CameraID'][0]),
+#                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
+
+cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
+                children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
+               ) for i in range(len(traffic_images))]
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
@@ -137,10 +141,13 @@ app.layout = html.Div(children=[
                         ],
              style = {'text-align':'center', 'font-size':18}
              ),
-
+    
+    # map
     html.Div(children = [
-        dl.Map([dl.TileLayer()] + [dl.Marker(**i) for i in cameras],
-               style={'width': '1000px', 'height': '500px'})
+        dl.Map(children = [dl.TileLayer()] + [dl.CircleMarker(**i) for i in cameras],
+               style={'width': '1000px', 'height': '500px'},
+              center=[1.3521, 103.8198],
+              zoom = 11)
                   ]),
     
 
