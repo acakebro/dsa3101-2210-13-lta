@@ -4,18 +4,24 @@ from vehicle_detector import VehicleDetector
 import pandas as pd
 import ast
 import numpy as np
+from math import cos, asin, sqrt
+import datetime
 
 
 class VehicleCount:
 
-    def __init__(self, images, image_roi_df, lat_long):
+    def __init__(self, images, image_roi_df, cam_lat_long, speedband_lat_long_df):
         self.vehicle_detector = VehicleDetector()
-        self.images = glob(images)
-        self.image_roi_df = pd.read_csv(image_roi_df)
-        self.lat_long = pd.read_csv(lat_long)
+        self.images = glob(images)  # to input through main
+        self.image_roi_df = pd.read_csv(image_roi_df)  # to input through main
+        self.cam_lat_long = pd.read_csv(cam_lat_long)  # to input through main
+        self.speedband_lat_long_df = pd.read_csv(
+            speedband_lat_long_df)  # to input through main
+        self.speedband_lat_long = self.speedband_lat_long_df.iloc[:, -2:].to_dict(
+            'records')
 
     def display_image(self, img_name, img):
-        cv2.namedWindow(img_name, cv2.WINDOW_NORMAL)  # fit image to window
+        cv2.namedWindow(img_name, cv2.WINDOW_NORMAL)  # Fit image to window
         cv2.imshow(img_name, img)
         cv2.waitKey()
         cv2.destroyAllWindows()
@@ -26,15 +32,45 @@ class VehicleCount:
         if len(coords) < 4:
             print('minimum 4 coordinates required')
             return
-        shape = np.array(coords)  # shape of roi
+        shape = np.array(coords)  # Shape of roi
         mask = np.zeros_like(img)  # np array with zeros (of image dimension)
 
-        # creates a polygon with the mask colour (blue), areas not in roi would be black (pixel is 0)
+        # Creates a polygon with the mask colour (blue), areas not in roi would be black (pixel is 0)
         cv2.fillPoly(mask, pts=np.int32([shape]), color=(255, 255, 255))
 
-        # select ares where mask pixels are not zero
+        # Select areas where mask pixels are not zero
         masked_image = cv2.bitwise_and(img, mask)
         return masked_image
+
+    # Distance between 2 geographical locations
+    def distance(self, lat1, lon1, lat2, lon2):
+        p = 0.017453292519943295
+        hav = 0.5 - cos((lat2-lat1)*p)/2 + cos(lat1*p) * \
+            cos(lat2*p) * (1-cos((lon2-lon1)*p)) / 2
+        return 12742 * asin(sqrt(hav))
+
+    # Finds index of speedband df where the corresponding Lat long is closest to given camera coordinates
+    def closest(self, cam_coords):
+        return self.speedband_lat_long.index(min(self.speedband_lat_long,
+                                                 key=lambda p: self.distance(cam_coords['Latitude'], cam_coords['Longitude'],
+                                                                             p['AvgLat'], p['AvgLon'])))
+
+    def time_in_range(self, start, end, x):
+        if start <= end:
+            return start <= x <= end
+        else:
+            return start <= x or x <= end
+
+    def is_weekday(self, image_datetime):
+        day = image_datetime.weekday()
+        if day < 5:  # Monday(0) to Friday(4)
+            return 1
+        return 0
+
+    def is_peak(self, is_peak_boolean):
+        if is_peak_boolean:
+            return 1
+        return 0
 
     def display(self):
         for img_path in self.images:
@@ -61,14 +97,29 @@ class VehicleCount:
 
     def predict_vehicle_count(self):
         result_list = []
+        peak_hours = [{'Start': datetime.time(8, 0, 0), 'End': datetime.time(10, 0, 0)},
+                      {'Start': datetime.time(18, 0, 0), 'End': datetime.time(20, 30, 0)}]
         for img_path in self.images:
+            is_peak_bool = False
             camera_id = int(img_path.split('/')[-1].split('_')[0])
             timestamp = img_path.split('/')[-1].split('_')[2]
+            image_datetime = datetime.datetime.strptime(
+                timestamp, "%Y%m%d%H%M%S")
+            for peak_hour in peak_hours:
+                if is_peak_bool:
+                    break
+                start, end = peak_hour.get('Start'), peak_hour.get('End')
+                is_peak_bool = self.time_in_range(
+                    start, end, image_datetime.time())
+            is_peak = self.is_peak(is_peak_bool)
+            is_weekday = self.is_weekday(image_datetime)
             rois = self.image_roi_df[self.image_roi_df.Camera_Id == camera_id]
-            lat = self.lat_long[self.lat_long.CameraID ==
-                                camera_id].iloc[0].Latitude
-            long = self.lat_long[self.lat_long.CameraID ==
-                                 camera_id].iloc[0].Longitude
+            # Coordinates of cam {Latitude: ..., Longitude: ...}
+            cam_coords = self.cam_lat_long[self.cam_lat_long.CameraID ==
+                                           camera_id].iloc[:, -2:].to_dict('records')[0]
+            # Index to retrieve the average speed from speedband df
+            closest_speedband_index = self.closest(cam_coords)
+            avg_speed = self.speedband_lat_long_df.iloc[closest_speedband_index, 7]
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
@@ -76,17 +127,14 @@ class VehicleCount:
                 roi_img = self.roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
+                # Approximate length of road to be 150m
                 result_list.append(
-                    [camera_id, direction, vehicle_count, vehicle_count/150, timestamp, lat, long])
+                    [camera_id, direction, vehicle_count, vehicle_count/150,
+                     avg_speed, image_datetime.date(), image_datetime.time(), cam_coords.get(
+                         'Latitude'), cam_coords.get('Longitude'),
+                     is_weekday, is_peak])
         result_df = pd.DataFrame(result_list, columns=[
-            'Camera_Id', 'Direction', 'Vehicle_Count', 'Density', 'Timestamp', 'Latitude', 'Longitude'])
+            'Camera_Id', 'Direction', 'Vehicle_Count', 'Density',
+            'Average_Speed', 'Date', 'Time', 'Latitude', 'Longitude',
+            'Is_Weekday', 'Is_Peak'])
         return result_df
-
-
-### TESTS ###
-images_dir = 'sharepoint/2022_01_05_22_00/1701_2153_20220105215500_fab0b3.jpg'
-roi_df = 'ROI/Image_ROI.csv'
-lat_long = 'camera_id_lat_long.csv'
-vc = VehicleCount(images_dir, roi_df, lat_long)
-print(vc.predict_vehicle_count())
-#############
