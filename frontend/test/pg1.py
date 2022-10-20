@@ -7,6 +7,8 @@ import plotly.express as px
 import pandas as pd
 from dash.dependencies import Input, Output
 from datetime import datetime, date
+import dash_leaflet as dl
+import plotly.graph_objects as go
 
 # assume you have a "long-form" data frame
 # see https://plotly.com/python/px-arguments/ for more options
@@ -19,11 +21,38 @@ df = pd.DataFrame({
 traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
+train_data = pd.read_csv("train_data.csv")
 
+#cameras = [dict(title = str(traffic_images['CameraID'][0]),
+#                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
+
+cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
+                children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
+               ) for i in range(len(traffic_images))]
 
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
 
+
+#maps = px.scatter_geo(traffic_images, lon = "Longitude",
+ #                     lat = "Latitude",
+ #                     scope = "asia")
+
+#maps.update_layout({
+#    'geo': {
+#        'resolution': 50
+#    }
+#})
+
+def create_n_Img(link, n):
+    # Add a component that will render an image
+    img = html.Img(
+        src=link, 
+        # Add the corporate styling
+        style = {'display': 'inline-block', 'width': '450px'})
+    img_list = [img] * n
+    return img_list
+'''
 d_table_in = dash_table.DataTable(
             data=traffic_incidents.to_dict('records'),
             columns = [{"name": i, "id": i} for i in traffic_incidents.columns[:len(traffic_incidents.columns)-1]],
@@ -56,7 +85,7 @@ d_table_im = dash_table.DataTable(
             page_current = 0,
             page_size = 10
             )
-
+'''
 layout = html.Div(children=[
     html.H1(children='Title', style = {'text-align':'center'}),
     html.Br(),
@@ -73,7 +102,8 @@ layout = html.Div(children=[
                                   'margin':'5px auto'}),
     html.Br(),
     html.H2("Select road: ", style = {'display': 'inline-block', 'margin':'5px'}),
-    dcc.Dropdown(id = "road_name",
+    html.H2("Select expressway: ", style = {'display': 'inline-block', 'margin':'5px'}),
+    dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label':'Road A', 'value':'Road A'},
             {'label':'Road B', 'value':'Road B'},
@@ -89,17 +119,11 @@ layout = html.Div(children=[
 
     # images
     html.Div(children = [
-    dcc.Graph(
-        id='example-graph1',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
+    *create_n_Img("assets/1001_2043_20221009204509_554949.jpg", 2),
     
-    dcc.Graph(
-        id='example-graph2',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
+    html.Img(src = "assets/1001_2043_20221009204509_554949.jpg"),
+    html.Img(src = "images/2022_10_20_11_55/1001_1148_20221020115515_535455.jpg"),
+    
     
     dcc.Graph(
         id='example-graph3',
@@ -117,26 +141,15 @@ layout = html.Div(children=[
              style = {'text-align':'center', 'font-size':18}
              ),
     
-
-    # tables
+    # map
     html.Div(children = [
-        html.H2("Traffic Incidents"),
-        html.Div(d_table_in,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'}),
-        html.H2("Traffic Speedbands"),
-        html.Div(d_table_sp,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'}),
-        html.H2("Traffic Images"),
-        html.Div(d_table_im,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'})
+        dl.Map(children = [dl.TileLayer()] + [dl.CircleMarker(**i) for i in cameras],
+               style={'width': '1000px', 'height': '500px'},
+              center=[1.3521, 103.8198],
+              zoom = 11)
+                  ]),
     
-        ])
+
     ],
                       style = {'background-color': 'rgb(237,250,252)'}
                       )
-
-
-
