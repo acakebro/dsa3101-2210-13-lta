@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 from datetime import datetime, date
 import dash_leaflet as dl
+import os
 
 
 app = Dash(__name__, title="frontend")
@@ -39,25 +40,18 @@ cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitud
 fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
 fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
 
+folder = "assets/"
 
-#maps = px.scatter_geo(traffic_images, lon = "Longitude",
- #                     lat = "Latitude",
- #                     scope = "asia")
-
-#maps.update_layout({
-#    'geo': {
-#        'resolution': 50
-#    }
-#})
-
-def create_n_Img(link, n):
+def create_Img(link_list):
     # Add a component that will render an image
-    img = html.Img(
-        src=link, 
-        # Add the corporate styling
-        style = {'display': 'inline-block', 'width': '450px'})
-    img_list = [img] * n
+    img_list = [html.Img(
+        title = str(link_list[i][:4]),
+        src= folder + link_list[i],
+        style = {'display': 'inline-block', 'width': '450px',
+                 'margin': '20px'}) for i in range(len(link_list))]
     return img_list
+
+
 '''
 d_table_in = dash_table.DataTable(
             data=traffic_incidents.to_dict('records'),
@@ -98,17 +92,16 @@ app.layout = html.Div(children=[
 
     # filter box
     html.Div(children = [
-    html.H2("Select date: ", style = {'display': 'inline-block', 'margin':'5px'}),
+    html.H2("Select date: ", style = {'margin':'5px'}),
     dcc.DatePickerSingle(id = "traffic_date",
                          min_date_allowed = date(2022,1,1),
                          max_date_allowed = date.today(),
                          date = date.today(),
                          initial_visible_month = date.today(),
                          style = {'display': 'inline-block', 'width':'10px',
-                                  'margin':'5px auto'}),
+                                  'margin':'10px auto'}),
     html.Br(),
-    html.H2("Select road: ", style = {'display': 'inline-block', 'margin':'5px'}),
-    html.H2("Select expressway: ", style = {'display': 'inline-block', 'margin':'5px'}),
+    html.H2("Select expressway: ", style = {'margin':'5px'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label':'Road A', 'value':'Road A'},
@@ -117,33 +110,15 @@ app.layout = html.Div(children=[
             {'label':'Road D', 'value':'Road D'},
             {'label':'Road E', 'value':'Road E'}],
                  style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '5px auto'})
-    ], style = {'border': '1px solid black'}
+                          'margin': '10px auto'})
+    ], style = {'border': '1px solid black', 'width': '20%'}
              ),
 
     html.Br(),
 
     # images
     html.Div(children = [
-    *create_n_Img("assets/1001_2043_20221009204509_554949.jpg", 2),
-    
-    html.Img(src = "assets/1001_2043_20221009204509_554949.jpg"),
-    html.Img(src = "images/2022_10_20_11_55/1001_1148_20221020115515_535455.jpg"),
-    
-    
-    dcc.Graph(
-        id='example-graph3',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-    dcc.Graph(
-        id='example-graph4',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-                        ],
+    *create_Img(os.listdir(folder))],
              style = {'text-align':'center', 'font-size':18}
              ),
     
