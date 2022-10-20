@@ -50,8 +50,19 @@ class ApiCall():
         speed_path = '/ltaodataservice/TrafficSpeedBandsv2'
         data = self.api_get_json(uri, speed_path)
         df = pd.DataFrame(data)
+
+        df = df.astype({'MinimumSpeed': 'int', 'MaximumSpeed': 'int'})
+        df['AvgSpeed'] = (df['MinimumSpeed'] + df['MaximumSpeed']) / 2
+        df.loc[df['AvgSpeed'] >= 90, 'AvgSpeed'] = 100
+
         df['Location'] = df['Location'].apply(lambda x: x.split(' '))
         df[['StartLatitude', 'StartLongitude', 'EndLatitude', 'EndLongitude']] = pd.DataFrame(df['Location'].to_list())
+        df = df.astype({'StartLatitude': 'float', 'StartLongitude': 'float',
+                        'EndLatitude': 'float', 'EndLongitude': 'float'})
+        df['AvgLat'] = (df.StartLatitude + df.EndLatitude) / 2
+        df['AvgLon'] = (df.StartLongitude + df.EndLongitude) / 2
+
+        # save file
         filename = '{datetime}_speedband.csv'.format(datetime=self.datetime_str)
         df.to_csv(os.path.join(folder, filename), index=False)
 
