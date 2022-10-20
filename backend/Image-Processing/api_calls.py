@@ -18,22 +18,21 @@ class ApiCall():
         os.makedirs(self.folder)
 
     def api_get_json(self, uri, path):
-        if __name__ == "__main__":
-            # authentication parameters
-            headers = { 'AccountKey' : 'AO4qMbK3S7CWKSlplQZqlA==', 'accept' : 'application/json'} #this is by default
+        # authentication parameters
+        headers = { 'AccountKey' : 'AO4qMbK3S7CWKSlplQZqlA==', 'accept' : 'application/json'} #this is by default
 
-            # build query string & specify type of API call
-            target = urlparse(uri + path)
-            method = 'GET'
-            body = ''
+        # build query string & specify type of API call
+        target = urlparse(uri + path)
+        method = 'GET'
+        body = ''
 
-            h = http.Http() # get handle to http
-            response, content = h.request(target.geturl(), method, body, headers)
+        h = http.Http() # get handle to http
+        response, content = h.request(target.geturl(), method, body, headers)
 
-            # get data from content
-            jsonObj = json.loads(content) # dictonary
-            data = jsonObj['value']
-            return data
+        # get data from content
+        jsonObj = json.loads(content) # dictonary
+        data = jsonObj['value']
+        return data
 
     def download_speedband(self):
         uri = 'http://datamall2.mytransport.sg' # resource URL
