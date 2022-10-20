@@ -3,7 +3,6 @@ from api_calls import ApiCall
 from vehicle_count import VehicleCount
 import pandas as pd
 import os
-# from api_calls
 
 # needs to be full directory
 dir = '/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project/training/api/2'
