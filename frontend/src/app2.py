@@ -1,4 +1,3 @@
-import pandas as pd 
 import dash
 import os
 from dash import dcc
@@ -24,18 +23,16 @@ app.layout = html.Div(
         html.Label(['Road:'], style={'font-weight': 'bold'}),
         dcc.Dropdown(id='road_name',
                     options=[
-                        {'label':'ECP', 'value':'East Coast Parkway'},
-                        {'label':'KPE', 'value':'Kallang-Paya Lebar Expressway'},
-                        {'label':'PIE', 'value':'Pan-Island Expressway'},
-                        {'label':'MCE', 'value':'Marina Coastal Expressway'},
-                        {'label':'SLE', 'value':'Seletar Expressway'},
-                        {'label':'BKE', 'value':'Bukit Timah Expressway'},
-                        {'label':'KJE', 'value':'Kranji Expressway'},
-                        {'label':'CTE', 'value':'Central Expressway'},
-                        {'label':'TPE', 'value':'Tampines Expressway'},
-                        {'label':'AYE', 'value':'Ayer Rajah Expressway'},
-                        {'label':'Woodlands', 'value':'Woodlands Checkpoint'},
-                        {'label':'Tuas', 'value':'Tuas Checkpoint'}
+                        {'label':'ECP', 'value':'ECP'},
+                        {'label':'KPE', 'value':'KPE'},
+                        {'label':'PIE', 'value':'PIE'},
+                        {'label':'MCE', 'value':'MCE'},
+                        {'label':'SLE', 'value':'SLE'},
+                        {'label':'BKE', 'value':'BKE'},
+                        {'label':'KJE', 'value':'KJE'},
+                        {'label':'CTE', 'value':'CTE'},
+                        {'label':'TPE', 'value':'TPE'},
+                        {'label':'AYE', 'value':'AYE'}
                         ],
                     placeholder="Select road...",
                     style={'width':'150px','margin':'20px'})
@@ -133,32 +130,21 @@ app.layout = html.Div(
         )
         ])
         ])
-        
-#    dcc.Graph(
-#        id='example-graph3',
-#        figure=fig,
-#        style = {'display': 'inline-block', 'width': '450px'}
-#   ),
-#
-#    dcc.Graph(
-#        id='example-graph4',
-#        figure=fig,
-#        style = {'display': 'inline-block', 'width': '450px'}
-#    ),
-#    
-#                        ],
-#             style = {'text-align':'center', 'font-size':18}
-#             ),
+@app.callback(
+Output('camera_id','options'),
+Input('road_name','value'))
 
-
-
+def update_camera(road_name):
+    df=data[data["express_way"]==road_name]
+    return [{'label': i, 'value': str(i)} for i in df['camera_id'].unique()]
+print(update_camera('KPE'))
 
 #Enter camera id,date,time and timerange to find speed and density over time of past data
 @app.callback(
 [Output('img','children'),
  Output('attributes','style'),
- Output('speed','graph'),
-Output('density','graph')],
+ Output('speed','figure'),
+Output('density','figure')],
 [Input('camera_id','value'),
 Input('traffic_date','date'),
 Input('traffic_time','value'),
@@ -184,7 +170,10 @@ def update_plot(camera_id,traffic_date,time,timeframe):
             raise dash.exceptions.PreventUpdate
         if camera_id in file and datetime in file:
             img=[html.Img(src=image_folder+'/'+file)]
+    # Plot graph by searching for images in past hr/half hr
     if timeframe:
+        #Block update for now
+        raise dash.exceptions.PreventUpdate
         variables=data.copy(deep=True)
         variables = variables.astype({'timestamp':'str','camera_id':'str'})
         variables['timestamp']=variables['timestamp'].str.slice(0,12)
@@ -197,7 +186,13 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         variables = variables[variables['camera_id'] == camera_id ]
         variables = variables[variables['timestamp'] <= datetime_curr]
         variables = variables[variables['timestamp'] >= datetime_prev]
-    return img,attributes_style,None,None
+    #Placeholder values for graph
+    speeddata = {'Time': ['11:00', '12:00', '13:00', '14:00','15:00'], 'Average_speed': [110, 100, 80, 55, 30]}
+    densitydata = {'Time': ['11:00', '12:00', '13:00', '14:00','15:00'], 'Density': [0.8, 0.74, 0.66,0.55,0.43]}
+    speedplot = px.line(speeddata, x='Time', y='Average_speed')
+    densityplot = px.line(densitydata, x='Time', y='Density')
+    return img,attributes_style,speedplot,densityplot
+        #Intend to combine with past data
         #speedInput=
         #densityInput=
         #speedplot = px.line(graphInput, x='time', y='average_speed (km/h)')
