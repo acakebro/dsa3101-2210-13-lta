@@ -75,11 +75,12 @@ Input('traffic_time','value'),
  Input('timeframe','value')])
 
 def update_plot(camera_id,traffic_date,time,timeframe):
+    img=None
     #Stop update if missing values
     if traffic_date is not None:
         date_object = date.fromisoformat(traffic_date)
         datetime = date_object.strftime('%Y%m%d')
-    if camera_id is None or datetime is None:
+    if camera_id is None or datetime is None or time is None:
         raise dash.exceptions.PreventUpdate
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
@@ -89,10 +90,10 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
-        if camera_id in file and datetime not in file:
-            raise dash.exceptions.PreventUpdate
         if camera_id in file and datetime in file:
             img=[html.Img(src=image_folder+'/'+file)]
+    if img==None:
+        raise dash.exceptions.PreventUpdate
     # Plot graph by searching for images in past hr/half hr
     if timeframe:
         #Block update for now
