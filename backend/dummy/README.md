@@ -2,7 +2,7 @@
 
 (as of 20 Oct 2022) </br>
 
-- inputs would be the `dnn_model` folder and `Image_ROI.csv` </br>
+- inputs would be the `dnn_model` folder, `vehicle_detector.py` and `Image_ROI.csv` </br>
 - this code runs the API call and stores the images in a dataframe (doesn't download into folders) </br>
 - it calculates the car counts of cameras 1001 and 1002 by its different ROI/Directions </br>
 - you would have to click any key 6 times </br>
@@ -22,7 +22,3 @@ Instructions: </br>
 \*\*\* instructions to upload large files on github (try later) </br>
 https://docs.github.com/en/repositories/working-with-files/managing-files/adding-a-file-to-a-repository#adding-a-file-to-a-repository-using-the-command-line </br>
 https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github
-
-- EDITS to be made
-
-1. Add vehicle_detector.py to dummy folder
