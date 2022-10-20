@@ -32,12 +32,12 @@ def api_get_json(uri, path) :
         data = jsonObj['value']
         df = pd.DataFrame(data)
         df['Location'] = df['Location'].apply(lambda x: x.split(' '))
-        return df, datetime_str
+        df[['StartLatitude', 'StartLongitude', 'EndLatitude', 'EndLongitude']] = pd.DataFrame(df['Location'].to_list())
+        filename = '{datetime}.csv'.format(datetime=datetime_str)
+        df.to_csv(filename, index=False)
 
 # api parameters
 uri = 'http://datamall2.mytransport.sg' # resource URL
 speed_path = '/ltaodataservice/TrafficSpeedBandsv2'
 
-df, datetime_str = api_get_json(uri, speed_path)
-filename = '{datetime}.csv'.format(datetime=datetime_str)
-df.to_csv(filename, index=False)
+api_get_json(uri, speed_path)
