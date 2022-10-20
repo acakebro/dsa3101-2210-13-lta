@@ -5,14 +5,17 @@ from urllib.parse import urlparse
 import httplib2 as http # external library
 import pandas as pd
 from datetime import datetime, timezone
-import zipfile
 import os
+import shutil
 
 class ApiCall():
     def __init__(self, parent_dir):
         self.parent_dir = parent_dir
         os.chdir(parent_dir)
-        self.datetime_str = ''
+        self.folder = os.path.join(self.parent_dir, 'api_data')
+        if os.path.isdir(self.folder):
+            shutil.rmtree(self.folder)
+        os.makedirs(self.folder)
 
     def api_get_json(self, uri, path):
         if __name__ == "__main__":
@@ -26,19 +29,6 @@ class ApiCall():
 
             h = http.Http() # get handle to http
             response, content = h.request(target.geturl(), method, body, headers)
-
-            # handle response to get datetime
-            if self.datetime_str == '':
-                date_obj = response['date'] # date & time in string
-                datetime_gmt = datetime.strptime(date_obj, '%a, %d %b %Y %H:%M:%S %Z') # timezone: GMT (same as UTC)
-                datetime_sgt = datetime_gmt.replace(tzinfo=timezone.utc).astimezone(tz=None)
-                self.datetime_str = datetime_sgt.strftime('%Y_%m_%d_%H_%M')
-
-            # create folder to store data
-            global folder
-            folder = os.path.join(self.parent_dir, self.datetime_str)
-            if not os.path.isdir(folder):
-                os.makedirs(folder)
 
             # get data from content
             jsonObj = json.loads(content) # dictonary
@@ -63,28 +53,25 @@ class ApiCall():
         df['AvgLon'] = (df.StartLongitude + df.EndLongitude) / 2
 
         # save file
-        filename = '{datetime}_speedband.csv'.format(datetime=self.datetime_str)
-        df.to_csv(os.path.join(folder, filename), index=False)
+        filename = 'speedbands.csv'
+        df.to_csv(os.path.join(self.folder, filename), index=False)
 
     def download_images(self):
         uri = 'http://datamall2.mytransport.sg' # resource URL
         img_path = '/ltaodataservice/Traffic-Imagesv2'
         data = self.api_get_json(uri, img_path)
-        url_link = data[0]['ImageLink']
-        zipname = '_'.join(url_link.split('/')[3:5]).replace('-', '_')
-        zipPath = os.path.join(folder, '%s.zip' % zipname)
-        with zipfile.ZipFile(zipPath, mode='w') as img_zip:
-            for i, dict in enumerate(data):
-                link = dict['ImageLink']
-                filename = link.split('/')[5].split('?')[0]
-                url = urllib.request.urlopen(link)
-                img_zip.writestr(filename, url.read())
-            print(os.path.exists(zipPath))  # probing a zip file was written
+        for i, dict in enumerate(data):
+            link = dict['ImageLink']
+            filename = link.split('/')[5].split('?')[0]
+            urllib.request.urlretrieve(link, os.path.join(self.folder, filename))
 
     def download_incidents(self):
         uri = 'http://datamall2.mytransport.sg' # resource URL
         incident_path = '/ltaodataservice/TrafficIncidents'
         data = self.api_get_json(uri, incident_path)
         df = pd.DataFrame(data)
-        filename = '{datetime}_incidents.csv'.format(datetime=self.datetime_str)
-        df.to_csv(os.path.join(folder, filename), index=False)
+        filename = 'incidents.csv'
+        df.to_csv(os.path.join(self.folder, filename), index=False)
+
+    def clear_data(self):
+        shutil.rmtree(self.folder)
