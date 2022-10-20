@@ -20,13 +20,13 @@ class VehicleCount:
         self.speedband_lat_long = self.speedband_lat_long_df.iloc[:, -2:].to_dict(
             'records')
 
-    def display_image(self, img_name, img):
+    def __display_image(self, img_name, img):
         cv2.namedWindow(img_name, cv2.WINDOW_NORMAL)  # Fit image to window
         cv2.imshow(img_name, img)
         cv2.waitKey()
         cv2.destroyAllWindows()
 
-    def roi(self, img, coords):
+    def __roi(self, img, coords):
         x = int(img.shape[1])
         y = int(img.shape[0])
         if len(coords) < 4:
@@ -43,31 +43,31 @@ class VehicleCount:
         return masked_image
 
     # Distance between 2 geographical locations
-    def distance(self, lat1, lon1, lat2, lon2):
+    def __distance(self, lat1, lon1, lat2, lon2):
         p = 0.017453292519943295
         hav = 0.5 - cos((lat2-lat1)*p)/2 + cos(lat1*p) * \
             cos(lat2*p) * (1-cos((lon2-lon1)*p)) / 2
         return 12742 * asin(sqrt(hav))
 
     # Finds index of speedband df where the corresponding Lat long is closest to given camera coordinates
-    def closest(self, cam_coords):
+    def __closest(self, cam_coords):
         return self.speedband_lat_long.index(min(self.speedband_lat_long,
-                                                 key=lambda p: self.distance(cam_coords['Latitude'], cam_coords['Longitude'],
-                                                                             p['AvgLat'], p['AvgLon'])))
+                                                 key=lambda p: self.__distance(cam_coords['Latitude'], cam_coords['Longitude'],
+                                                                               p['AvgLat'], p['AvgLon'])))
 
-    def time_in_range(self, start, end, x):
+    def __time_in_range(self, start, end, x):
         if start <= end:
             return start <= x <= end
         else:
             return start <= x or x <= end
 
-    def is_weekday(self, image_datetime):
+    def __is_weekday(self, image_datetime):
         day = image_datetime.weekday()
         if day < 5:  # Monday(0) to Friday(4)
             return 1
         return 0
 
-    def is_peak(self, is_peak_boolean):
+    def __is_peak(self, is_peak_boolean):
         if is_peak_boolean:
             return 1
         return 0
@@ -79,7 +79,7 @@ class VehicleCount:
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
-                roi_img = self.roi(img, roi_coords)
+                roi_img = self.__roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
                 # width then height
@@ -109,27 +109,27 @@ class VehicleCount:
                 if is_peak_bool:
                     break
                 start, end = peak_hour.get('Start'), peak_hour.get('End')
-                is_peak_bool = self.time_in_range(
+                is_peak_bool = self.__time_in_range(
                     start, end, image_datetime.time())
-            is_peak = self.is_peak(is_peak_bool)
-            is_weekday = self.is_weekday(image_datetime)
+            is_peak = self.__is_peak(is_peak_bool)
+            is_weekday = self.__is_weekday(image_datetime)
             rois = self.image_roi_df[self.image_roi_df.Camera_Id == camera_id]
             # Coordinates of cam {Latitude: ..., Longitude: ...}
             cam_coords = self.cam_lat_long[self.cam_lat_long.CameraID ==
                                            camera_id].iloc[:, -2:].to_dict('records')[0]
             # Index to retrieve the average speed from speedband df
-            closest_speedband_index = self.closest(cam_coords)
+            closest_speedband_index = self.__closest(cam_coords)
             avg_speed = self.speedband_lat_long_df.iloc[closest_speedband_index, 7]
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
                 direction = rois.iloc[i, 2]
-                roi_img = self.roi(img, roi_coords)
+                roi_img = self.__roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
                 # Approximate length of road to be 150m
                 result_list.append(
-                    [camera_id, direction, vehicle_count, vehicle_count/150,
+                    [camera_id, direction, vehicle_count, vehicle_count/100,
                      avg_speed, image_datetime.date(), image_datetime.time(), cam_coords.get(
                          'Latitude'), cam_coords.get('Longitude'),
                      is_weekday, is_peak])
