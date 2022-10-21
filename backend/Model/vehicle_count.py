@@ -15,8 +15,7 @@ class VehicleCount:
         self.image_roi_df = pd.read_csv(image_roi_df)  # to input through main
         self.cam_lat_long = pd.read_csv(cam_lat_long)  # to input through main
         self.speedband_lat_long_df = pd.read_csv(
-            speedband_lat_long_df
-        )  # to input through main
+            speedband_lat_long_df)  # to input through main
         self.speedband_lat_long = self.speedband_lat_long_df.iloc[:, -2:].to_dict(
             "records")
         self.incidents_df = pd.read_csv(incidents_df)
@@ -115,7 +114,8 @@ class VehicleCount:
                 # width then height
                 for box in vehicle_boxes:
                     x, y, w, h = box
-                    cv2.rectangle(roi_img, (x, y), (x + w, y + h), (25, 0, 180), 3)
+                    cv2.rectangle(roi_img, (x, y),
+                                  (x + w, y + h), (25, 0, 180), 3)
                     cv2.putText(
                         roi_img,
                         "Count:" + str(vehicle_count),
@@ -176,9 +176,8 @@ class VehicleCount:
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
                 Is_Jam = 0
-                if vehicle_count > 0:
-                    if avg_speed <= 35:
-                        Is_Jam = 1
+                if vehicle_count > 0 and avg_speed <= 35:
+                    Is_Jam = 1
                 # Approximate length of road to be 100m
                 result_list.append(
                     [
