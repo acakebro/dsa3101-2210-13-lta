@@ -10,17 +10,17 @@ import pickle
 
 def update_stats():
     # needs to be full directory
-    dir = '/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project/training/api/2'
+    dir = '/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project/training/api/10'
     api_call = ApiCall(dir)
     # downloads into api_data folder in your specified dir
     api_call.download_images()
     api_call.download_speedband()
     api_call.download_incidents()
-    speedband_dir = dir + '/api_data/speedbands.csv'
+    speedband_dir = dir + '/assets/speedbands.csv'
 
     # can add a function to take nput from front end (must be most recent image to correspond with the newest speedband)
-    images_dir = dir + '/api_data/*.jpg'
-    incidents_dir = dir + '/api_data/incidents.csv'
+    images_dir = dir + '/assets/*.jpg'
+    incidents_dir = dir + '/assets/incidents.csv'
     roi_df = 'ROI/Image_ROI.csv'  # Replace with final directory containing ROI file
     # Replace with final directory containing camera lat long file
     lat_long = 'camera_id_lat_long.csv'
