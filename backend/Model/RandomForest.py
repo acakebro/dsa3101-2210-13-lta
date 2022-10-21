@@ -30,7 +30,17 @@ model = RandomForestClassifier()
 model.fit(x_train, y_train)  # trained model
 
 # Predicted response from validation dataset
-y_pred = rf.predict(x_test)
+y_pred = model.predict(x_test)
+
+############## explainer for first model 
+# Fits the explainer
+explainer = shap.Explainer(model.predict, x_test)
+# Calculates the SHAP values - It takes some time
+shap_values = explainer(x_test)
+
+shap.summary_plot(shap_values,show=False)
+plt.savefig('initial_model.png',bbox_inches='tight')
+############## 
 
 # Checking for accuracy
 false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
@@ -61,6 +71,17 @@ model = RandomForestClassifier(n_estimators=best_n)
 
 # Fitting the whole training dataset into the model
 model.fit(train, labels)  # use this model to predict income test dataset
+
+############## explainer for better, final model 
+# Fits the explainer
+explainer = shap.Explainer(model.predict, train)
+# Calculates the SHAP values - It takes some time
+shap_values_2 = explainer(train)
+
+shap.summary_plot(shap_values_2,show=False)
+plt.savefig('best_n_model.png', bbox_inches='tight') #tight to show full img in plot
+
+############## 
 
 # Save the model with pickle
 pickle.dump(model, open("model.pkl", "wb"))
