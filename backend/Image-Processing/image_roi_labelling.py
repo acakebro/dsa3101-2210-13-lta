@@ -27,9 +27,9 @@ class ImageLabel:
         self.img_paths = glob(images)
         self.result_list = []
         self.labels_dict = None
-        self.process_labels(label_file)
+        self.__process_labels(label_file)
 
-    def process_labels(self, label_file):
+    def __process_labels(self, label_file):
         labels_df = pd.read_csv(label_file)
         labels_df.Labels = labels_df.Labels.apply(
             lambda x: list(map(lambda y: y.upper(), x.split(';'))))
@@ -56,7 +56,7 @@ class ImageLabel:
                 result_list.append(camera_location)
         result_df = pd.DataFrame(result_list, columns=[
                                  'Camera_Id', 'ROI', 'Direction'])
-        result_df.to_csv('Image_ROI4.csv', index=False)
+        result_df.to_csv('Image_ROI5.csv', index=False)
 
 ### TESTS ###
 

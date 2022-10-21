@@ -2,31 +2,37 @@
  # @ Create Time: 2022-10-08 23:39:32.168931
 '''
 
+import sys
+import pathlib
+
+sys.path.insert(1, "../../backend/Model/")
+
+
 from dash import Dash, html, dcc, dash_table
 import plotly.express as px
 import pandas as pd
+import sys
+from api_calls import ApiCall
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 from datetime import datetime, date
 import dash_leaflet as dl
+import os
+from api_calls import ApiCall
 
+api_obj = ApiCall("../src")
+api_obj.download_images()
 
 app = Dash(__name__, title="frontend")
 
 # Declare server for Heroku deployment. Needed for Procfile.
 server = app.server
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
 
 traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
+train_data = pd.read_csv("../interface/train_data.csv")
 
 #cameras = [dict(title = str(traffic_images['CameraID'][0]),
 #                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
@@ -35,20 +41,19 @@ cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitud
                 children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
                ) for i in range(len(traffic_images))]
 
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
+folder = "assets/"
+
+def create_Img(link_list):
+    # Add a component that will render an image
+    img_list = [html.Img(
+        title = str(link_list[i][:4]),
+        src= folder + link_list[i],
+        style = {'display': 'inline-block', 'width': '450px',
+                 'margin': '20px'}) for i in range(len(link_list))]
+    return img_list
 
 
-#maps = px.scatter_geo(traffic_images, lon = "Longitude",
- #                     lat = "Latitude",
- #                     scope = "asia")
-
-#maps.update_layout({
-#    'geo': {
-#        'resolution': 50
-#    }
-#})
-
+'''
 d_table_in = dash_table.DataTable(
             data=traffic_incidents.to_dict('records'),
             columns = [{"name": i, "id": i} for i in traffic_incidents.columns[:len(traffic_incidents.columns)-1]],
@@ -81,24 +86,24 @@ d_table_im = dash_table.DataTable(
             page_current = 0,
             page_size = 10
             )
-
+'''
 app.layout = html.Div(children=[
     html.H1(children='Title', style = {'text-align':'center'}),
     html.Br(),
 
     # filter box
     html.Div(children = [
-    html.H2("Select date: ", style = {'display': 'inline-block', 'margin':'5px'}),
+    html.H2("Select date: ", style = {'margin':'5px'}),
     dcc.DatePickerSingle(id = "traffic_date",
                          min_date_allowed = date(2022,1,1),
                          max_date_allowed = date.today(),
                          date = date.today(),
                          initial_visible_month = date.today(),
                          style = {'display': 'inline-block', 'width':'10px',
-                                  'margin':'5px auto'}),
+                                  'margin':'10px auto'}),
     html.Br(),
-    html.H2("Select road: ", style = {'display': 'inline-block', 'margin':'5px'}),
-    dcc.Dropdown(id = "road_name",
+    html.H2("Select expressway: ", style = {'margin':'5px'}),
+    dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label':'Road A', 'value':'Road A'},
             {'label':'Road B', 'value':'Road B'},
@@ -106,39 +111,15 @@ app.layout = html.Div(children=[
             {'label':'Road D', 'value':'Road D'},
             {'label':'Road E', 'value':'Road E'}],
                  style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '5px auto'})
-    ], style = {'border': '1px solid black'}
+                          'margin': '10px auto'})
+    ], style = {'border': '1px solid black', 'width': '20%'}
              ),
 
     html.Br(),
 
     # images
     html.Div(children = [
-    dcc.Graph(
-        id='example-graph1',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-    dcc.Graph(
-        id='example-graph2',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-    dcc.Graph(
-        id='example-graph3',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-    dcc.Graph(
-        id='example-graph4',
-        figure=fig,
-        style = {'display': 'inline-block', 'width': '450px'}
-    ),
-    
-                        ],
+    *create_Img(os.listdir(folder))],
              style = {'text-align':'center', 'font-size':18}
              ),
     
@@ -151,29 +132,31 @@ app.layout = html.Div(children=[
                   ]),
     
 
-    # tables
-    html.Div(children = [
-        html.H2("Traffic Incidents"),
-        html.Div(d_table_in,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'}),
-        html.H2("Traffic Speedbands"),
-        html.Div(d_table_sp,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'}),
-        html.H2("Traffic Images"),
-        html.Div(d_table_im,
-             style = {'width':'100%', 'height':'350px',
-                      'margin':'10px auto', 'padding-right':'30px'})
-    
-        ])
     ],
                       style = {'background-color': 'rgb(237,250,252)'}
                       )
 
+'''
+@app.callback(
+    Output(component_id='graph1', component_property='figure'),
+    Input(component_id='exp_dd', component_property='value')
+)
 
 
+def filter_image(input_exp):
+    exp_filter = 'All Countries'
+    sales = ecom_sales.copy(deep=True)
+    if input_country:
+        country_filter = input_country
+        sales = sales[sales['Country'] == country_filter]
+    ecom_bar_major_cat = sales.groupby('Major Category')['OrderValue'].agg('sum').reset_index(name='Total Sales ($)')
+    bar_fig_major_cat = px.bar(
+        title=f'Sales in {country_filter}', data_frame=ecom_bar_major_cat, x='Total Sales ($)', y='Major Category', color='Major Category',
+                 color_discrete_map={'Clothes':'blue','Kitchen':'red','Garden':'green','Household':'yellow'})
+    return bar_fig_major_cat
+'''
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
 

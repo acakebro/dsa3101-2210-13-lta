@@ -1,0 +1,4505 @@
+{
+    "odata.metadata": "http://datamall2.mytransport.sg/ltaodataservice/$metadata#TrafficSpeedBandsv2",
+    "value": [
+        {
+            "LinkID": "103000000",
+            "Location": "1.3170142376560023 103.85298052044503 1.3166840028663076 103.85259882242372",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "KENT ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000010",
+            "Location": "1.3166507852203482 103.84102305136321 1.316912438354752 103.84022564204443",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "BUCKLEY ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000011",
+            "Location": "1.316912438354752 103.84022564204443 1.3166507852203482 103.84102305136321",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "BUCKLEY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000014",
+            "Location": "1.3186726294030418 103.84700267615683 1.3180212058893457 103.84711392225329",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SHREWSBURY ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000015",
+            "Location": "1.3180212058893457 103.84711392225329 1.3186726294030418 103.84700267615683",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SHREWSBURY ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000018",
+            "Location": "1.3157770120574521 103.84426743639843 1.3159796416371992 103.84479180450104",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KORMA",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000019",
+            "Location": "1.3159796416371992 103.84479180450104 1.3157770120574521 103.84426743639843",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KORMA",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000022",
+            "Location": "1.3157638139947652 103.85346718361517 1.3159850985084538 103.8540099459191",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "SING AVENUE",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000023",
+            "Location": "1.3159850985084538 103.8540099459191 1.3157638139947652 103.85346718361517",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SING AVENUE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000026",
+            "Location": "1.3193495076454247 103.84576595796847 1.3193341206043803 103.84649970636902",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MOULMEIN RISE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000027",
+            "Location": "1.3193341206043803 103.84649970636902 1.3193495076454247 103.84576595796847",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "MOULMEIN RISE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000030",
+            "Location": "1.3187614079491163 103.84584773223746 1.3184775003743368 103.845922903644",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SINARAN DRIVE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000031",
+            "Location": "1.3184775003743368 103.845922903644 1.3187614079491163 103.84584773223746",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SINARAN DRIVE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000034",
+            "Location": "1.3095165181658415 103.85444503278327 1.3102490949407017 103.85489147379481",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "LEMBU ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000035",
+            "Location": "1.3102490949407017 103.85489147379481 1.3095165181658415 103.85444503278327",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "LEMBU ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000036",
+            "Location": "1.3095165181658415 103.85444503278327 1.3098257335080767 103.85396567774879",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "DESKER ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000040",
+            "Location": "1.3094817613742067 103.85571657719505 1.3100415318076366 103.85617487784177",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "VERDUN ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000044",
+            "Location": "1.3102490949407017 103.85489147379481 1.3094817613742067 103.85571657719505",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SYED ALWI ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000050",
+            "Location": "1.3040240949630044 103.82435328722222 1.3035181120546362 103.82439062361162",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "ORCHARD SPRING LANE",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000051",
+            "Location": "1.3035181120546362 103.82439062361162 1.3040240949630044 103.82435328722222",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ORCHARD SPRING LANE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000054",
+            "Location": "1.2977954689273836 103.81184137776128 1.2979363108403927 103.81139535719257",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000055",
+            "Location": "1.2979363108403927 103.81139535719257 1.2977954689273836 103.81184137776128",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000056",
+            "Location": "1.3235238431328136 103.8508428681823 1.3241924351833945 103.85149036161232",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "MARTABAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000062",
+            "Location": "1.3235238431328136 103.8508428681823 1.3242848802266947 103.85008775600024",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "MARTABAN ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000063",
+            "Location": "1.3242848802266947 103.85008775600024 1.3235238431328136 103.8508428681823",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "MARTABAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000066",
+            "Location": "1.319450709571759 103.84838600107199 1.3202305802943324 103.84823264087314",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TAN TOCK SENG",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000067",
+            "Location": "1.3202305802943324 103.84823264087314 1.319450709571759 103.84838600107199",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TAN TOCK SENG",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000068",
+            "Location": "1.3020505931348514 103.84753501033079 1.3020981998994814 103.84735684695016",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SOPHIA ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000072",
+            "Location": "1.3020478491197238 103.85929118664532 1.3024623974822258 103.85961424505442",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "MUSCAT STREET",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000078",
+            "Location": "1.3479138498233316 103.6923894384768 1.3491170726830268 103.69342360283092",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "A",
+            "RoadName": "PAN ISLAND EXPRESSWAY",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000079",
+            "Location": "1.3491170726830268 103.69342360283092 1.3479138498233316 103.6923894384768",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "A",
+            "RoadName": "PAN ISLAND EXPRESSWAY",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000080",
+            "Location": "1.3436196253925365 103.78499221155269 1.3431444683048892 103.78388724345461",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "A",
+            "RoadName": "PAN ISLAND EXPRESSWAY",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000086",
+            "Location": "1.3009014346769388 103.90150591557894 1.3000155854751687 103.90006277560406",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "AMBER ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000087",
+            "Location": "1.3000155854751687 103.90006277560406 1.3009014346769388 103.90150591557894",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "AMBER ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000090",
+            "Location": "1.3795549789334551 103.83982137005759 1.3778764702530613 103.83969577191468",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000091",
+            "Location": "1.3778764702530613 103.83969577191468 1.3795549789334551 103.83982137005759",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000094",
+            "Location": "1.302018104115238 103.82687869301155 1.3025271098303324 103.82774617488765",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TUPAI",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000095",
+            "Location": "1.3025271098303324 103.82774617488765 1.302018104115238 103.82687869301155",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TUPAI",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000098",
+            "Location": "1.3034535281731428 103.82621354051224 1.302018104115238 103.82687869301155",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TOMLINSON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000099",
+            "Location": "1.302018104115238 103.82687869301155 1.3034535281731428 103.82621354051224",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TOMLINSON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000106",
+            "Location": "1.3185208604394962 103.8497306240015 1.3182839067307601 103.8484896779184",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SHREWSBURY ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000107",
+            "Location": "1.3182839067307601 103.8484896779184 1.3185208604394962 103.8497306240015",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SHREWSBURY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000110",
+            "Location": "1.2771369059505562 103.81040355919788 1.277633353991097 103.80909264308315",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000111",
+            "Location": "1.277633353991097 103.80909264308315 1.2771369059505562 103.81040355919788",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000114",
+            "Location": "1.277633353991097 103.80909264308315 1.2780189431917124 103.80767112662544",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000115",
+            "Location": "1.2780189431917124 103.80767112662544 1.277633353991097 103.80909264308315",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000118",
+            "Location": "1.2765900388648779 103.81171237266507 1.276042945010033 103.81302172471231",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000119",
+            "Location": "1.276042945010033 103.81302172471231 1.2765900388648779 103.81171237266507",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TELOK BLANGAH HEIGHTS",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000122",
+            "Location": "1.350438528643087 103.69440892471033 1.3517801862142893 103.69536755921838",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "A",
+            "RoadName": "PAN ISLAND EXPRESSWAY",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000123",
+            "Location": "1.3517801862142893 103.69536755921838 1.350438528643087 103.69440892471033",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "A",
+            "RoadName": "PAN ISLAND EXPRESSWAY",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000124",
+            "Location": "1.3022604164237386 103.88515409863628 1.3020018334230383 103.88506135448995",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "F",
+            "RoadName": "WILKINSON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000128",
+            "Location": "1.3021332006151927 103.84859614838282 1.3019803247888424 103.84892228360394",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "WILKIE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000134",
+            "Location": "1.3023326560971626 103.8192445570385 1.3019259729917443 103.8193666357108",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CAMP ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000135",
+            "Location": "1.3019259729917443 103.8193666357108 1.3023326560971626 103.8192445570385",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "D",
+            "RoadName": "CAMP ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000138",
+            "Location": "1.3019154913408086 103.82562409886084 1.3021005061138486 103.82556786730588",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "LENGKOK MERAK",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000139",
+            "Location": "1.3021005061138486 103.82556786730588 1.3019154913408086 103.82562409886084",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "LENGKOK MERAK",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000142",
+            "Location": "1.30277750949525 103.81714881291575 1.301902777906714 103.81671018445115",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN WALK",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000143",
+            "Location": "1.301902777906714 103.81671018445115 1.30277750949525 103.81714881291575",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN WALK",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000146",
+            "Location": "1.301902777906714 103.81671018445115 1.3020760157371165 103.81636988608547",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000147",
+            "Location": "1.3020760157371165 103.81636988608547 1.301902777906714 103.81671018445115",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000148",
+            "Location": "1.3020505931348514 103.84753501033079 1.3018924565367096 103.84742450630118",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SOPHIA ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000152",
+            "Location": "1.3018924565367096 103.84742450630118 1.3020981998994814 103.84735684695016",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ADIS ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000156",
+            "Location": "1.3018714301953633 103.84120126880777 1.3024590972915757 103.84059908315483",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "B",
+            "RoadName": "KRAMAT ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000162",
+            "Location": "1.3223315936500188 103.84782453064221 1.323225112339397 103.84825791705197",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "AKYAB ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000163",
+            "Location": "1.323225112339397 103.84825791705197 1.3223315936500188 103.84782453064221",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "AKYAB ROAD",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000166",
+            "Location": "1.3158766228467986 103.8525278217439 1.3154336431941307 103.853008273284",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "OXFORD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000167",
+            "Location": "1.3154336431941307 103.853008273284 1.3158766228467986 103.8525278217439",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "OXFORD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000170",
+            "Location": "1.315899168782131 103.85944206093603 1.3154021442041506 103.85980837679445",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KEMPAS ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000171",
+            "Location": "1.3154021442041506 103.85980837679445 1.315899168782131 103.85944206093603",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "KEMPAS ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000174",
+            "Location": "1.3157770120574521 103.84426743639843 1.3156603053759763 103.84390320841796",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KORMA",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000175",
+            "Location": "1.3156603053759763 103.84390320841796 1.3157770120574521 103.84426743639843",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KORMA",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000176",
+            "Location": "1.3098922536055888 103.83345390955975 1.3097312042342106 103.83404900921593",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000182",
+            "Location": "1.3095892684441353 103.82839685211003 1.3097460950865234 103.82879350703922",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ARDMORE PARK",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000183",
+            "Location": "1.3097460950865234 103.82879350703922 1.3095892684441353 103.82839685211003",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ARDMORE PARK",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000186",
+            "Location": "1.3095892684441353 103.82839685211003 1.3102253421678596 103.82740509577657",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "ARDMORE PARK",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000187",
+            "Location": "1.3102253421678596 103.82740509577657 1.3095892684441353 103.82839685211003",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "ARDMORE PARK",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000190",
+            "Location": "1.310468565405978 103.8376076936921 1.3095693665135413 103.8362897642633",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "ANTHONY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000191",
+            "Location": "1.3095693665135413 103.8362897642633 1.310468565405978 103.8376076936921",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "ANTHONY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000194",
+            "Location": "1.3095693665135413 103.8362897642633 1.310692335045372 103.83555854453066",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "CAIRNHILL ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000195",
+            "Location": "1.310692335045372 103.83555854453066 1.3095693665135413 103.8362897642633",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "CAIRNHILL ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000198",
+            "Location": "1.3156794372910703 103.85925389319206 1.315899168782131 103.85944206093603",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KEMPAS ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000199",
+            "Location": "1.315899168782131 103.85944206093603 1.3156794372910703 103.85925389319206",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "KEMPAS ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000202",
+            "Location": "1.3778764702530613 103.83969577191468 1.377082366481272 103.8395587643731",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000203",
+            "Location": "1.377082366481272 103.8395587643731 1.3778764702530613 103.83969577191468",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000206",
+            "Location": "1.3765237228546703 103.83946526641823 1.377082366481272 103.8395587643731",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000207",
+            "Location": "1.377082366481272 103.8395587643731 1.3765237228546703 103.83946526641823",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000210",
+            "Location": "1.3835254500944634 103.83770121892717 1.38338023612439 103.83781517599795",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000211",
+            "Location": "1.38338023612439 103.83781517599795 1.3835254500944634 103.83770121892717",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000214",
+            "Location": "1.38338023612439 103.83781517599795 1.3822793699880447 103.83863653439964",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000215",
+            "Location": "1.3822793699880447 103.83863653439964 1.38338023612439 103.83781517599795",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000218",
+            "Location": "1.3840112390167347 103.83732856251386 1.3835254500944634 103.83770121892717",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000219",
+            "Location": "1.3835254500944634 103.83770121892717 1.3840112390167347 103.83732856251386",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000222",
+            "Location": "1.3777027981180603 103.84756217854924 1.3771978910136298 103.84765705588656",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000223",
+            "Location": "1.3771978910136298 103.84765705588656 1.3777027981180603 103.84756217854924",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000226",
+            "Location": "1.3771978910136298 103.84765705588656 1.376730487972268 103.84773795161581",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000227",
+            "Location": "1.376730487972268 103.84773795161581 1.3771978910136298 103.84765705588656",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000228",
+            "Location": "1.3133901063939397 103.85032404665321 1.3129765172117367 103.84974217909104",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "DORSET ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000234",
+            "Location": "1.3839740978654103 103.84313695546383 1.3838894069258951 103.8424480441498",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ANG MO KIO AVENUE 9",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000235",
+            "Location": "1.3838894069258951 103.8424480441498 1.3839740978654103 103.84313695546383",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ANG MO KIO AVENUE 9",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000238",
+            "Location": "1.317103654150258 103.84888640803763 1.3164233526759435 103.84775689847758",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "B",
+            "RoadName": "NORFOLK ROAD",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000239",
+            "Location": "1.3164233526759435 103.84775689847758 1.317103654150258 103.84888640803763",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "B",
+            "RoadName": "NORFOLK ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000242",
+            "Location": "1.3748784522832425 103.83811376463666 1.3755371440113777 103.8390063090149",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000243",
+            "Location": "1.3755371440113777 103.8390063090149 1.3748784522832425 103.83811376463666",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000246",
+            "Location": "1.3112406329656845 103.82143582576197 1.3118940935550105 103.82204317904964",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000247",
+            "Location": "1.3118940935550105 103.82204317904964 1.3112406329656845 103.82143582576197",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000254",
+            "Location": "1.3134139917128311 103.82959840334954 1.3129593497249092 103.82975943310102",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "BALMORAL PARK",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000255",
+            "Location": "1.3129593497249092 103.82975943310102 1.3134139917128311 103.82959840334954",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "E",
+            "RoadName": "BALMORAL PARK",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000258",
+            "Location": "1.3131328782183662 103.82911750896497 1.3129593497249092 103.82975943310102",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000259",
+            "Location": "1.3129593497249092 103.82975943310102 1.3131328782183662 103.82911750896497",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000260",
+            "Location": "1.3128994765010902 103.85727722633219 1.3134069573818214 103.85667709880157",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "PETAIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000266",
+            "Location": "1.3135704480430792 103.8305390230549 1.3129593497249092 103.82975943310102",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "BALMORAL ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000267",
+            "Location": "1.3129593497249092 103.82975943310102 1.3135704480430792 103.8305390230549",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "BALMORAL ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000270",
+            "Location": "1.3129593497249092 103.82975943310102 1.3129482532197405 103.82979421597224",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000271",
+            "Location": "1.3129482532197405 103.82979421597224 1.3129593497249092 103.82975943310102",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000276",
+            "Location": "1.3131522033523786 103.84591215724936 1.3129397527298754 103.8453609319561",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "F",
+            "RoadName": "KAMPONG JAVA ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000282",
+            "Location": "1.3128915402722743 103.8435107552494 1.3134502209463657 103.8434271564376",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "B",
+            "RoadName": "KAMPONG JAVA ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000283",
+            "Location": "1.3134502209463657 103.8434271564376 1.3128915402722743 103.8435107552494",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "B",
+            "RoadName": "KAMPONG JAVA ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000290",
+            "Location": "1.3133115247400988 103.85513650754488 1.3128657945370725 103.85467601502488",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "RACE COURSE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000291",
+            "Location": "1.3128657945370725 103.85467601502488 1.3133115247400988 103.85513650754488",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "RACE COURSE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000292",
+            "Location": "1.3112814046832442 103.8745843404284 1.3128669001147928 103.8740481840283",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "LORONG 3 GEYLANG",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000298",
+            "Location": "1.311265024985496 103.83361404903052 1.3114126715258738 103.83387874363073",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "GOODWOOD HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000299",
+            "Location": "1.3114126715258738 103.83387874363073 1.311265024985496 103.83361404903052",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "GOODWOOD HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000300",
+            "Location": "1.3115941685350712 103.83315772987676 1.311265024985496 103.83361404903052",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000306",
+            "Location": "1.3112406329656845 103.82143582576197 1.3116597146848918 103.8212526635276",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000307",
+            "Location": "1.3116597146848918 103.8212526635276 1.3112406329656845 103.82143582576197",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000310",
+            "Location": "1.311229840433147 103.84910566257994 1.311802597676934 103.84973058015619",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "RUTLAND ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000311",
+            "Location": "1.311802597676934 103.84973058015619 1.311229840433147 103.84910566257994",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "RUTLAND ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000312",
+            "Location": "1.3113680558354108 103.8488917458808 1.311229840433147 103.84910566257994",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "RUTLAND ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000316",
+            "Location": "1.292423970537279 103.86259120957735 1.2912349150968774 103.8623028359393",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "F",
+            "RoadName": "OPHIR ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000324",
+            "Location": "1.2912309351425506 103.86236811495664 1.2918238027402373 103.86295353079224",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "F",
+            "RoadName": "RAFFLES BOULEVARD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000330",
+            "Location": "1.3739406188810974 103.83737872197739 1.3748784522832425 103.83811376463666",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000331",
+            "Location": "1.3748784522832425 103.83811376463666 1.3739406188810974 103.83737872197739",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 4",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000334",
+            "Location": "1.3694747355079808 103.84946957875535 1.369024197584065 103.84972450005914",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000335",
+            "Location": "1.369024197584065 103.84972450005914 1.3694747355079808 103.84946957875535",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000338",
+            "Location": "1.370561839669548 103.84885708436424 1.3696927152524048 103.84934676362796",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000339",
+            "Location": "1.3696927152524048 103.84934676362796 1.370561839669548 103.84885708436424",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000342",
+            "Location": "1.3696927152524048 103.84934676362796 1.3694747355079808 103.84946957875535",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000343",
+            "Location": "1.3694747355079808 103.84946957875535 1.3696927152524048 103.84934676362796",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000346",
+            "Location": "1.3239673531148124 103.92722444692839 1.3236245437060072 103.92726159815368",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000347",
+            "Location": "1.3236245437060072 103.92726159815368 1.3239673531148124 103.92722444692839",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000350",
+            "Location": "1.3240846767490342 103.92720949943045 1.3244923386287593 103.9271573268364",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000351",
+            "Location": "1.3244923386287593 103.9271573268364 1.3240846767490342 103.92720949943045",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000354",
+            "Location": "1.3159382308514525 103.84261245053749 1.315854648211366 103.84294233512517",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000355",
+            "Location": "1.315854648211366 103.84294233512517 1.3159382308514525 103.84261245053749",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000358",
+            "Location": "1.3807128617466986 103.84499903089491 1.3807123642926429 103.84500991262863",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000359",
+            "Location": "1.3807123642926429 103.84500991262863 1.3807128617466986 103.84499903089491",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000362",
+            "Location": "1.3118940935550105 103.82204317904964 1.3126625795883653 103.82252274944035",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000363",
+            "Location": "1.3126625795883653 103.82252274944035 1.3118940935550105 103.82204317904964",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000366",
+            "Location": "1.315854648211366 103.84294233512517 1.3167136667120711 103.84327853125002",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000367",
+            "Location": "1.3167136667120711 103.84327853125002 1.315854648211366 103.84294233512517",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000374",
+            "Location": "1.3807123642926429 103.84500991262863 1.380684897925153 103.8451761128162",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000375",
+            "Location": "1.380684897925153 103.8451761128162 1.3807123642926429 103.84500991262863",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000378",
+            "Location": "1.3157272395598174 103.84338520326874 1.315854648211366 103.84294233512517",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000379",
+            "Location": "1.315854648211366 103.84294233512517 1.3157272395598174 103.84338520326874",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000382",
+            "Location": "1.3156132848934614 103.84225443085381 1.3159382308514525 103.84261245053749",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000383",
+            "Location": "1.3159382308514525 103.84261245053749 1.3156132848934614 103.84225443085381",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SURREY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000386",
+            "Location": "1.3147915862600077 103.84277519172518 1.3157272395598174 103.84338520326874",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WEE NAM ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000387",
+            "Location": "1.3157272395598174 103.84338520326874 1.3147915862600077 103.84277519172518",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WEE NAM ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000390",
+            "Location": "1.291162335870407 103.83939185990795 1.2909587737416484 103.83879622503638",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MOHAMAD SULTAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000391",
+            "Location": "1.2909587737416484 103.83879622503638 1.291162335870407 103.83939185990795",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "MOHAMAD SULTAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000394",
+            "Location": "1.2916111381542603 103.83840296152836 1.2909587737416484 103.83879622503638",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "MARTIN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000395",
+            "Location": "1.2909587737416484 103.83879622503638 1.2916111381542603 103.83840296152836",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MARTIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000406",
+            "Location": "1.2909587737416484 103.83879622503638 1.2896315925323827 103.83812231618583",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SAIBOO STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000407",
+            "Location": "1.2896315925323827 103.83812231618583 1.2909587737416484 103.83879622503638",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "SAIBOO STREET",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000408",
+            "Location": "1.304116421073875 103.88129074763484 1.303480947720935 103.88194501182524",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "STADIUM CRESCENT",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000414",
+            "Location": "1.3034705740870907 103.85962406762611 1.3041658180712976 103.85918340072986",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KUBOR",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000415",
+            "Location": "1.3041658180712976 103.85918340072986 1.3034705740870907 103.85962406762611",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KUBOR",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000418",
+            "Location": "1.30450312346212 103.82573244672774 1.3034535281731428 103.82621354051224",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "TOMLINSON ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000419",
+            "Location": "1.3034535281731428 103.82621354051224 1.30450312346212 103.82573244672774",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TOMLINSON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000422",
+            "Location": "1.3037416943275602 103.83626910885548 1.303367431108309 103.83695623568973",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000423",
+            "Location": "1.303367431108309 103.83695623568973 1.3037416943275602 103.83626910885548",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000430",
+            "Location": "1.299700019895312 103.82447173073814 1.2997425241983005 103.82423630283773",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000431",
+            "Location": "1.2997425241983005 103.82423630283773 1.299700019895312 103.82447173073814",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000432",
+            "Location": "1.299700493522719 103.83736801561635 1.299804080133152 103.83693000207771",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "DEVONSHIRE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000438",
+            "Location": "1.3002619350753117 103.8215795098097 1.2996880144700964 103.82122821735582",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000439",
+            "Location": "1.2996880144700964 103.82122821735582 1.3002619350753117 103.8215795098097",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000446",
+            "Location": "1.3004162443480554 103.85026714446101 1.299920511324217 103.84973050315914",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "B",
+            "RoadName": "PRINSEP STREET",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000447",
+            "Location": "1.299920511324217 103.84973050315914 1.3004162443480554 103.85026714446101",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "B",
+            "RoadName": "PRINSEP STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000448",
+            "Location": "1.311229840433147 103.84910566257994 1.3113233168952205 103.84889480067116",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "RUTLAND ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000454",
+            "Location": "1.3112234836796168 103.82532382034226 1.3114913467964102 103.82511923783522",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ORANGE GROVE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000455",
+            "Location": "1.3114913467964102 103.82511923783522 1.3112234836796168 103.82532382034226",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "ORANGE GROVE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000456",
+            "Location": "1.3112234836796168 103.82532382034226 1.3113363109408036 103.82493559289007",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "ORANGE GROVE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000466",
+            "Location": "1.3106771084130493 103.84231654800287 1.3112736986654532 103.84260572116985",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000467",
+            "Location": "1.3112736986654532 103.84260572116985 1.3106771084130493 103.84231654800287",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000470",
+            "Location": "1.319061396656469 103.84092930386213 1.3188105351806543 103.84085187490123",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GILSTEAD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000471",
+            "Location": "1.3188105351806543 103.84085187490123 1.319061396656469 103.84092930386213",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GILSTEAD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000474",
+            "Location": "1.3193341206043803 103.84649970636902 1.318792210179824 103.84759767077377",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MOULMEIN RISE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000475",
+            "Location": "1.318792210179824 103.84759767077377 1.3193341206043803 103.84649970636902",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MOULMEIN RISE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000476",
+            "Location": "1.2995966073516918 103.82492836261135 1.299590087190852 103.82502125420042",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000486",
+            "Location": "1.3040286035789885 103.84718841611495 1.303500829348059 103.84807244793292",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "UPPER WILKIE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000487",
+            "Location": "1.303500829348059 103.84807244793292 1.3040286035789885 103.84718841611495",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "UPPER WILKIE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000488",
+            "Location": "1.303806415521386 103.88260774967814 1.304792453252485 103.88350989144139",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "JALAN BENAAN KAPAL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000494",
+            "Location": "1.3126031583342976 103.83124637127273 1.3123210243571486 103.83235126377782",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000495",
+            "Location": "1.3123210243571486 103.83235126377782 1.3126031583342976 103.83124637127273",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000498",
+            "Location": "1.3068304068438552 103.85870764712449 1.3063839358022185 103.85912667113942",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SYED ALWI ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000499",
+            "Location": "1.3063839358022185 103.85912667113942 1.3068304068438552 103.85870764712449",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SYED ALWI ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000506",
+            "Location": "1.316224036531867 103.84001801202565 1.316912438354752 103.84022564204443",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "BUCKLEY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000507",
+            "Location": "1.316912438354752 103.84022564204443 1.316224036531867 103.84001801202565",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "BUCKLEY ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000514",
+            "Location": "1.3014384798662653 103.88794327377201 1.3007662685213992 103.88781914331392",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "E",
+            "RoadName": "ARTHUR ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000515",
+            "Location": "1.3007662685213992 103.88781914331392 1.3014384798662653 103.88794327377201",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ARTHUR ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000516",
+            "Location": "1.3003646841996643 103.85417742366865 1.2995900710274935 103.8549671753034",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "CHENG YAN PLACE",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000522",
+            "Location": "1.3807436860731306 103.84424669062072 1.3807128617466986 103.84499903089491",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000523",
+            "Location": "1.3807128617466986 103.84499903089491 1.3807436860731306 103.84424669062072",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000526",
+            "Location": "1.368574220333337 103.84998011317111 1.3690128206372936 103.84973096070034",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000527",
+            "Location": "1.3690128206372936 103.84973096070034 1.368574220333337 103.84998011317111",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000530",
+            "Location": "1.3266284824846761 103.92688480413254 1.3257932174490585 103.92699111651997",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000531",
+            "Location": "1.3257932174490585 103.92699111651997 1.3266284824846761 103.92688480413254",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000534",
+            "Location": "1.3257932174490585 103.92699111651997 1.3253879069403292 103.92704270518263",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000535",
+            "Location": "1.3253879069403292 103.92704270518263 1.3257932174490585 103.92699111651997",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000538",
+            "Location": "1.3305807737063633 103.93447239316134 1.3299795120811468 103.9345891987128",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000539",
+            "Location": "1.3299795120811468 103.9345891987128 1.3305807737063633 103.93447239316134",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000542",
+            "Location": "1.299700019895312 103.82447173073814 1.2995966073516918 103.82492836261135",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000543",
+            "Location": "1.2995966073516918 103.82492836261135 1.299700019895312 103.82447173073814",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000550",
+            "Location": "1.2995260904869215 103.85348852047383 1.3003646841996643 103.85417742366865",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "QUEEN STREET",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000551",
+            "Location": "1.3003646841996643 103.85417742366865 1.2995260904869215 103.85348852047383",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "QUEEN STREET",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000554",
+            "Location": "1.299859186451872 103.82000765106312 1.2995256187143942 103.8196669425863",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000555",
+            "Location": "1.2995256187143942 103.8196669425863 1.299859186451872 103.82000765106312",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH ROAD",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000558",
+            "Location": "1.3011053085669935 103.81805296688717 1.3014774243966796 103.81754655338793",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000559",
+            "Location": "1.3014774243966796 103.81754655338793 1.3011053085669935 103.81805296688717",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000562",
+            "Location": "1.301806472610639 103.86270975462338 1.3010613159329476 103.86316751887426",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "JAVA ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000563",
+            "Location": "1.3010613159329476 103.86316751887426 1.301806472610639 103.86270975462338",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "JAVA ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000564",
+            "Location": "1.3011202434375964 103.88493813701652 1.3010447762182693 103.88439916122353",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "F",
+            "RoadName": "KAMPONG ARANG ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000568",
+            "Location": "1.3010447762182693 103.88439916122353 1.301661818312337 103.88468093944955",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "KAMPONG ARANG ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000574",
+            "Location": "1.3010999072766916 103.88345318308859 1.3010447762182693 103.88439916122353",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KAMPONG ARANG ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000575",
+            "Location": "1.3010447762182693 103.88439916122353 1.3010999072766916 103.88345318308859",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KAMPONG ARANG ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000576",
+            "Location": "1.2997159390706274 103.82516587459126 1.2997838115829037 103.82514573798137",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000582",
+            "Location": "1.3045514800189688 103.82322716383942 1.3045308153176574 103.82323542156517",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000583",
+            "Location": "1.3045308153176574 103.82323542156517 1.3045514800189688 103.82322716383942",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000586",
+            "Location": "1.3045308153176574 103.82323542156517 1.3039803203240277 103.82345537893475",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000587",
+            "Location": "1.3039803203240277 103.82345537893475 1.3045308153176574 103.82323542156517",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000590",
+            "Location": "1.3123210243571486 103.83235126377782 1.3115941685350712 103.83315772987676",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000591",
+            "Location": "1.3115941685350712 103.83315772987676 1.3123210243571486 103.83235126377782",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000594",
+            "Location": "1.3802644454971402 103.84603776256378 1.379102983292406 103.84700021880467",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000595",
+            "Location": "1.379102983292406 103.84700021880467 1.3802644454971402 103.84603776256378",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000598",
+            "Location": "1.379102983292406 103.84700021880467 1.3777027981180603 103.84756217854924",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000599",
+            "Location": "1.3777027981180603 103.84756217854924 1.379102983292406 103.84700021880467",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000602",
+            "Location": "1.3662705961072554 103.85128868333194 1.367423231286439 103.85063393131084",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000603",
+            "Location": "1.367423231286439 103.85063393131084 1.3662705961072554 103.85128868333194",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000606",
+            "Location": "1.367423231286439 103.85063393131084 1.368574220333337 103.84998011317111",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000607",
+            "Location": "1.368574220333337 103.84998011317111 1.367423231286439 103.85063393131084",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000610",
+            "Location": "1.3353186430332342 103.9335643527379 1.3362098473363948 103.93335267093885",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000611",
+            "Location": "1.3362098473363948 103.93335267093885 1.3353186430332342 103.9335643527379",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000614",
+            "Location": "1.3362098473363948 103.93335267093885 1.3374601217637425 103.93309717189955",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000615",
+            "Location": "1.3374601217637425 103.93309717189955 1.3362098473363948 103.93335267093885",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000626",
+            "Location": "1.3026531717253007 103.88251914863919 1.30192621857122 103.88332575871391",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "JALAN BATU",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000627",
+            "Location": "1.30192621857122 103.88332575871391 1.3026531717253007 103.88251914863919",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "JALAN BATU",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000634",
+            "Location": "1.3010823775748162 103.8508158905501 1.3018059374798563 103.85141396748956",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "B",
+            "RoadName": "PRINSEP STREET",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000635",
+            "Location": "1.3018059374798563 103.85141396748956 1.3010823775748162 103.8508158905501",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "B",
+            "RoadName": "PRINSEP STREET",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000638",
+            "Location": "1.373800752801476 103.84807630025367 1.3738803459530748 103.84806725212309",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000639",
+            "Location": "1.3738803459530748 103.84806725212309 1.373800752801476 103.84807630025367",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000642",
+            "Location": "1.380684897925153 103.8451761128162 1.3806504496395628 103.84538452798964",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000643",
+            "Location": "1.3806504496395628 103.84538452798964 1.380684897925153 103.8451761128162",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000646",
+            "Location": "1.3806409717745074 103.84540967903897 1.3802644454971402 103.84603776256378",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000647",
+            "Location": "1.3802644454971402 103.84603776256378 1.3806409717745074 103.84540967903897",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000648",
+            "Location": "1.3135747759643635 103.85056989112493 1.3133901063939397 103.85032404665321",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "DORSET ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000652",
+            "Location": "1.3139573638553332 103.85107793387837 1.3135747759643635 103.85056989112493",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "DORSET ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000656",
+            "Location": "1.3015437525944837 103.84091228655736 1.3008488303169885 103.84068798960408",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "KOEK ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000660",
+            "Location": "1.3008488303169885 103.84068798960408 1.3007305484074356 103.8407011799061",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "KOEK ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000666",
+            "Location": "1.3013080492862406 103.8196580733416 1.3010301634253092 103.81935013436056",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH AVENUE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000667",
+            "Location": "1.3010301634253092 103.81935013436056 1.3013080492862406 103.8196580733416",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH AVENUE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000670",
+            "Location": "1.3010301634253092 103.81935013436056 1.301661814609994 103.81892884778986",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000671",
+            "Location": "1.301661814609994 103.81892884778986 1.3010301634253092 103.81935013436056",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CHATSWORTH AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000674",
+            "Location": "1.3010236529646493 103.82333385320139 1.3011896344812637 103.82423937068208",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GRANGE GARDEN",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000675",
+            "Location": "1.3011896344812637 103.82423937068208 1.3010236529646493 103.82333385320139",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GRANGE GARDEN",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000678",
+            "Location": "1.3010236529646493 103.82333385320139 1.302429931449246 103.82340946928127",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000679",
+            "Location": "1.302429931449246 103.82340946928127 1.3010236529646493 103.82333385320139",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000682",
+            "Location": "1.3125573734728961 103.82752137157676 1.313527241870939 103.82776519981492",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WALSHE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000683",
+            "Location": "1.313527241870939 103.82776519981492 1.3125573734728961 103.82752137157676",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WALSHE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000686",
+            "Location": "1.3125573734728961 103.82752137157676 1.3128379691247396 103.82687900682744",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "WALSHE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000687",
+            "Location": "1.3128379691247396 103.82687900682744 1.3125573734728961 103.82752137157676",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "WALSHE ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000690",
+            "Location": "1.3758474480274783 103.8478437532391 1.376136862862823 103.84781087621323",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000691",
+            "Location": "1.376136862862823 103.84781087621323 1.3758474480274783 103.8478437532391",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "ANG MO KIO AVENUE 8",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000694",
+            "Location": "1.3244923386287593 103.9271573268364 1.324804408829976 103.92711737993756",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000695",
+            "Location": "1.324804408829976 103.92711737993756 1.3244923386287593 103.9271573268364",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000698",
+            "Location": "1.324804408829976 103.92711737993756 1.3253879069403292 103.92704270518263",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000699",
+            "Location": "1.3253879069403292 103.92704270518263 1.324804408829976 103.92711737993756",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 1",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000702",
+            "Location": "1.3374601217637425 103.93309717189955 1.337960130498252 103.93298866434807",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000703",
+            "Location": "1.337960130498252 103.93298866434807 1.3374601217637425 103.93309717189955",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000706",
+            "Location": "1.332470690656717 103.93410855531661 1.3331261420447007 103.93398349405123",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000707",
+            "Location": "1.3331261420447007 103.93398349405123 1.332470690656717 103.93410855531661",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000710",
+            "Location": "1.331517421090297 103.93429044700035 1.3305807737063633 103.93447239316134",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000711",
+            "Location": "1.3305807737063633 103.93447239316134 1.331517421090297 103.93429044700035",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK NORTH AVENUE 3",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000714",
+            "Location": "1.3125268779505506 103.82436435407683 1.3135710366962168 103.82365928526495",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "FERNHILL CRESCENT",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000715",
+            "Location": "1.3135710366962168 103.82365928526495 1.3125268779505506 103.82436435407683",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "FERNHILL CRESCENT",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000718",
+            "Location": "1.3125268779505506 103.82436435407683 1.3127715602878596 103.82367702570646",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "FERNHILL CRESCENT",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000719",
+            "Location": "1.3127715602878596 103.82367702570646 1.3125268779505506 103.82436435407683",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "FERNHILL CRESCENT",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000720",
+            "Location": "1.312526882962598 103.85772496096 1.3128994765010902 103.85727722633219",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "PETAIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000726",
+            "Location": "1.3124852352944107 103.87542930190754 1.312609280269797 103.87582290449367",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "E",
+            "RoadName": "LORONG TAHAR",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000727",
+            "Location": "1.312609280269797 103.87582290449367 1.3124852352944107 103.87542930190754",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "E",
+            "RoadName": "LORONG TAHAR",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000732",
+            "Location": "1.3123222590147685 103.85796897801305 1.312526882962598 103.85772496096",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "PETAIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000738",
+            "Location": "1.3108593785553044 103.84350297459066 1.3101593752468101 103.84297256751098",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000739",
+            "Location": "1.3101593752468101 103.84297256751098 1.3108593785553044 103.84350297459066",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000742",
+            "Location": "1.3104800021662708 103.84230465051553 1.3101593752468101 103.84297256751098",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000743",
+            "Location": "1.3101593752468101 103.84297256751098 1.3104800021662708 103.84230465051553",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000746",
+            "Location": "1.3101476274410442 103.83149312374148 1.3105190500950636 103.83157663459096",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000747",
+            "Location": "1.3105190500950636 103.83157663459096 1.3101476274410442 103.83149312374148",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000750",
+            "Location": "1.3103806026536704 103.8241463378636 1.3105467476055914 103.82289491045184",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "LADY HILL ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000751",
+            "Location": "1.3105467476055914 103.82289491045184 1.3103806026536704 103.8241463378636",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "LADY HILL ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000754",
+            "Location": "1.3049729085760269 103.85548999567351 1.305445507613457 103.85592178752432",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "E",
+            "RoadName": "PASAR LANE",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000755",
+            "Location": "1.305445507613457 103.85592178752432 1.3049729085760269 103.85548999567351",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "PASAR LANE",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000758",
+            "Location": "1.3049729085760269 103.85548999567351 1.305277654723263 103.85522047922288",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "WELD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000759",
+            "Location": "1.305277654723263 103.85522047922288 1.3049729085760269 103.85548999567351",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "WELD ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000762",
+            "Location": "1.3022870043432744 103.8856082959333 1.302366905524733 103.88686503022434",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "WILKINSON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000763",
+            "Location": "1.302366905524733 103.88686503022434 1.3022870043432744 103.8856082959333",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WILKINSON ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000766",
+            "Location": "1.3048813899663965 103.81904560462948 1.3054979109686005 103.81861041689989",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SHERWOOD ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000767",
+            "Location": "1.3054979109686005 103.81861041689989 1.3048813899663965 103.81904560462948",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SHERWOOD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000768",
+            "Location": "1.304865918473938 103.836845680642 1.3052352879030098 103.83703400759208",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000774",
+            "Location": "1.3048813899663965 103.81904560462948 1.3048570162708006 103.8188603154509",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "SHERWOOD ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000775",
+            "Location": "1.3048570162708006 103.8188603154509 1.3048813899663965 103.81904560462948",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "SHERWOOD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000778",
+            "Location": "1.3048447737796065 103.88599980938392 1.3048700607466412 103.88638311181344",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WIMBORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000779",
+            "Location": "1.3048700607466412 103.88638311181344 1.3048447737796065 103.88599980938392",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WIMBORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000782",
+            "Location": "1.3048447737796065 103.88599980938392 1.3054374136970703 103.88595734741624",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WIMBORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000783",
+            "Location": "1.3054374136970703 103.88595734741624 1.3048447737796065 103.88599980938392",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WIMBORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000786",
+            "Location": "1.3361429287690658 103.94374496770426 1.336497586014281 103.94409316516534",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "BEDOK NORTH AVENUE 4",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000787",
+            "Location": "1.336497586014281 103.94409316516534 1.3361429287690658 103.94374496770426",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "BEDOK NORTH AVENUE 4",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000792",
+            "Location": "1.3057800978363552 103.83226794405363 1.3048026423179848 103.83228309396262",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "SCOTTS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000798",
+            "Location": "1.3047845551566757 103.85663682706912 1.3051147088162958 103.8569308256185",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "B",
+            "RoadName": "SUNGEI ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000799",
+            "Location": "1.3051147088162958 103.8569308256185 1.3047845551566757 103.85663682706912",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "B",
+            "RoadName": "SUNGEI ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000802",
+            "Location": "1.3052169542710033 103.85617451974063 1.3047845551566757 103.85663682706912",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "PITT STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000803",
+            "Location": "1.3047845551566757 103.85663682706912 1.3052169542710033 103.85617451974063",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "PITT STREET",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000806",
+            "Location": "1.2981535674737417 103.81050245388612 1.2982810361681365 103.81033620407007",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000807",
+            "Location": "1.2982810361681365 103.81033620407007 1.2981535674737417 103.81050245388612",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000810",
+            "Location": "1.29805905086128 103.88406707129168 1.29970190934658 103.88411348692426",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "B",
+            "RoadName": "TANJONG RHU ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000811",
+            "Location": "1.29970190934658 103.88411348692426 1.29805905086128 103.88406707129168",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "B",
+            "RoadName": "TANJONG RHU ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000814",
+            "Location": "1.2982810361681365 103.81033620407007 1.2980452392774777 103.81013262302979",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000815",
+            "Location": "1.2980452392774777 103.81013262302979 1.2982810361681365 103.81033620407007",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000818",
+            "Location": "1.2980452392774777 103.81013262302979 1.2982246918341682 103.8100743238392",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000819",
+            "Location": "1.2982246918341682 103.8100743238392 1.2980452392774777 103.81013262302979",
+            "MaximumSpeed": "9",
+            "MinimumSpeed": "0",
+            "RoadCategory": "E",
+            "RoadName": "KAY SIANG ROAD",
+            "SpeedBand": 1
+        },
+        {
+            "LinkID": "103000822",
+            "Location": "1.3010091268966202 103.8253010925262 1.3013868725098114 103.8257790456515",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "ONE TREE HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000823",
+            "Location": "1.3013868725098114 103.8257790456515 1.3010091268966202 103.8253010925262",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "ONE TREE HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000826",
+            "Location": "1.3010091268966202 103.8253010925262 1.3019154913408086 103.82562409886084",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "LENGKOK MERAK",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000827",
+            "Location": "1.3019154913408086 103.82562409886084 1.3010091268966202 103.8253010925262",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "LENGKOK MERAK",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000830",
+            "Location": "1.3009866921398463 103.81411709648594 1.3013910245397402 103.8141127804082",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "RIDLEY PARK",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000831",
+            "Location": "1.3013910245397402 103.8141127804082 1.3009866921398463 103.81411709648594",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "RIDLEY PARK",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103000834",
+            "Location": "1.3022870043432744 103.8856082959333 1.3031834748663926 103.88554985502151",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GOODMAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000835",
+            "Location": "1.3031834748663926 103.88554985502151 1.3022870043432744 103.8856082959333",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "GOODMAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000838",
+            "Location": "1.3022836478769049 103.82877814631033 1.3025271098303324 103.82774617488765",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TUPAI",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000839",
+            "Location": "1.3025271098303324 103.82774617488765 1.3022836478769049 103.82877814631033",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN TUPAI",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000842",
+            "Location": "1.303367431108309 103.83695623568973 1.3022825552999076 103.83682781397152",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000843",
+            "Location": "1.3022825552999076 103.83682781397152 1.303367431108309 103.83695623568973",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000844",
+            "Location": "1.2960654096709168 103.82596149276202 1.2950687499722084 103.82457458512825",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "CABLE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000850",
+            "Location": "1.2950687499722084 103.82457458512825 1.296280223288126 103.82330040109034",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "CABLE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000851",
+            "Location": "1.296280223288126 103.82330040109034 1.2950687499722084 103.82457458512825",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "CABLE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000854",
+            "Location": "1.2959196449682264 103.8354990479806 1.2950148913365573 103.83540405321959",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KUALA",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000855",
+            "Location": "1.2950148913365573 103.83540405321959 1.2959196449682264 103.8354990479806",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "JALAN KUALA",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000858",
+            "Location": "1.2885670134046823 103.84714396212335 1.2876813975832344 103.8484550719313",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "CARPENTER STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000859",
+            "Location": "1.2876813975832344 103.8484550719313 1.2885670134046823 103.84714396212335",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CARPENTER STREET",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000862",
+            "Location": "1.3115598539922761 103.84356326107677 1.3109616270123052 103.8432595670941",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "HOOPER ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000863",
+            "Location": "1.3109616270123052 103.8432595670941 1.3115598539922761 103.84356326107677",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "HOOPER ROAD",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000864",
+            "Location": "1.3120101853447135 103.86178507739291 1.3109572673338927 103.86038505459275",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "HAMILTON ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000870",
+            "Location": "1.3109572673338927 103.86038505459275 1.3113764532698613 103.86002491168635",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "HORNE ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000871",
+            "Location": "1.3113764532698613 103.86002491168635 1.3109572673338927 103.86038505459275",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "HORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000874",
+            "Location": "1.338115027636161 103.93370315844263 1.3383570201169084 103.93428755405625",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000875",
+            "Location": "1.3383570201169084 103.93428755405625 1.338115027636161 103.93370315844263",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000878",
+            "Location": "1.3041457908670204 103.82980042827975 1.3031629356028471 103.82935354671685",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ANGULLIA PARK",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000879",
+            "Location": "1.3031629356028471 103.82935354671685 1.3041457908670204 103.82980042827975",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "ANGULLIA PARK",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000882",
+            "Location": "1.3031629356028471 103.82935354671685 1.3022836478769049 103.82877814631033",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ANGULLIA PARK",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000883",
+            "Location": "1.3022836478769049 103.82877814631033 1.3031629356028471 103.82935354671685",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "ANGULLIA PARK",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000886",
+            "Location": "1.3325819300928987 103.91292220139155 1.3331715249190608 103.91363120796856",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000887",
+            "Location": "1.3331715249190608 103.91363120796856 1.3325819300928987 103.91292220139155",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000890",
+            "Location": "1.3331715249190608 103.91363120796856 1.3340305501607592 103.91398715396191",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000891",
+            "Location": "1.3340305501607592 103.91398715396191 1.3331715249190608 103.91363120796856",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000894",
+            "Location": "1.3316242065559465 103.91016444097393 1.3319487918753772 103.91158861675343",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000895",
+            "Location": "1.3319487918753772 103.91158861675343 1.3316242065559465 103.91016444097393",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000898",
+            "Location": "1.3442572577298928 103.93831348602518 1.3443948102538565 103.9383384628674",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000899",
+            "Location": "1.3443948102538565 103.9383384628674 1.3442572577298928 103.93831348602518",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000902",
+            "Location": "1.3378762966441458 103.91604470688691 1.3380931134273595 103.91723161005793",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000903",
+            "Location": "1.3380931134273595 103.91723161005793 1.3378762966441458 103.91604470688691",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000906",
+            "Location": "1.3380931134273595 103.91723161005793 1.3381325711963585 103.91748274929562",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000907",
+            "Location": "1.3381325711963585 103.91748274929562 1.3380931134273595 103.91723161005793",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000910",
+            "Location": "1.3313291785543604 103.90713830378151 1.3316420691276942 103.90777636841813",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000911",
+            "Location": "1.3316420691276942 103.90777636841813 1.3313291785543604 103.90713830378151",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000914",
+            "Location": "1.3316420691276942 103.90777636841813 1.3316948986769936 103.90935878927051",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000915",
+            "Location": "1.3316948986769936 103.90935878927051 1.3316420691276942 103.90777636841813",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000918",
+            "Location": "1.3439953924596793 103.93826570742942 1.3442572577298928 103.93831348602518",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000919",
+            "Location": "1.3442572577298928 103.93831348602518 1.3439953924596793 103.93826570742942",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000922",
+            "Location": "1.3368459227822735 103.91349383891486 1.3375156304908398 103.91487885234604",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000923",
+            "Location": "1.3375156304908398 103.91487885234604 1.3368459227822735 103.91349383891486",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000926",
+            "Location": "1.3375156304908398 103.91487885234604 1.3378762966441458 103.91604470688691",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000927",
+            "Location": "1.3378762966441458 103.91604470688691 1.3375156304908398 103.91487885234604",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000930",
+            "Location": "1.3108981274496783 103.87714337370616 1.3110113702489334 103.87775037224722",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "E",
+            "RoadName": "TALMA ROAD",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103000931",
+            "Location": "1.3110113702489334 103.87775037224722 1.3108981274496783 103.87714337370616",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "TALMA ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000936",
+            "Location": "1.3141261346143287 103.82596500741973 1.3147932311346617 103.82629209573213",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "ORANGE GROVE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000942",
+            "Location": "1.3148829614655 103.85573716606248 1.3141337207319783 103.85491622616078",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "TESSENSOHN ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000943",
+            "Location": "1.3141337207319783 103.85491622616078 1.3148829614655 103.85573716606248",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "TESSENSOHN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000950",
+            "Location": "1.3068028767465807 103.85699202345181 1.306434127199633 103.85739940333855",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KELANTAN LANE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000951",
+            "Location": "1.306434127199633 103.85739940333855 1.3068028767465807 103.85699202345181",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "KELANTAN LANE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000952",
+            "Location": "1.3064163082912195 103.85365896674597 1.3069081713629047 103.85399994248284",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KAMPONG KAPOR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000956",
+            "Location": "1.3064163082912195 103.85365896674597 1.306893179904927 103.85364561816444",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "UPPER WELD ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000960",
+            "Location": "1.306396727200617 103.85594795272537 1.3070728937390994 103.85490426894879",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "VEERASAMY ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000966",
+            "Location": "1.306712724555774 103.84974167110374 1.3065860327220915 103.84964712513366",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "RACE COURSE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000967",
+            "Location": "1.3065860327220915 103.84964712513366 1.306712724555774 103.84974167110374",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "D",
+            "RoadName": "RACE COURSE ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103000970",
+            "Location": "1.3135785082460492 103.84261502964878 1.3147915862600077 103.84277519172518",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103000971",
+            "Location": "1.3147915862600077 103.84277519172518 1.3135785082460492 103.84261502964878",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000974",
+            "Location": "1.3147915862600077 103.84277519172518 1.315854648211366 103.84294233512517",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000975",
+            "Location": "1.315854648211366 103.84294233512517 1.3147915862600077 103.84277519172518",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "LINCOLN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000978",
+            "Location": "1.3024905994868776 103.86174068091944 1.3029220018190328 103.86232921536688",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MINTO ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000979",
+            "Location": "1.3029220018190328 103.86232921536688 1.3024905994868776 103.86174068091944",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MINTO ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000980",
+            "Location": "1.302472770809991 103.83647688713734 1.303367431108309 103.83695623568973",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BIDEFORD ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103000986",
+            "Location": "1.3030837729876676 103.85917081005064 1.3024623974822258 103.85961424505442",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KANDAHAR STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000987",
+            "Location": "1.3024623974822258 103.85961424505442 1.3030837729876676 103.85917081005064",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "KANDAHAR STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000988",
+            "Location": "1.3024590972915757 103.84059908315483 1.3028799250818761 103.84069188619374",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "CUPPAGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000994",
+            "Location": "1.3024590972915757 103.84059908315483 1.3026246610998955 103.83996913104441",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "CUPPAGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000995",
+            "Location": "1.3026246610998955 103.83996913104441 1.3024590972915757 103.84059908315483",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "CUPPAGE ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103000998",
+            "Location": "1.3024467879891048 103.88812157587378 1.3033228152989749 103.8882730626597",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "ARTHUR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103000999",
+            "Location": "1.3033228152989749 103.8882730626597 1.3024467879891048 103.88812157587378",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "ARTHUR ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001002",
+            "Location": "1.34033817545588 103.93636757240168 1.3414544578880896 103.93700564947514",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001003",
+            "Location": "1.3414544578880896 103.93700564947514 1.34033817545588 103.93636757240168",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001006",
+            "Location": "1.3414544578880896 103.93700564947514 1.3425987954630587 103.93759652704715",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103001007",
+            "Location": "1.3425987954630587 103.93759652704715 1.3414544578880896 103.93700564947514",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001010",
+            "Location": "1.3379520601149266 103.93151372717654 1.3378617043922947 103.93242761921088",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001011",
+            "Location": "1.3378617043922947 103.93242761921088 1.3379520601149266 103.93151372717654",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001014",
+            "Location": "1.3041716079250012 103.86070305839088 1.3033318543866834 103.8612214025896",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "JALAN SULTAN",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001015",
+            "Location": "1.3033318543866834 103.8612214025896 1.3041716079250012 103.86070305839088",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "JALAN SULTAN",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001018",
+            "Location": "1.349455495087144 103.84747160828421 1.3508288520103235 103.84777910458106",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001019",
+            "Location": "1.3508288520103235 103.84777910458106 1.349455495087144 103.84747160828421",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001022",
+            "Location": "1.3488913352141585 103.84734529408348 1.349455495087144 103.84747160828421",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001023",
+            "Location": "1.349455495087144 103.84747160828421 1.3488913352141585 103.84734529408348",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001034",
+            "Location": "1.3472543044108394 103.71041686476453 1.3458977909039784 103.70976275448838",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103001035",
+            "Location": "1.3458977909039784 103.70976275448838 1.3472543044108394 103.71041686476453",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001038",
+            "Location": "1.3458977909039784 103.70976275448838 1.3455495249467528 103.70930947581078",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001039",
+            "Location": "1.3455495249467528 103.70930947581078 1.3458977909039784 103.70976275448838",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001042",
+            "Location": "1.3440545475479635 103.70714324306503 1.344343928501278 103.7075515692584",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001043",
+            "Location": "1.344343928501278 103.7075515692584 1.3440545475479635 103.70714324306503",
+            "MaximumSpeed": "9",
+            "MinimumSpeed": "0",
+            "RoadCategory": "C",
+            "RoadName": "BOON LAY AVENUE",
+            "SpeedBand": 1
+        },
+        {
+            "LinkID": "103001044",
+            "Location": "1.31886026171601 103.84792388137056 1.319450709571759 103.84838600107199",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "F",
+            "RoadName": "MOULMEIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001048",
+            "Location": "1.3190500932755969 103.85122896251939 1.3189656799602085 103.85242780063555",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "MOULMEIN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001054",
+            "Location": "1.313358012769702 103.85249622747389 1.313597881369882 103.85314368834017",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "WORCESTER ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001055",
+            "Location": "1.313597881369882 103.85314368834017 1.313358012769702 103.85249622747389",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "WORCESTER ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001058",
+            "Location": "1.3099261678549536 103.84267399691635 1.3101593752468101 103.84297256751098",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001059",
+            "Location": "1.3101593752468101 103.84297256751098 1.3099261678549536 103.84267399691635",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "WINSTEDT DRIVE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001066",
+            "Location": "1.3099035483864083 103.83141667541084 1.3101476274410442 103.83149312374148",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001067",
+            "Location": "1.3101476274410442 103.83149312374148 1.3099035483864083 103.83141667541084",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001070",
+            "Location": "1.3099035483864083 103.83141667541084 1.3101156398782912 103.83126111851554",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001071",
+            "Location": "1.3101156398782912 103.83126111851554 1.3099035483864083 103.83141667541084",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT PARK",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001074",
+            "Location": "1.31058157265364 103.82052243609898 1.3098953706522087 103.8210801506698",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001075",
+            "Location": "1.3098953706522087 103.8210801506698 1.31058157265364 103.82052243609898",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "NASSIM ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001076",
+            "Location": "1.310822121421863 103.83333771825176 1.3098922536055888 103.83345390955975",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "STEVENS ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001082",
+            "Location": "1.3077282875177416 103.85955238978066 1.3072420606194894 103.85909560812084",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "KING GEORGES AVENUE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001083",
+            "Location": "1.3072420606194894 103.85909560812084 1.3077282875177416 103.85955238978066",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "KING GEORGES AVENUE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001086",
+            "Location": "1.3072420606194894 103.85909560812084 1.3078794361010724 103.85846810483393",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MAUDE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001087",
+            "Location": "1.3078794361010724 103.85846810483393 1.3072420606194894 103.85909560812084",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "MAUDE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001088",
+            "Location": "1.3071850894685886 103.8501717998829 1.307272894948953 103.85006617620294",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "E",
+            "RoadName": "BUFFALO ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001094",
+            "Location": "1.3071188143532448 103.81885660049718 1.3079617809120705 103.81871264830949",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CLUNY ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001095",
+            "Location": "1.3079617809120705 103.81871264830949 1.3071188143532448 103.81885660049718",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "CLUNY ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001098",
+            "Location": "1.307170122823936 103.83645862549653 1.3073852522841434 103.8370603471685",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "CAIRNHILL ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001099",
+            "Location": "1.3073852522841434 103.8370603471685 1.307170122823936 103.83645862549653",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "CAIRNHILL ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001100",
+            "Location": "1.3185545940225802 103.84476840899393 1.3181085280127 103.84414294327067",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "F",
+            "RoadName": "MOULMEIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001106",
+            "Location": "1.309299949684641 103.85222615590367 1.3100042924352346 103.85269430495329",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "CHANDER ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001107",
+            "Location": "1.3100042924352346 103.85269430495329 1.309299949684641 103.85222615590367",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "CHANDER ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001110",
+            "Location": "1.309384725200985 103.8617179711374 1.3092891871958876 103.86179915389253",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "HORNE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001111",
+            "Location": "1.3092891871958876 103.86179915389253 1.309384725200985 103.8617179711374",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "HORNE ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001114",
+            "Location": "1.3105239615560678 103.85656144683719 1.3092864620940106 103.85782331164867",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "KITCHENER ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001115",
+            "Location": "1.3092864620940106 103.85782331164867 1.3105239615560678 103.85656144683719",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "KITCHENER ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001116",
+            "Location": "1.3065538078292014 103.88324038023666 1.305298120233709 103.8830242190826",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "F",
+            "RoadName": "OLD AIRPORT ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001120",
+            "Location": "1.3059928888694998 103.85425391832095 1.305277654723263 103.85522047922288",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "UPPER WELD ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001124",
+            "Location": "1.3052748735326998 103.82352616140828 1.3055888686305448 103.82343904606199",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "F",
+            "RoadName": "TANGLIN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001128",
+            "Location": "1.3053978073470158 103.82220600682551 1.3052748735326998 103.82352616140828",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "NAPIER ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001134",
+            "Location": "1.3508288520103235 103.84777910458106 1.3522028690601513 103.84808674500522",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001135",
+            "Location": "1.3522028690601513 103.84808674500522 1.3508288520103235 103.84777910458106",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001138",
+            "Location": "1.3121234483919337 103.86683186105031 1.3114124898343449 103.86824892611672",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "KALLANG AVENUE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001139",
+            "Location": "1.3114124898343449 103.86824892611672 1.3121234483919337 103.86683186105031",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "KALLANG AVENUE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001142",
+            "Location": "1.3114124898343449 103.86824892611672 1.3104938696843227 103.86714226096593",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "KALLANG AVENUE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001143",
+            "Location": "1.3104938696843227 103.86714226096593 1.3114124898343449 103.86824892611672",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "D",
+            "RoadName": "KALLANG AVENUE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001146",
+            "Location": "1.3570406703029732 103.85029407367034 1.3580342639922915 103.85088952430387",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001147",
+            "Location": "1.3580342639922915 103.85088952430387 1.3570406703029732 103.85029407367034",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001150",
+            "Location": "1.3580342639922915 103.85088952430387 1.3590278665630788 103.8514849754271",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001151",
+            "Location": "1.3590278665630788 103.8514849754271 1.3580342639922915 103.85088952430387",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001154",
+            "Location": "1.3378617043922947 103.93242761921088 1.3378966589737933 103.93262667800124",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001155",
+            "Location": "1.3378966589737933 103.93262667800124 1.3378617043922947 103.93242761921088",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK RESERVOIR ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001158",
+            "Location": "1.3231419719897588 103.92735082418997 1.3227290456435956 103.927430968462",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK SOUTH ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001159",
+            "Location": "1.3227290456435956 103.927430968462 1.3231419719897588 103.92735082418997",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK SOUTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001162",
+            "Location": "1.3590278665630788 103.8514849754271 1.3594359952743287 103.85172955927906",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001163",
+            "Location": "1.3594359952743287 103.85172955927906 1.3590278665630788 103.8514849754271",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001166",
+            "Location": "1.3594359952743287 103.85172955927906 1.359624970370861 103.85184280704898",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001167",
+            "Location": "1.359624970370861 103.85184280704898 1.3594359952743287 103.85172955927906",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001170",
+            "Location": "1.3184325030791815 103.92983778059923 1.3184072069631432 103.93009678674385",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK SOUTH ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001171",
+            "Location": "1.3184072069631432 103.93009678674385 1.3184325030791815 103.92983778059923",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BEDOK SOUTH ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001174",
+            "Location": "1.3481248602480003 103.84716987236547 1.3467011842705927 103.84688060830581",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001175",
+            "Location": "1.3467011842705927 103.84688060830581 1.3481248602480003 103.84716987236547",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "C",
+            "RoadName": "BISHAN ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001178",
+            "Location": "1.3033040994320206 103.88806880482987 1.3024467879891048 103.88812157587378",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "LYNDHURST ROAD",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001179",
+            "Location": "1.3024467879891048 103.88812157587378 1.3033040994320206 103.88806880482987",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "E",
+            "RoadName": "LYNDHURST ROAD",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103001180",
+            "Location": "1.3026957990927432 103.82405852392625 1.302429931449246 103.82340946928127",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "ORCHARD BOULEVARD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001186",
+            "Location": "1.302429931449246 103.82340946928127 1.303054784356424 103.82344916460241",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001187",
+            "Location": "1.303054784356424 103.82344916460241 1.302429931449246 103.82340946928127",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "C",
+            "RoadName": "GRANGE ROAD",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001188",
+            "Location": "1.303163123791825 103.8580933193693 1.3024251106240274 103.85872812577652",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "JALAN PINANG",
+            "SpeedBand": 5
+        },
+        {
+            "LinkID": "103001194",
+            "Location": "1.3023244753572962 103.81556923519429 1.303289677502834 103.8156809896024",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001195",
+            "Location": "1.303289677502834 103.8156809896024 1.3023244753572962 103.81556923519429",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "TANGLIN HILL",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001198",
+            "Location": "1.3023118710455295 103.85316975650862 1.3029486225222129 103.85235039535674",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "ALBERT STREET",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001199",
+            "Location": "1.3029486225222129 103.85235039535674 1.3023118710455295 103.85316975650862",
+            "MaximumSpeed": "69",
+            "MinimumSpeed": "60",
+            "RoadCategory": "D",
+            "RoadName": "ALBERT STREET",
+            "SpeedBand": 7
+        },
+        {
+            "LinkID": "103001200",
+            "Location": "1.2891926275810617 103.85120581188629 1.2893271856836854 103.85153421166655",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "F",
+            "RoadName": "PARLIAMENT PLACE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001206",
+            "Location": "1.3162715531513092 103.85325411434806 1.3165492139574482 103.85401877433466",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "RANGOON LANE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001207",
+            "Location": "1.3165492139574482 103.85401877433466 1.3162715531513092 103.85325411434806",
+            "MaximumSpeed": "19",
+            "MinimumSpeed": "10",
+            "RoadCategory": "E",
+            "RoadName": "RANGOON LANE",
+            "SpeedBand": 2
+        },
+        {
+            "LinkID": "103001210",
+            "Location": "1.309788142655336 103.83177866474172 1.309632040452508 103.8321281642356",
+            "MaximumSpeed": "999",
+            "MinimumSpeed": "70",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT DRIVE",
+            "SpeedBand": 8
+        },
+        {
+            "LinkID": "103001211",
+            "Location": "1.309632040452508 103.8321281642356 1.309788142655336 103.83177866474172",
+            "MaximumSpeed": "29",
+            "MinimumSpeed": "20",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT DRIVE",
+            "SpeedBand": 3
+        },
+        {
+            "LinkID": "103001212",
+            "Location": "1.309788142655336 103.83177866474172 1.3096279339357806 103.83110989321554",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "F",
+            "RoadName": "DRAYCOTT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001218",
+            "Location": "1.3096279339357806 103.83110989321554 1.309694857000047 103.83119447352243",
+            "MaximumSpeed": "59",
+            "MinimumSpeed": "50",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT DRIVE",
+            "SpeedBand": 6
+        },
+        {
+            "LinkID": "103001219",
+            "Location": "1.309694857000047 103.83119447352243 1.3096279339357806 103.83110989321554",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "DRAYCOTT DRIVE",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001226",
+            "Location": "1.3099051585628567 103.86554520014256 1.309253800591554 103.86611733337693",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "PADANG JERINGAU",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001227",
+            "Location": "1.309253800591554 103.86611733337693 1.3099051585628567 103.86554520014256",
+            "MaximumSpeed": "39",
+            "MinimumSpeed": "30",
+            "RoadCategory": "D",
+            "RoadName": "PADANG JERINGAU",
+            "SpeedBand": 4
+        },
+        {
+            "LinkID": "103001230",
+            "Location": "1.309221657875194 103.88033745809436 1.3093222221148553 103.88087126937101",
+            "MaximumSpeed": "49",
+            "MinimumSpeed": "40",
+            "RoadCategory": "E",
+            "RoadName": "GUILLEMARD CRESCENT",
+            "SpeedBand": 5
+        }
+    ]
+}
