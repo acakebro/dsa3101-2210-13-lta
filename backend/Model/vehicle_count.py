@@ -24,12 +24,6 @@ class VehicleCount:
         self.incidents_lat_long = self.incidents_df.iloc[:, 1:3].to_dict(
             "records")
 
-    def __display_image(self, img_name, img):
-        cv2.namedWindow(img_name, cv2.WINDOW_NORMAL)  # Fit image to window
-        cv2.imshow(img_name, img)
-        cv2.waitKey()
-        cv2.destroyAllWindows()
-
     def __roi(self, img, coords):
         x = int(img.shape[1])
         y = int(img.shape[0])
@@ -163,10 +157,9 @@ class VehicleCount:
             closest_incident = self.__closest(
                 self.incidents_lat_long, cam_coords)
             incident_distance = closest_incident[2]
-            incident_type = None
-            if incident_distance > 100:
-                closest_incident_index = closest_incident[0]
-                incident_type = self.incidents_df.iloc[closest_incident_index, 0]
+            incident = 0
+            if incident_distance <= 100:
+                incident = 1
             avg_speed = self.speedband_lat_long_df.iloc[closest_speedband_index, 7]
             img = cv2.imread(img_path)
             for i in range(len(rois)):
@@ -192,7 +185,7 @@ class VehicleCount:
                         cam_coords.get("Longitude"),
                         is_weekday,
                         is_peak,
-                        incident_type,
+                        incident,
                         Is_Jam
                     ]
                 )
@@ -210,7 +203,7 @@ class VehicleCount:
                 "Longitude",
                 "Is_Weekday",
                 "Is_Peak",
-                "Incident_Type",
+                "Incident",
                 "Jam"
             ],
         )
