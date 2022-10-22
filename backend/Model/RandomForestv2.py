@@ -14,10 +14,11 @@ class RandomForestModel:
     def toDummy(self, data):
         time = data.pop("Time")  # remove time
         date = data.pop("Date")
+        speed = data.pop("Average_Speed")
+        density = data.pop("Density")
         for col in data.dtypes[data.dtypes == "object"].index:
             for_dummy = data.pop(col)
-            data = pd.concat(
-                [data, pd.get_dummies(for_dummy, prefix=col)], axis=1)
+            data = pd.concat([data, pd.get_dummies(for_dummy, prefix=col)], axis=1)
         return data
 
     def trainModel(self):  # no pickle
@@ -30,8 +31,7 @@ class RandomForestModel:
         model = RandomForestClassifier()
         model.fit(x_train, y_train)
         y_pred = model.predict(x_test)
-        false_positive_rate, true_positive_rate, thresholds = roc_curve(
-            y_test, y_pred)
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
         roc_auc = auc(false_positive_rate, true_positive_rate)
 
         n_estimators = [1, 2, 4, 8, 16, 32, 64, 100, 200]
@@ -61,8 +61,10 @@ class RandomForestModel:
 
     def predict(self, test_dir):
         test = pd.read_csv(test_dir)
-        result = test.copy()
-        test = self.toDummy(test)
+        result = test.copy()  # with all the variables except jam
+        test = self.toDummy(
+            test
+        )  # removing some predictors and converting qualitative predictions to dummy var
         test_pred = self.model.predict(test)
         result["Jam"] = test_pred
         return result
@@ -73,5 +75,5 @@ class RandomForestModel:
 
 # ----------------------------PIPELINE-----------------------------------------------
 
-model = RandomForestModel('training_data/training_data.csv')
+model = RandomForestModel("training_data/training_data.csv")
 model.exportModel()
