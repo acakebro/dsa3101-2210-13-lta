@@ -9,7 +9,6 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, auc
 import pickle
 
-
 # Reading of data
 train = pd.read_csv("training_data/training_data.csv")
 
@@ -22,8 +21,7 @@ for col in train.dtypes[train.dtypes == "object"].index:
 labels = train.pop("Jam")
 
 # split dataset
-x_train, x_test, y_train, y_test = train_test_split(
-    train, labels, test_size=0.25)
+x_train, x_test, y_train, y_test = train_test_split(train, labels, test_size=0.25)
 
 # Begin Random Forest modelling
 model = RandomForestClassifier()
@@ -44,13 +42,11 @@ for estimator in n_estimators:
     rf = RandomForestClassifier(n_estimators=estimator, n_jobs=-1)
     rf.fit(x_train, y_train)
     train_pred = rf.predict(x_train)
-    false_positive_rate, true_positive_rate, thresholds = roc_curve(
-        y_train, train_pred)
+    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_train, train_pred)
     roc_auc = auc(false_positive_rate, true_positive_rate)
     train_results.append(roc_auc)
     y_pred = rf.predict(x_test)
-    false_positive_rate, true_positive_rate, thresholds = roc_curve(
-        y_test, y_pred)
+    false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
     roc_auc = auc(false_positive_rate, true_positive_rate)
     test_results.append(roc_auc)
 
