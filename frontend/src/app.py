@@ -2,33 +2,37 @@
  # @ Create Time: 2022-10-08 23:39:32.168931
 '''
 
+import sys
+import pathlib
+
+sys.path.insert(1, "../../backend/Model/")
+
+
 from dash import Dash, html, dcc, dash_table
 import plotly.express as px
 import pandas as pd
+import sys
+from api_calls import ApiCall
 import plotly.graph_objects as go
 from dash.dependencies import Input, Output
 from datetime import datetime, date
 import dash_leaflet as dl
 import os
+from api_calls import ApiCall
 
+api_obj = ApiCall("../src")
+api_obj.download_images()
 
 app = Dash(__name__, title="frontend")
 
 # Declare server for Heroku deployment. Needed for Procfile.
 server = app.server
 
-# assume you have a "long-form" data frame
-# see https://plotly.com/python/px-arguments/ for more options
-df = pd.DataFrame({
-    "Fruit": ["Apples", "Oranges", "Bananas", "Apples", "Oranges", "Bananas"],
-    "Amount": [4, 1, 2, 2, 4, 5],
-    "City": ["SF", "SF", "SF", "Montreal", "Montreal", "Montreal"]
-})
 
 traffic_incidents = pd.read_csv("traffic_incidents.csv")
 traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
-train_data = pd.read_csv("../train_data.csv")
+train_data = pd.read_csv("../interface/train_data.csv")
 
 #cameras = [dict(title = str(traffic_images['CameraID'][0]),
 #                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
@@ -36,9 +40,6 @@ train_data = pd.read_csv("../train_data.csv")
 cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
                 children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
                ) for i in range(len(traffic_images))]
-
-fig = px.bar(df, x="Fruit", y="Amount", color="City", barmode="group")
-fig.update_layout({'paper_bgcolor':'rgb(237,250,252)'})
 
 folder = "assets/"
 
@@ -156,6 +157,6 @@ def filter_image(input_exp):
 '''
 
 
-if __name__ == '__main__':
-    app.run_server(debug=True)
+#if __name__ == '__main__':
+#    app.run_server(debug=True)
 
