@@ -3,6 +3,7 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, auc
+import pickle
 
 
 class RandomForestModel:
@@ -66,10 +67,11 @@ class RandomForestModel:
         result["Jam"] = test_pred
         return result
 
+    def exportModel(self):
+        pickle.dump(self.model, open("model.pkl", "wb"))
+
 
 # ----------------------------PIPELINE-----------------------------------------------
-"""
+
 model = RandomForestModel('training_data/training_data.csv')
-print(model.predict('training_data/test.csv'))
-print(model.predict('training_data/test2.csv'))
-"""
+model.exportModel()
