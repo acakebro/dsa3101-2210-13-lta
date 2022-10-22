@@ -9,15 +9,14 @@ import datetime
 
 
 class VehicleCount:
-    def __init__(self, images, image_roi_df, cam_lat_long, speedband_lat_long_df, incidents_df):
+    def __init__(self, images, image_roi_df, cam_lat_long, speedband_lat_long_df, speedband_cam_mapping, incidents_df):
         self.vehicle_detector = VehicleDetector()
         self.images = glob(images)  # to input through main
         self.image_roi_df = pd.read_csv(image_roi_df)  # to input through main
         self.cam_lat_long = pd.read_csv(cam_lat_long)  # to input through main
         self.speedband_lat_long_df = pd.read_csv(
             speedband_lat_long_df)  # to input through main
-        self.speedband_lat_long = self.speedband_lat_long_df.iloc[:, -2:].to_dict(
-            "records")
+        self.speedband_cam_mapping = pd.read_csv(speedband_cam_mapping)
         self.incidents_df = pd.read_csv(incidents_df)
         self.incidents_df.rename(
             columns={'Latitude': 'AvgLat', 'Longitude': 'AvgLon'}, inplace=True)
@@ -43,7 +42,7 @@ class VehicleCount:
     # Distance between 2 geographical locations
     def __distance(self, lat1, lon1, lat2, lon2):
         """
-        Calculate the great circle distance in kilometers between two points 
+        Calculate the great circle distance in meters between two points 
         on the earth (specified in decimal degrees)
         """
         # convert decimal degrees to radians
@@ -152,15 +151,16 @@ class VehicleCount:
                 .to_dict("records")[0]
             )
             # Index to retrieve the average speed from speedband df
-            closest_speedband_index = self.__closest(
-                self.speedband_lat_long, cam_coords)[0]
+            speedband_link_id = self.speedband_cam_mapping[
+                self.speedband_cam_mapping.CameraID == camera_id].iloc[0, -1]
+            avg_speed = self.speedband_lat_long_df[self.speedband_lat_long_df.LinkID ==
+                                                   speedband_link_id].iloc[0, 7]
             closest_incident = self.__closest(
                 self.incidents_lat_long, cam_coords)
             incident_distance = closest_incident[2]
             incident = 0
             if incident_distance <= 100:
                 incident = 1
-            avg_speed = self.speedband_lat_long_df.iloc[closest_speedband_index, 7]
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
@@ -168,9 +168,6 @@ class VehicleCount:
                 roi_img = self.__roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
-                Is_Jam = 0
-                if vehicle_count > 0 and avg_speed <= 35:
-                    Is_Jam = 1
                 # Approximate length of road to be 100m
                 result_list.append(
                     [
@@ -186,7 +183,6 @@ class VehicleCount:
                         is_weekday,
                         is_peak,
                         incident,
-                        Is_Jam
                     ]
                 )
         result_df = pd.DataFrame(
@@ -204,7 +200,6 @@ class VehicleCount:
                 "Is_Weekday",
                 "Is_Peak",
                 "Incident",
-                "Jam"
             ],
         )
         return result_df
