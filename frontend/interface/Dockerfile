@@ -14,6 +14,7 @@ RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 ENV FLASK_APP flask_app.py
+RUN python3 index.py
 
 ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0"]
  
