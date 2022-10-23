@@ -20,8 +20,8 @@ import dash_leaflet as dl
 import os
 from api_calls import ApiCall
 
-api_obj = ApiCall("../src")
-api_obj.download_images()
+#api_obj = ApiCall("../src")
+#api_obj.download_images()
 
 app = Dash(__name__, title="frontend")
 
@@ -45,11 +45,19 @@ folder = "assets/"
 
 def create_Img(link_list):
     # Add a component that will render an image
-    img_list = [html.Img(
+    img_list = [html.Div(children = [
+        html.H2("ID: " + str(link_list[i][:4]),
+                style = {'text-align': 'center',
+                         'text-decoration': 'underline',
+                         'margin': '50px 5px 1px 5px'}),
+        html.Img(
         title = str(link_list[i][:4]),
         src= folder + link_list[i],
-        style = {'display': 'inline-block', 'width': '450px',
-                 'margin': '20px'}) for i in range(len(link_list))]
+        style = {'display': 'inline-block', 'width': '420px', 'height': '250px',
+                 'margin': '20px',
+                 'border': '3px solid black'}),
+        html.Br()],
+                         style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
 
 
@@ -91,45 +99,59 @@ app.layout = html.Div(children=[
     html.H1(children='Title', style = {'text-align':'center'}),
     html.Br(),
 
+    # map
+    html.Div(children = [
+        dl.Map(children = [dl.TileLayer()] + [dl.CircleMarker(**i) for i in cameras],
+               style={'width': '100%', 'height': '500px'},
+              center=[1.3521, 103.8198],
+              zoom = 11)
+                  ]),
+    html.Br(),
+
     # filter box
     html.Div(children = [
-    html.H2("Select date: ", style = {'margin':'5px'}),
-    dcc.DatePickerSingle(id = "traffic_date",
-                         min_date_allowed = date(2022,1,1),
-                         max_date_allowed = date.today(),
-                         date = date.today(),
-                         initial_visible_month = date.today(),
-                         style = {'display': 'inline-block', 'width':'10px',
-                                  'margin':'10px auto'}),
+    html.H2("Select Region: ", style = {'margin':'5px'}),
+    dcc.Dropdown(id = "region_dd",
+                 options = [
+            {'label':'North', 'value':'North'},
+            {'label':'East', 'value':'East'},
+            {'label':'West', 'value':'West'},
+            {'label':'Central', 'value':'Central'},
+            {'label':'North-East', 'value':'North-East'}],
+                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
+                          'margin': '10px auto'}),
     html.Br(),
-    html.H2("Select expressway: ", style = {'margin':'5px'}),
+    html.H2("Select Expressway: ", style = {'margin':'5px'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
-            {'label':'Road A', 'value':'Road A'},
-            {'label':'Road B', 'value':'Road B'},
-            {'label':'Road C', 'value':'Road C'},
-            {'label':'Road D', 'value':'Road D'},
-            {'label':'Road E', 'value':'Road E'}],
+            {'label':'KPE', 'value':'KPE'},
+            {'label':'ECP', 'value':'ECP'},
+            {'label':'KJE', 'value':'KJE'},
+            {'label':'SLE', 'value':'SLE'},
+            {'label':'MCE', 'value':'MCE'},
+            {'label':'CTE', 'value':'CTE'},
+            {'label':'TPE', 'value':'TPE'},
+            {'label':'BKE', 'value':'BKE'},
+            {'label':'PIE', 'value':'PIE'},
+            {'label':'AYE', 'value':'AYE'}],
                  style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
                           'margin': '10px auto'})
     ], style = {'border': '1px solid black', 'width': '20%'}
              ),
 
-    html.Br(),
+
+    # time
+    html.Div(
+        html.H3("Time: " + datetime.now().strftime("%d/%m/%Y  %I:%M %p"),
+                style = {'text-align': 'right',
+                         'margin': '10px'})),
 
     # images
     html.Div(children = [
     *create_Img(os.listdir(folder))],
              style = {'text-align':'center', 'font-size':18}
-             ),
-    
-    # map
-    html.Div(children = [
-        dl.Map(children = [dl.TileLayer()] + [dl.CircleMarker(**i) for i in cameras],
-               style={'width': '1000px', 'height': '500px'},
-              center=[1.3521, 103.8198],
-              zoom = 11)
-                  ]),
+             )
+
     
 
     ],
@@ -157,6 +179,6 @@ def filter_image(input_exp):
 '''
 
 
-#if __name__ == '__main__':
-#    app.run_server(debug=True)
+if __name__ == '__main__':
+    app.run_server(debug=True)
 
