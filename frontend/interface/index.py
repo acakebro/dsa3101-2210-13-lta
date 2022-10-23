@@ -6,8 +6,7 @@ import plotly.express as px
 import pandas as pd
 from datetime import datetime, date,timedelta
 
-
-from test import pg1,pg2,pg3
+import pg1,pg2,pg3
 
 image_folder="assets"
 directory = os.fsencode(image_folder)

@@ -107,7 +107,11 @@ app.layout = html.Div(
                 style={'display':'none','padding':'20px','text-align': 'right'},
                 id='attributes'
                 )
-            ],
+            html.Div(
+                children=[
+                ],
+                style = {'border': '1px solid black', 'width': '20%'}
+            )],    
             style = {'display':'flex','align-items':'center','justify-content':'center'}
             ),
 
@@ -119,7 +123,8 @@ app.layout = html.Div(
                         options=[
                             {'label':'last 30 minutes', 'value':'30'},
                             {'label':'last 1 hour', 'value':'60'}
-                            ]),
+                            ],
+                     style = {'display': 'inline-block', 'width':'150px','margin':'20px'}),
         dcc.Graph(
             id='speed',
             style = {'display': 'inline-block', 'width': '450px'}
