@@ -44,14 +44,7 @@ layout = html.Div(
             children=[
             html.H2('Camera ID:', style={'font-weight': 'bold'}),
             dcc.Dropdown(id='camera_id',
-                        options=[
-                            {'label':'1001', 'value':'1001'},
-                            {'label':'1002', 'value':'1002'},
-                            {'label':'1003', 'value':'1003'},
-                            {'label':'1501', 'value':'1501'},
-                            {'label':'1502', 'value':'1502'}
-                            ],
-                        placeholder='Select Camera ID...',
+                        placeholder='1001',
                         style={'width':'170px', 'margin':'10px','display': 'inline-block'})
             ],
             style ={'width':'400px'}
@@ -96,14 +89,15 @@ layout = html.Div(
             #Prediction attributes
             html.Div(
                 children=[
+                html.H2('Direction:', style={'font-weight': 'bold'}),
                 html.H2('Density:', style={'font-weight': 'bold'}),
                 html.H2('Speed:', style={'font-weight': 'bold'}),
                 html.H2('Traffic condition:', style={'font-weight': 'bold'}),
-                html.H2('Traffic condition:', style={'font-weight': 'bold'})
                 ],
                 style={'display':'none','padding':'20px','text-align': 'right'},
                 id='attributes'
-                )
+                ),
+            html.Div(id = 'datatable')
             ],    
             style = {'display':'flex','align-items':'center','justify-content':'center'}
             ),
@@ -117,6 +111,7 @@ layout = html.Div(
                             {'label':'last 30 minutes', 'value':'30'},
                             {'label':'last 1 hour', 'value':'60'}
                             ],
+                     placeholder='last 15 minutes',
                      style = {'margin':'20px'}),
         dcc.Graph(
             id='speed',
@@ -126,8 +121,10 @@ layout = html.Div(
             id='density',
             style = {'display': 'inline-block', 'width': '450px'}
         )
-        ])
-        
         ],
-    style = {'background-color': 'rgb(237,250,252)'})
+        style = {'margin':'25px'}
+        )
+        ],
+    style = {'background-color': 'rgb(237,250,252)'}
+    )
 

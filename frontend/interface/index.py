@@ -16,6 +16,7 @@ api_obj.download_images()
 image_folder="assets"
 directory = os.fsencode(image_folder)
 data = pd.read_csv("train_data.csv")
+archive = pd.read_csv("archive.csv")
 
 def Navbar():
 
@@ -74,7 +75,8 @@ def update_camera(road_name):
 [Output('img','children'),
  Output('attributes','style'),
  Output('speed','figure'),
-Output('density','figure')],
+Output('density','figure'),
+Output('datatable','children')],
 [Input('camera_id','value'),
 Input('traffic_date','date'),
 Input('traffic_time','value'),
@@ -84,47 +86,62 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     #Stop update if missing values
     if traffic_date is not None:
         date_object = date.fromisoformat(traffic_date)
-        datetime = date_object.strftime('%Y%m%d')
+        date_time = date_object.strftime('%Y%m%d')
     if camera_id is None:
         camera_id='1001'
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
     #Make hidden attributes appear
     attributes_style={'display':'inline-block','padding':'20px','text-align': 'right'}
-    datetime+=str(time)
+    date_time+=str(time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
         if camera_id in file:
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
-    # Plot graph by searching for images in past hr/half hr
-    if timeframe:
-        #Block update for now
-        raise dash.exceptions.PreventUpdate
-        variables=data.copy(deep=True)
-        variables = variables.astype({'timestamp':'str','camera_id':'str'})
-        variables['timestamp']=variables['timestamp'].str.slice(0,12)
-        date_object = datetime.strptime(traffic_date, "%Y-%m-%d")
-        time_object = datetime.strptime(time,'%H%M').time()  
-        datetime_curr = datetime.combine(date_object, time_object)
-        datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
-        datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
-        datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-        variables = variables[variables['camera_id'] == camera_id ]
-        variables = variables[variables['timestamp'] <= datetime_curr]
-        variables = variables[variables['timestamp'] >= datetime_prev]
-    #Placeholder values for graph (last 4 hrs)
-    speeddata = {'Time': ['16:45', '17:45', '18:45', '19:45','20:45'], 'Average_speed': [110, 100, 80, 55, 30]}
-    densitydata = {'Time': ['16:45', '17:45', '18:45', '19:45','20:45'], 'Density': [0.8, 0.74, 0.66,0.55,0.43]}
-    speedplot = px.line(speeddata, x='Time', y='Average_speed')
-    densityplot = px.line(densitydata, x='Time', y='Density')
-    return img,attributes_style,speedplot,densityplot
-        #Intend to combine with past data
-        #speedInput=
-        #densityInput=
-        #speedplot = px.line(graphInput, x='time', y='average_speed (km/h)')
-        #densityplot = px.line(graphInput, x='time', y='density')
-        #return speedplot,densityplot
+    if timeframe is None:
+        timeframe=15
+    archive=pd.read_csv("archive.csv")
+    variables=archive.copy(deep=True)
+    #Convert datetime into YYYYMMDDHHMM format
+    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    variables['Time']=variables['Date']+variables['Time']
+    variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
+    #Filter datetime within last timeframe(15 min,30min,1hr)
+    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
+    datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
+    variables = variables[variables['Camera_Id'] == int(camera_id)]
+    variables = variables[variables['Time'] <= datetime_curr]
+    variables = variables[variables['Time'] >= datetime_prev]
+    variables['Time']=variables['Time'].str.slice(8,10)+':'+variables['Time'].str.slice(10,12)
+    # Plot graph by searching for values in last timeframe(15 min,30min,1hr)
+    speedplot = px.line(variables, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
+    densityplot = px.line(variables, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
+
+    #Load prediction data in table form
+    variables=archive.copy(deep=True)
+    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    variables['Time']=variables['Date']+variables['Time']
+    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
+    datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
+    variables = variables[variables['Time'] <= datetime_curr]
+    variables = variables[variables['Time'] >= datetime_prev]
+    variables = variables[variables['Camera_Id'] == int(camera_id)]
+    variables = variables.loc[:,['Direction','Density','Average_Speed','Jam']]
+    variables['Jam']=variables['Jam'].replace([1],'Jam')
+    variables['Jam']=variables['Jam'].replace([0],'No Jam')
+    variables=variables.T
+    table=[dbc.Table.from_dataframe(variables, striped=True, bordered=True, hover=True,header=False,size='lg')]
+    return img,attributes_style,speedplot,densityplot,table
+
 
 if __name__ == '__main__':
     app.run_server(debug=True,port=8051)
