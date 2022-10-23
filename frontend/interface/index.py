@@ -7,7 +7,7 @@ import pandas as pd
 from datetime import datetime, date,timedelta
 
 
-from test import pg1,pg2
+from test import pg1,pg2,pg3
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
@@ -19,7 +19,8 @@ def Navbar():
         dbc.NavbarSimple(
             children=[
                 dbc.NavItem(dbc.NavLink("Overview", href="/page1")),
-                dbc.NavItem(dbc.NavLink("Predictions", href="/page2")),
+                dbc.NavItem(dbc.NavLink("Stats", href="/page2")),
+                dbc.NavItem(dbc.NavLink("Predictions", href="/page3"))
             ] ,
             brand="Traffic App",
             brand_href="/page1",
@@ -52,8 +53,9 @@ def display_page(pathname):
          return pg1.layout
     elif pathname == '/page2':
          return pg2.layout
-    else:
-        return "404 Page Error! Please choose a link"
+    elif pathname == '/page3':
+         return pg3.layout
+    return pg1.layout
 
 @app.callback(
 Output('camera_id','options'),
