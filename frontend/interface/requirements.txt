@@ -1,0 +1,9 @@
+Flask
+sys 
+pathlib
+dash
+plotly
+pandas
+datetime
+dash_leaflet
+os
