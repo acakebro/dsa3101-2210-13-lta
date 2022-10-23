@@ -9,6 +9,9 @@ COPY pg2.py pg2.py
 COPY pg3.py pg3.py
 COPY app.py app.py
 COPY train_data.csv train_data.csv
+COPY traffic_images.csv traffic_images.csv
+COPY traffic_incidents.csv traffic_incidents.csv
+COPY traffic_speedbands.csv traffic_speedbands.csv
 
 RUN pip3 install --upgrade pip
 RUN pip3 install -r requirements.txt
