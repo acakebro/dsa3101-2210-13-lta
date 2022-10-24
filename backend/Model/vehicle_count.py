@@ -159,8 +159,11 @@ class VehicleCount:
                 self.incidents_lat_long, cam_coords)
             incident_distance = closest_incident[2]
             incident = 0
-            if incident_distance <= 100:
+            if incident_distance <= 200:
                 incident = 1
+            jam = 0
+            if avg_speed <= 35:
+                jam = 1
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
@@ -183,6 +186,8 @@ class VehicleCount:
                         is_weekday,
                         is_peak,
                         incident,
+                        incident_distance,
+                        jam
                     ]
                 )
         result_df = pd.DataFrame(
@@ -200,6 +205,8 @@ class VehicleCount:
                 "Is_Weekday",
                 "Is_Peak",
                 "Incident",
+                "Closest_Incident_Distance"
+                "Jam"
             ],
         )
         return result_df

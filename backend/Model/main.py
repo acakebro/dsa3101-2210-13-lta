@@ -5,7 +5,6 @@ from vehicle_count import VehicleCount
 import pandas as pd
 import os
 import time
-import pickle
 from datetime import datetime
 
 startTime = datetime.now()
@@ -13,7 +12,7 @@ startTime = datetime.now()
 
 class Main:
     def __init__(self):
-        self.jam_model = pickle.load(open('model.pkl', 'rb'))
+        self.count = 1
 
     def update_stats(self):
         # needs to be full directory
@@ -38,28 +37,19 @@ class Main:
         vc = VehicleCount(images_dir, roi_df, lat_long,
                           speedband_dir, speedband_cam_mapping_dir, incidents_dir)
         traffic_stats = vc.predict_vehicle_count()
-        final = traffic_stats.copy()
-        traffic_stats.pop("Time")
-        traffic_stats.pop("Date")
-        for col in traffic_stats.dtypes[traffic_stats.dtypes == "object"].index:
-            for_dummy = traffic_stats.pop(col)
-            traffic_stats = pd.concat(
-                [traffic_stats, pd.get_dummies(for_dummy, prefix=col)], axis=1)
-        # removes response variables
-        test_pred = self.jam_model.predict(traffic_stats)
-        final["Jam"] = test_pred
-        final.to_csv('training_data/traffic_stats.csv',
-                     mode='a', header=True, index=False)
-        return final
+        if self.count == 1:
+            traffic_stats.to_csv('training_data/recent_traffic_stats.csv', mode='w+',
+                                 header=True, index=False)
+        else:
+            traffic_stats.to_csv('training_data/recent_traffic_stats.csv',
+                                 mode='a', header=False, index=False)
+        self.count += 1
 
 
 main = Main()
-main.update_stats()
-print(datetime.now() - startTime)
 
-"""
 while True:
-    update_stats()
-    time_wait = 30
+    main.update_stats()
+    print(datetime.now() - startTime)
+    time_wait = 5
     time.sleep(time_wait * 60)
-"""
