@@ -84,9 +84,11 @@ class RandomForestModel:
         is_peak_bool = False
         for peak_hour in peak_hours:
             if is_peak_bool:
-                return 1
+                break
             start, end = peak_hour.get("Start"), peak_hour.get("End")
             is_peak_bool = self.__time_in_range(start, end, time)
+        if is_peak_bool:
+            return 1
         return 0
 
     def predict(self, cam_id, road, date, time):

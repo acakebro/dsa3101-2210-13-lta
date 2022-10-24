@@ -11,11 +11,11 @@ import datetime
 class VehicleCount:
     def __init__(self, images, image_roi_df, cam_lat_long, speedband_lat_long_df, speedband_cam_mapping, incidents_df):
         self.vehicle_detector = VehicleDetector()
-        self.images = glob(images)  # to input through main
-        self.image_roi_df = pd.read_csv(image_roi_df)  # to input through main
-        self.cam_lat_long = pd.read_csv(cam_lat_long)  # to input through main
+        self.images = glob(images)
+        self.image_roi_df = pd.read_csv(image_roi_df)
+        self.cam_lat_long = pd.read_csv(cam_lat_long)
         self.speedband_lat_long_df = pd.read_csv(
-            speedband_lat_long_df)  # to input through main
+            speedband_lat_long_df)
         self.speedband_cam_mapping = pd.read_csv(speedband_cam_mapping)
         self.incidents_df = pd.read_csv(incidents_df)
         self.incidents_df.rename(
@@ -89,59 +89,31 @@ class VehicleCount:
             return 1
         return 0
 
-    def __is_peak(self, is_peak_boolean):
-        if is_peak_boolean:
-            return 1
-        return 0
-
-    def display(self):
-        for img_path in self.images:
-            camera_id = int(img_path.split("/")[-1].split("_")[0])
-            rois = self.image_roi_df[self.image_roi_df.Camera_Id == camera_id]
-            img = cv2.imread(img_path)
-            for i in range(len(rois)):
-                roi_coords = ast.literal_eval(rois.iloc[i, 1])
-                roi_img = self.__roi(img, roi_coords)
-                vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
-                vehicle_count = len(vehicle_boxes)
-                # width then height
-                for box in vehicle_boxes:
-                    x, y, w, h = box
-                    cv2.rectangle(roi_img, (x, y),
-                                  (x + w, y + h), (25, 0, 180), 3)
-                    cv2.putText(
-                        roi_img,
-                        "Count:" + str(vehicle_count),
-                        (1600, 1000),
-                        2,
-                        2,
-                        (0, 102, 240),
-                        4,
-                    )
-                cv2.imshow("LTA", roi_img)
-                # keep image on hold
-                cv2.waitKey(1)
-
-    def predict_vehicle_count(self):
-        result_list = []
+    def __is_peak(self, image_datetime):
         peak_hours = [
             {"Start": datetime.time(8, 0, 0), "End": datetime.time(10, 0, 0)},
             {"Start": datetime.time(18, 0, 0),
              "End": datetime.time(20, 30, 0)},
         ]
+        is_peak_bool = False
+        for peak_hour in peak_hours:
+            if is_peak_bool:
+                break
+            start, end = peak_hour.get("Start"), peak_hour.get("End")
+            is_peak_bool = self.__time_in_range(
+                start, end, image_datetime.time())
+        if is_peak_bool:
+            return 1
+        return 0
+
+    def predict_vehicle_count(self):
+        result_list = []
         for img_path in self.images:
-            is_peak_bool = False
             camera_id = int(img_path.split("/")[-1].split("_")[0])
             timestamp = img_path.split("/")[-1].split("_")[2]
             image_datetime = datetime.datetime.strptime(
                 timestamp, "%Y%m%d%H%M%S")
-            for peak_hour in peak_hours:
-                if is_peak_bool:
-                    break
-                start, end = peak_hour.get("Start"), peak_hour.get("End")
-                is_peak_bool = self.__time_in_range(
-                    start, end, image_datetime.time())
-            is_peak = self.__is_peak(is_peak_bool)
+            is_peak = self.__is_peak(image_datetime)
             is_weekday = self.__is_weekday(image_datetime)
             rois = self.image_roi_df[self.image_roi_df.Camera_Id == camera_id]
             # Coordinates of cam {Latitude: ..., Longitude: ...}
@@ -205,7 +177,7 @@ class VehicleCount:
                 "Is_Weekday",
                 "Is_Peak",
                 "Incident",
-                "Closest_Incident_Distance"
+                "Closest_Incident_Distance",
                 "Jam"
             ],
         )
