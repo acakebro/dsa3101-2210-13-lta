@@ -205,10 +205,7 @@ layout = html.Div(children=[
                          'margin': '10px'})),
 
     # images
-    html.Div(children = [
-    *create_Img(os.listdir(folder))],
-             style = {'text-align':'center', 'font-size':18}
-             )
+        html.Div(id = "img_out", style = {'text-align':'center', 'font-size':18})
 
     
 
