@@ -16,7 +16,6 @@ api_obj.download_images()
 image_folder="assets"
 directory = os.fsencode(image_folder)
 data = pd.read_csv("train_data.csv")
-archive = pd.read_csv("archive.csv")
 
 def Navbar():
 
@@ -167,7 +166,10 @@ def update_plot(camera_id,traffic_date,time,timeframe):
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
     if timeframe is None:
         timeframe=15
-    archive=pd.read_csv("archive.csv")
+
+    #Pull prediction data from backend
+    archive_json = requests.get('http://127.0.0.1:5000/archive?camera_id'+str(camera_id))
+    archive=pd.read_json(archive_json)
     variables=archive.copy(deep=True)
     #Convert datetime into YYYYMMDDHHMM format
     variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
