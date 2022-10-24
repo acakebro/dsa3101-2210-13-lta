@@ -176,7 +176,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=15
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://0.0.0.0:5000/archive?camera_id'+str(camera_id))
+    archive_json = requests.get('http://0.0.0.0:5000/archive?camera_id='+str(camera_id))
     archive=pd.read_json(archive_json)
     variables=archive.copy(deep=True)
     #Convert datetime into YYYYMMDDHHMM format
