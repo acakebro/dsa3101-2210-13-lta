@@ -5,12 +5,14 @@ import dash,os
 import plotly.express as px
 import pandas as pd
 from datetime import datetime, date,timedelta
+from flask import Flask
+import requests
 
 import pg1,pg2,pg3
 
 from api_calls import ApiCall
 
-api_obj = ApiCall("../interface")
+api_obj = ApiCall("../app")
 api_obj.download_images()
 
 image_folder="assets"
@@ -103,10 +105,16 @@ d_exp_cam = {
 
 nav = Navbar()
 
-app = dash.Dash(__name__, 
+
+
+server = Flask(__name__)
+
+app = dash.Dash(__name__, server=server,
                 external_stylesheets=[dbc.themes.BOOTSTRAP], 
                 meta_tags=[{"name": "viewport", "content": "width=device-width"}],
                 suppress_callback_exceptions=True)
+
+
 
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
@@ -168,7 +176,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=15
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://127.0.0.1:5000/archive?camera_id'+str(camera_id))
+    archive_json = requests.get('http://0.0.0.0:5000/archive?camera_id'+str(camera_id))
     archive=pd.read_json(archive_json)
     variables=archive.copy(deep=True)
     #Convert datetime into YYYYMMDDHHMM format
@@ -234,4 +242,4 @@ def filter_image(input_exp):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True,port=8051)
+    app.run_server(host='0.0.0.0',debug=True, port=8050)

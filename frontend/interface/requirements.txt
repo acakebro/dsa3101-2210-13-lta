@@ -1,8 +1,9 @@
 Flask
-pathlib
 dash
 plotly
 pandas
 datetime
 dash_leaflet
 dash_bootstrap_components
+httplib2
+requests
