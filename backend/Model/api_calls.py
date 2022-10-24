@@ -44,9 +44,8 @@ class ApiCall:
         data = self.api_get_json(uri, speed_path)
         df = pd.DataFrame(data)
 
-        df = df.astype({"MinimumSpeed": "int", "MaximumSpeed": "int"})
-        df["AvgSpeed"] = (df["MinimumSpeed"] + df["MaximumSpeed"]) / 2
-        df.loc[df["AvgSpeed"] >= 90, "AvgSpeed"] = 100
+        df['AvgSpeed'] = df['SpeedBand'].apply(
+            lambda x: 100 if (x == 8) else x * 10 - 4.5)
 
         df["Location"] = df["Location"].apply(lambda x: x.split(" "))
         df[
@@ -74,7 +73,8 @@ class ApiCall:
         for i, dict in enumerate(data):
             link = dict["ImageLink"]
             filename = link.split("/")[5].split("?")[0]
-            urllib.request.urlretrieve(link, os.path.join(self.folder, filename))
+            urllib.request.urlretrieve(
+                link, os.path.join(self.folder, filename))
 
     def download_incidents(self):
         uri = "http://datamall2.mytransport.sg"  # resource URL

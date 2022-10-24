@@ -6,8 +6,12 @@ import plotly.express as px
 import pandas as pd
 from datetime import datetime, date,timedelta
 
+import pg1,pg2,pg3
 
-from test import pg1,pg2
+from api_calls import ApiCall
+
+api_obj = ApiCall("../interface")
+api_obj.download_images()
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
@@ -19,7 +23,8 @@ def Navbar():
         dbc.NavbarSimple(
             children=[
                 dbc.NavItem(dbc.NavLink("Overview", href="/page1")),
-                dbc.NavItem(dbc.NavLink("Predictions", href="/page2")),
+                dbc.NavItem(dbc.NavLink("Stats", href="/page2")),
+                dbc.NavItem(dbc.NavLink("Predictions", href="/page3"))
             ] ,
             brand="Traffic App",
             brand_href="/page1",
@@ -29,6 +34,72 @@ def Navbar():
     ])
 
     return layout
+
+def create_Img(link_list):
+
+    img_list = [html.Div(children = [
+        html.H2("ID: " + str(link_list[i][:4]),
+                style = {'text-align': 'center',
+                         'text-decoration': 'underline',
+                         'margin': '50px 5px 1px 5px'}),
+        html.Img(
+        title = str(link_list[i][:4]),
+        src= image_folder + "/" + link_list[i],
+        style = {'display': 'inline-block', 'width': '420px', 'height': '250px',
+                 'margin': '20px',
+                 'border': '3px solid black'}),
+        html.Br()],
+                         style = {'display':'inline-block'}) for i in range(len(link_list))]
+    return img_list
+
+d_exp_cam = {
+        'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793',
+                     '7794', '7795'],
+        'ECP': ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1503',
+                '1505', '7791'],
+        'KJE': ['2708', '6714'],
+        'SLE': ['1701', '1702', '1703', '1704', '1705', '1706', '1707', '1709',
+               '1711', '7791', '7793', '7795', '7796', '7797'],
+        'MCE': ['1501', '1502', '1503', '1504', '1505', '4704'],
+        'CTE': ['1705', '4704', '7797', '7798'], 
+        'TPE': ['1001', '1003', '1005', '1006', '7798', '9701', '9702', '9703',
+                '9704', '9705', '9706'], 
+        'BKE': ['2702', '7798', '8701', '8702', '8704', '8706', '9701', '9702',
+                '9703', '9704', '9705', '9706'], 
+        'PIE': ['1002', '1003', '1004', '1703', '2703', '2705', '2706', '2707',
+                '2708', '7791', '7793', '7794', '7795', '7796', '7797', '8701',
+                '8702', '8704', '8706', '9703'],  
+        'AYE': ['1502', '1503', '1504', '1703', '1704', '1706', '1707', '3795',
+                '3796', '4713', '6716'],
+        'Woodlands Causeway/Johor': ['2701', '2702', '2703', '2704', '2705',
+                                     '2706', '2707', '2708', '9703'], 
+        'Tuas/Johor': ['1002', '1004', '1703', '4703', '4707', '4712', '4713',
+                       '6708', '6715', ],
+        'Changi': ['1001', '1002', '1003', '1703', '2703', '3704', '3793', '3796',
+                   '3797', '3798', '4702', '5794', '5795', '5797', '5798', '5799',
+                   '6701', '6703', '6704', '6705', '6706', '6708', '6710', '6712',
+                   '6713', '6714', '6715', '6716'],
+        'City': ['1001', '1701', '1702', '1709', '1711', '3702', '3704', '3705',
+                 '3793', '3795', '3796', '3797', '3798', '4701', '4705', '4707',
+                 '4708', '4709', '4710', '4712', '4716', '6711'],
+        'Moulmein': ['1701'],
+        'Yio Chu Kang': ['1706'],
+        'Jalan Bukit Merah': ['1707'],
+        'Jurong' : ['2703', '4701', '4702', '4705', '4706', '4709', '4710', '4714',
+                    '4716', '5794', '5795', '5797', '5798', '5799', '6701', '6703',
+                    '6704', '6705', '6706', '6710', '6711', '6712', '6713'],
+        'Airport' : ['3702', '3705', '6711'],
+        'Xilin Ave': ['3705'],
+        'Marine Parade': ['3795'],
+        'Telok Blangah': ['4798', '4799'],
+        'Sentosa': ['4799'],
+        'Toa Payoh': ['6701'],
+        'Thomson': ['6703'],
+        'Pasir Ris Dr 12': ['7793'],
+        'Punggol/Sengkang': ['7796'],
+        'Choa Chu Kang': ['8701', '8704'],
+        'Woodlands Ave 2': ['9705']
+             }
 
 nav = Navbar()
 
@@ -52,8 +123,9 @@ def display_page(pathname):
          return pg1.layout
     elif pathname == '/page2':
          return pg2.layout
-    else:
-        return "404 Page Error! Please choose a link"
+    elif pathname == '/page3':
+         return pg3.layout
+    return pg1.layout
 
 @app.callback(
 Output('camera_id','options'),
@@ -68,60 +140,98 @@ def update_camera(road_name):
 [Output('img','children'),
  Output('attributes','style'),
  Output('speed','figure'),
-Output('density','figure')],
+Output('density','figure'),
+Output('datatable','children')],
 [Input('camera_id','value'),
 Input('traffic_date','date'),
 Input('traffic_time','value'),
  Input('timeframe','value')])
 
 def update_plot(camera_id,traffic_date,time,timeframe):
-    img=None
     #Stop update if missing values
     if traffic_date is not None:
         date_object = date.fromisoformat(traffic_date)
-        datetime = date_object.strftime('%Y%m%d')
-    if camera_id is None or datetime is None or time is None:
-        raise dash.exceptions.PreventUpdate
+        date_time = date_object.strftime('%Y%m%d')
+    if camera_id is None:
+        camera_id='1001'
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
     #Make hidden attributes appear
     attributes_style={'display':'inline-block','padding':'20px','text-align': 'right'}
-    datetime+=str(time)
+    date_time+=str(time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
-        if camera_id in file and datetime in file:
-            img=[html.Img(src=image_folder+'/'+file)]
-    if img==None:
-        raise dash.exceptions.PreventUpdate
-    # Plot graph by searching for images in past hr/half hr
-    if timeframe:
-        #Block update for now
-        raise dash.exceptions.PreventUpdate
-        variables=data.copy(deep=True)
-        variables = variables.astype({'timestamp':'str','camera_id':'str'})
-        variables['timestamp']=variables['timestamp'].str.slice(0,12)
-        date_object = datetime.strptime(traffic_date, "%Y-%m-%d")
-        time_object = datetime.strptime(time,'%H%M').time()  
-        datetime_curr = datetime.combine(date_object, time_object)
-        datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
-        datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
-        datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-        variables = variables[variables['camera_id'] == camera_id ]
-        variables = variables[variables['timestamp'] <= datetime_curr]
-        variables = variables[variables['timestamp'] >= datetime_prev]
-    #Placeholder values for graph (last 4 hrs)
-    speeddata = {'Time': ['16:45', '17:45', '18:45', '19:45','20:45'], 'Average_speed': [110, 100, 80, 55, 30]}
-    densitydata = {'Time': ['16:45', '17:45', '18:45', '19:45','20:45'], 'Density': [0.8, 0.74, 0.66,0.55,0.43]}
-    speedplot = px.line(speeddata, x='Time', y='Average_speed')
-    densityplot = px.line(densitydata, x='Time', y='Density')
-    return img,attributes_style,speedplot,densityplot
-        #Intend to combine with past data
-        #speedInput=
-        #densityInput=
-        #speedplot = px.line(graphInput, x='time', y='average_speed (km/h)')
-        #densityplot = px.line(graphInput, x='time', y='density')
-        #return speedplot,densityplot
+        if camera_id in file:
+            img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
+    if timeframe is None:
+        timeframe=15
+
+    #Pull prediction data from backend
+    archive_json = requests.get('http://127.0.0.1:5000/archive?camera_id'+str(camera_id))
+    archive=pd.read_json(archive_json)
+    variables=archive.copy(deep=True)
+    #Convert datetime into YYYYMMDDHHMM format
+    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    variables['Time']=variables['Date']+variables['Time']
+    variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
+    #Filter datetime within last timeframe(15 min,30min,1hr)
+    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
+    datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
+    variables = variables[variables['Camera_Id'] == int(camera_id)]
+    variables = variables[variables['Time'] <= datetime_curr]
+    variables = variables[variables['Time'] >= datetime_prev]
+    variables['Time']=variables['Time'].str.slice(8,10)+':'+variables['Time'].str.slice(10,12)
+    # Plot graph by searching for values in last timeframe(15 min,30min,1hr)
+    speedplot = px.line(variables, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
+    densityplot = px.line(variables, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
+
+    #Load prediction data in table form
+    variables=archive.copy(deep=True)
+    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    variables['Time']=variables['Date']+variables['Time']
+    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
+    datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
+    variables = variables[variables['Time'] <= datetime_curr]
+    variables = variables[variables['Time'] >= datetime_prev]
+    variables = variables[variables['Camera_Id'] == int(camera_id)]
+    variables = variables.loc[:,['Direction','Density','Average_Speed','Jam']]
+    variables['Jam']=variables['Jam'].replace([1],'Jam')
+    variables['Jam']=variables['Jam'].replace([0],'No Jam')
+    variables=variables.T
+    table=[dbc.Table.from_dataframe(variables, striped=True, bordered=True, hover=True,header=False,size='lg')]
+    return img,attributes_style,speedplot,densityplot,table
+
+@app.callback(
+    Output(component_id='img_out', component_property='children'),
+    Input(component_id='exp_dd', component_property='value'),
+    #Input(component_id='reg_dd', component_property='value')
+)
+
+
+def filter_image(input_exp):
+    image_path = os.listdir(image_folder)
+    if input_exp != 'All':
+        exp_filter = input_exp
+        camid = d_exp_cam[exp_filter]
+        filtered_image_path = []
+        for i in image_path:
+            if i[:4] in camid:
+                filtered_image_path.append(i)
+        return create_Img(filtered_image_path)
+    return create_Img(image_path)
+
+
+
+
 
 if __name__ == '__main__':
     app.run_server(debug=True,port=8051)
