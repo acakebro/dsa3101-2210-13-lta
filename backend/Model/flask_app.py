@@ -2,6 +2,9 @@ from flask import Flask, jsonify, request, send_file
 import pandas as pd
 import glob
 from RandomForest import RandomForestModel
+from main import Main
+import time
+import datetime
 
 app = Flask(__name__)
 
@@ -43,3 +46,15 @@ def make_prediction():
         return jsonify({'prediction': 'No Jam'})
     elif result == 1:
         return jsonify({'prediction': 'Jam'})
+
+if __name__ == '__main__':
+    main = Main()
+    while True:
+        startTime = datetime.now()
+        print(f'{startTime}: Updating traffic stats...')
+        main.update_stats()
+        print(
+            f'Stats updated. Time taken: {datetime.now() - startTime} minutes')
+        print('Resting for 5 minutes...')
+        time_wait = 5
+        time.sleep(time_wait * 60)
