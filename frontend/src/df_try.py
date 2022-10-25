@@ -39,7 +39,8 @@ app.layout = html.Div([
     )
 
 def update_map(input_selected):
-    variable = 'All Variables'
+    #variable = 'All Variables'
+    map = 'All Variables'
     point_to_layer = assign("""function(feature, latlng, context){
     const {min, max, colorscale, circleOptions, colorProp} = context.props.hideout;
     const csc = chroma.scale(colorscale).domain([min, max]);  // chroma lib to construct colorscale
@@ -54,11 +55,14 @@ def update_map(input_selected):
         df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
         dicts0 = df0.to_dict('records')
         for item in dicts0:
-            item["tooltip"] = 'Camera {}: Traffic density along {} is {:.2f}'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+            if item['Jam']==1:
+                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+            else:
+                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
         geobuf0 = dlx.geojson_to_geobuf(geojson0)
         vmax0 = df[color_prop0].max()
-        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='Traffic density per lane', opacity=0.9)
+        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density per lane', opacity=0.9)
         geojson0 = dl.GeoJSON(data=geobuf0, id="geojson", format="geobuf",
                      zoomToBounds=True,  # when true, zooms to bounds when data changes
                      options=dict(pointToLayer=point_to_layer),  # how to draw points
@@ -77,11 +81,14 @@ def update_map(input_selected):
         df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
         dicts0 = df0.to_dict('records')
         for item in dicts0:
-            item["tooltip"] = 'Camera {}: Traffic density along {} is {:.2f}'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+            if item['Jam']==1:
+                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+            else:
+                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
         geobuf0 = dlx.geojson_to_geobuf(geojson0)
         vmax0 = df[color_prop0].max()
-        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='Traffic density per lane', opacity=0.9)
+        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density per lane', opacity=0.9)
         geojson0 = dl.GeoJSON(data=geobuf0, id="geojson", format="geobuf",
                     zoomToBounds=True,  # when true, zooms to bounds when data changes
                     options=dict(pointToLayer=point_to_layer),  # how to draw points
@@ -100,11 +107,11 @@ def update_map(input_selected):
         df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Time']]
         dicts0 = df0.to_dict('records')
         for item in dicts0:
-            item["tooltip"] = 'Camera {}: Average traffic density is {:.2f}'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
+            item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f}'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
         geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
         geobuf0 = dlx.geojson_to_geobuf(geojson0)
         vmax0 = df[color_prop0].max()
-        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='Traffic density', opacity=0.9)
+        colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density', opacity=0.9)
         geojson0 = dl.GeoJSON(data=geobuf0, id="geojson", format="geobuf",
                     zoomToBounds=True,  # when true, zooms to bounds when data changes
                     options=dict(pointToLayer=point_to_layer),  # how to draw points
@@ -122,7 +129,11 @@ def update_map(input_selected):
         color_prop2 = 'Average_Speed'
         dicts2 = df2.to_dict('records')
         for item in dicts2:
-            item["tooltip"] = 'Camera {}: Average speed along all lanes is ({:.2f})'.format(item['Camera_Id'], item[color_prop2])
+            if item['Jam']==1:
+                item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item[color_prop2])
+            else:
+                item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item[color_prop2])
+                
         geojson2 = dlx.dicts_to_geojson(dicts2, lon="Longitude", lat="Latitude")
         geobuf2 = dlx.geojson_to_geobuf(geojson2)
         vmax2 = df[color_prop2].max()
@@ -141,4 +152,3 @@ def update_map(input_selected):
 
 if __name__ == '__main__':
     app.run_server(port = 8080, threaded= True)
-
