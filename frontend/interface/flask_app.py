@@ -28,7 +28,7 @@ def get_stats():
 def return_past_data():
     camera_id = request.args.get('camera_id')
     df = pd.read_csv('archive.csv')
-    match_df = df.loc[df['camera_id'] == camera_id]
+    match_df = df.loc[df['camera_id'] == int(camera_id)]
     result_df = df[['Date', 'Time', 'Density', 'Average_Speed','Direction','Jam']]
     return jsonify(result_df.to_dict(orient="index"))
 
