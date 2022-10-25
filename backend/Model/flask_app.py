@@ -24,10 +24,12 @@ def get_stats():
 
 # for past data
 # to update to GET if filtering is required
-@app.route("/archive")
+@app.route("/archive", methods=["GET"])
 def return_past_data():
+    camera_id = request.args.get('camera_id')
     df = pd.read_csv('archive.csv')
-    result_df = df[['Date', 'Time', 'Density', 'Average_Speed']]
+    match_df = df.loc[df['camera_id'] == int(camera_id)]
+    result_df = df[['Date', 'Time', 'Density', 'Average_Speed','Direction','Jam']]
     return jsonify(result_df.to_dict(orient="index"))
 
 # for prediction based on user input
