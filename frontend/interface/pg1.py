@@ -30,6 +30,15 @@ cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitud
 
 folder = "assets/"
 
+date_time = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,0]
+message = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,1]
+time = date_time.str.split(")", expand = True).iloc[:,1]
+date = date_time.str.split(")", expand = True).iloc[:,0].str[1:]
+traffic_incidents_new = traffic_incidents.drop("Message", axis = 1)
+traffic_incidents_new['Date'] = date
+traffic_incidents_new['Time'] = time
+traffic_incidents_new['Message'] = message
+
 d_exp_cam = {
         'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793',
                      '7794', '7795'],
@@ -97,40 +106,34 @@ def create_Img(link_list):
     return img_list
 
 
-'''
 d_table_in = dash_table.DataTable(
-            data=traffic_incidents.to_dict('records'),
-            columns = [{"name": i, "id": i} for i in traffic_incidents.columns[:len(traffic_incidents.columns)-1]],
+            data=traffic_incidents_new.iloc[:5,:].to_dict('records'),
+            columns = [{"name": ["Traffic Incidents", i], "id": i} for i in traffic_incidents_new.columns[-3:]],
             cell_selectable=False,
             sort_action='native',
-            filter_action='native',
+            #filter_action= False,
             page_action = 'native',
             page_current = 0,
-            page_size = 10
+            page_size = 10,
+            style_as_list_view = True,
+            style_cell_conditional = [
+                {'if':{'column_id': 'Date'},
+                 'text-align': 'center'},
+                {'if':{'column_id': 'Time'},
+                 'text-align': 'center'}
+                ],
+            style_cell = {'padding': '5px',
+                          'width': '150px',
+                          'font_family': 'Times New Roman'},
+            style_header = {
+                'text-align': 'center',
+                'backgroundColor': 'lightgrey',
+                'fontWeight': 'bold',
+                'fontSize': '18px'},
+            merge_duplicate_headers = True
             )
 
-d_table_sp = dash_table.DataTable(
-            data=traffic_speedbands.to_dict('records'),
-            columns = [{"name": i, "id": i} for i in traffic_speedbands.columns],
-            cell_selectable=False,
-            sort_action='native',
-            filter_action='native',
-            page_action = 'native',
-            page_current = 0,
-            page_size = 10
-            )
 
-d_table_im = dash_table.DataTable(
-            data=traffic_images.to_dict('records'),
-            columns = [{"name": i, "id": i} for i in traffic_images.columns],
-            cell_selectable=False,
-            sort_action='native',
-            filter_action='native',
-            page_action = 'native',
-            page_current = 0,
-            page_size = 10
-            )
-'''
 layout = html.Div(children=[
     html.H1(children='Title', style = {'text-align':'center'}),
     html.Br(),
@@ -193,9 +196,14 @@ layout = html.Div(children=[
                  value = 'All',
                  style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
                           'margin': '10px auto'})
-    ], style = {'border': '1px solid black', 'width': '20%'}
+    ], style = {'border': '1px solid black', 'width': '20%', 'display': 'inline-block',
+                'text-align': 'center', 'margin-left': '250px'}
              ),
 
+    # table
+    html.Div([
+        html.Table(children = [d_table_in])],
+               style = {'display': 'inline-block', 'margin-left': '250px'}),
 
 
     # time

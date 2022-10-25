@@ -12,7 +12,8 @@ import pg1,pg2,pg3
 
 from api_calls import ApiCall
 
-api_obj = ApiCall("../app")
+#api_obj = ApiCall("../app")
+api_obj = ApiCall("../interface")
 api_obj.download_images()
 
 image_folder="assets"
@@ -242,4 +243,5 @@ def filter_image(input_exp):
 
 
 if __name__ == '__main__':
-    app.run_server(host='0.0.0.0',debug=True, port=8050)
+    #app.run_server(host='0.0.0.0',debug=True, port=8050)
+    app.run_server(debug=True, port = 8051)
