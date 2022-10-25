@@ -17,7 +17,7 @@ def return_live_image():
 @app.route("/stats", methods=["GET"])
 def get_stats():
     camera_id = request.args.get('camera_id')
-    df = pd.read_csv('archive.csv')
+    df = pd.read_csv('./training_data/traffic_stats.csv')
     match_df = df.loc[df['camera_id'] == camera_id]
     result_df = match_df[['Density', 'Average_Speed', 'Incident']]
     return jsonify(result_df.to_dict(orient="records"))
@@ -26,7 +26,7 @@ def get_stats():
 # to update to GET if filtering is required
 @app.route("/archive")
 def return_past_data():
-    df = pd.read_csv('archive.csv')
+    df = pd.read_csv('./training_data/traffic_stats.csv')
     result_df = df[['Date', 'Time', 'Density', 'Average_Speed']]
     return jsonify(result_df.to_dict(orient="index"))
 
