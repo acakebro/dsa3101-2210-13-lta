@@ -1,5 +1,3 @@
-# encompass vehicle_count and caleb's random forest
-from turtle import update
 from api_calls import ApiCall
 from vehicle_count import VehicleCount
 import os
@@ -8,9 +6,6 @@ from datetime import datetime
 
 
 class Main:
-    def __init__(self):
-        self.count = 1
-
     def update_stats(self):
         # needs to be full directory
         dir = '/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project/training/api/test'
@@ -33,22 +28,18 @@ class Main:
         vc = VehicleCount(images_dir, roi_df, lat_long,
                           speedband_dir, speedband_cam_mapping_dir, incidents_dir)
         traffic_stats = vc.predict_vehicle_count()
-        if self.count == 1:
-            traffic_stats.to_csv('training_data/traffic_stats.csv', mode='w+',
-                                 header=True, index=False)
-        else:
-            traffic_stats.to_csv('training_data/traffic_stats.csv',
-                                 mode='a', header=False, index=False)
-        self.count += 1
+        with open('training_data/traffic_stats.csv', 'a') as f:
+            traffic_stats.to_csv(f, mode='a', index=False,
+                                 header=f.tell() == 0)
 
 
 main = Main()
 
 while True:
     startTime = datetime.now()
-    print(f"{startTime}: Updating traffic stats...")
+    print(f'{startTime}: Updating traffic stats...')
     main.update_stats()
-    print(f"Stats updated. Time taken: {datetime.now() - startTime} minutes")
-    print("Resting for 5 minutes...")
+    print(f'Stats updated. Time taken: {datetime.now() - startTime} minutes')
+    print('Resting for 5 minutes...')
     time_wait = 5
     time.sleep(time_wait * 60)
