@@ -9,3 +9,6 @@ ENV FLASK_APP flask_app.py
 
 ENTRYPOINT [ "python", "-u", "-m", "flask", "run", "--host=0.0.0.0"]
  
+#Running container
+#docker build -t {name} .
+#docker run -p 5000:8050 {name}
