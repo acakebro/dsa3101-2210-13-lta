@@ -4,6 +4,12 @@ plotly.express
 pandas
 datetime
 dash_leaflet
+dash_leaflet.express
 dash_bootstrap_components
 httplib2
 requests
+sys
+dash_extensions
+os
+
+#protobuf==3.20.*
