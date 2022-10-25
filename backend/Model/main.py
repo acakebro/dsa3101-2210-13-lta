@@ -17,8 +17,7 @@ class Main:
         speedband_cam_mapping_dir = 'closest_speedbands.csv'
         images_dir = dir + '/assets/*.jpg'
         incidents_dir = dir + '/assets/incidents.csv'
-        roi_df = dir + '/Image_ROI.csv'  # Replace with final directory containing ROI file
-        # Replace with final directory containing camera lat long file
+        roi_df = dir + '/Image_ROI.csv'
         lat_long = dir + '/camera_id_lat_long.csv'
 
         # change back to directory containing dnn weights
