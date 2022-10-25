@@ -133,9 +133,6 @@ class VehicleCount:
             incident = 0
             if incident_distance <= 200:
                 incident = 1
-            jam = 0
-            if avg_speed <= 35:
-                jam = 1
             img = cv2.imread(img_path)
             for i in range(len(rois)):
                 roi_coords = ast.literal_eval(rois.iloc[i, 1])
@@ -143,13 +140,17 @@ class VehicleCount:
                 roi_img = self.__roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
+                density = vehicle_count / 100
                 # Approximate length of road to be 100m
+                jam = 0
+                if avg_speed <= 35 and density >= 0.07:
+                    jam = 1
                 result_list.append(
                     [
                         camera_id,
                         direction,
                         vehicle_count,
-                        vehicle_count / 100,
+                        density,
                         avg_speed,
                         image_datetime.date(),
                         image_datetime.time(),
