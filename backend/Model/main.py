@@ -1,14 +1,12 @@
 from api_calls import ApiCall
 from vehicle_count import VehicleCount
 import os
-import time
-from datetime import datetime
 
 
 class Main:
     def update_stats(self):
         # needs to be full directory
-        dir = '/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project/training/api/test'
+        dir = '/app'
         api_call = ApiCall(dir)
         # downloads into api_data folder in your specified dir
         api_call.download_images()
@@ -19,27 +17,15 @@ class Main:
         speedband_cam_mapping_dir = 'closest_speedbands.csv'
         images_dir = dir + '/assets/*.jpg'
         incidents_dir = dir + '/assets/incidents.csv'
-        roi_df = 'ROI/Image_ROI.csv'  # Replace with final directory containing ROI file
+        roi_df = dir + '/Image_ROI.csv'  # Replace with final directory containing ROI file
         # Replace with final directory containing camera lat long file
-        lat_long = 'camera_id_lat_long.csv'
+        lat_long = dir + '/camera_id_lat_long.csv'
 
         # change back to directory containing dnn weights
-        os.chdir('/Users/chuamingfeng/Desktop/NUS/Y3/S1/DSA3101/Project')
+        os.chdir('/app')
         vc = VehicleCount(images_dir, roi_df, lat_long,
                           speedband_dir, speedband_cam_mapping_dir, incidents_dir)
         traffic_stats = vc.predict_vehicle_count()
-        with open('training_data/traffic_stats.csv', 'a') as f:
+        with open('data/traffic_stats.csv', 'a') as f:
             traffic_stats.to_csv(f, mode='a', index=False,
                                  header=f.tell() == 0)
-
-
-main = Main()
-
-while True:
-    startTime = datetime.now()
-    print(f'{startTime}: Updating traffic stats...')
-    main.update_stats()
-    print(f'Stats updated. Time taken: {datetime.now() - startTime} minutes')
-    print('Resting for 5 minutes...')
-    time_wait = 5
-    time.sleep(time_wait * 60)
