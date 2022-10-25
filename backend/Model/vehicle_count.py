@@ -143,7 +143,7 @@ class VehicleCount:
                 density = vehicle_count / 100
                 # Approximate length of road to be 100m
                 jam = 0
-                if avg_speed <= 35 or density >= 0.07:
+                if avg_speed <= 30 or density >= 0.07:
                     jam = 1
                 result_list.append(
                     [
