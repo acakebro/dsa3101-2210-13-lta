@@ -20,19 +20,29 @@ def return_live_image():
 
 # to be updated when finalised
 
-
+# for map stats (min, max, avg density + avg traffic speed)
 @app.route("/stats", methods=["GET"])
 def get_stats():
-    camera_id = request.args.get('camera_id')
+    selection = request.args.get('selection')
     df = pd.read_csv('traffic_stats.csv')
-    match_df = df.loc[df['Camera_Id'] == int(camera_id)]
-    result_df = match_df[['Density', 'Average_Speed', 'Incident']]
-    return jsonify(result_df.to_dict(orient="records"))
+    if selection == 'max_traffic_density':
+        result_df = df.sort_values('Density', ascending=False).drop_duplicates(subset='Camera_Id').sort_index()
+        result_df = result_df[['Camera_Id', 'Direction', 'Latitude', 'Longitude', 'Jam', 'Density', 'Time']]
+        return jsonify(result_df.to_dict(orient="records"))
+    elif selection == 'min_traffic_density':
+        result_df = df.sort_values('Density', ascending=True).drop_duplicates(subset='Camera_Id').sort_index()
+        result_df = result_df[['Camera_Id', 'Direction', 'Latitude', 'Longitude', 'Jam', 'Density', 'Time']]
+        return jsonify(result_df.to_dict(orient="records"))
+    elif selection == 'average_traffic_density':
+        result_df = df.groupby(['Camera_Id'])['Density'].mean().reset_index()
+        result_df = result_df[['Camera_Id', 'Latitude', 'Longitude', 'Density', 'Time']]
+        return jsonify(result_df.to_dict(orient="records"))
+    elif selection == 'average_traffic_speed':
+        result_df = df.groupby(['Camera_Id'])['Average_Speed'].mean().reset_index()
+        result_df = result_df[['Camera_Id', 'Latitude', 'Longitude', 'Average_Speed', 'Time']]
+        return jsonify(result_df.to_dict(orient="records"))
 
 # for past data
-# to update to GET if filtering is required
-
-
 @app.route("/archive")
 def return_past_data():
     df = pd.read_csv('traffic_stats.csv')
