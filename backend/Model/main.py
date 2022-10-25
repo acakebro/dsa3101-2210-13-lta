@@ -26,6 +26,6 @@ class Main:
         vc = VehicleCount(images_dir, roi_df, lat_long,
                           speedband_dir, speedband_cam_mapping_dir, incidents_dir)
         traffic_stats = vc.predict_vehicle_count()
-        with open('data/traffic_stats.csv', 'a') as f:
+        with open('traffic_stats.csv', 'a') as f:
             traffic_stats.to_csv(f, mode='a', index=False,
                                  header=f.tell() == 0)

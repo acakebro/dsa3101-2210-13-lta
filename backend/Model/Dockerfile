@@ -13,7 +13,8 @@ COPY Image_ROI.csv Image_ROI.csv
 COPY camera_id_lat_long.csv camera_id_lat_long.csv
 COPY closest_speedbands.csv closest_speedbands.csv
 COPY training_data.csv training_data.csv
+COPY model.pkl model.pkl
 
 ENV FLASK_APP flask_app
-ENTRYPOINT [ "python3", "-u", "-m", "flask", "run"]
- 
+ENTRYPOINT ["/usr/bin/python3", "/app/flask_app.py"]
+

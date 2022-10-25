@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, auc
 import datetime
+import pickle
 
 
 class RandomForestModel:
@@ -110,10 +111,18 @@ class RandomForestModel:
         test_pred = self.model.predict(test)
         return test_pred[0]
 
+    def exportModel(self):
+        pickle.dump(self.model, open("model.pkl", "wb"))
+
 
 # ----------------------------PIPELINE-----------------------------------------------
 """
 model = RandomForestModel(
     "training_data/training_data.csv", "camera_id_lat_long.csv")
 print(model.predict("2701", "Johor", "22/10/2022", "08:50"))
+"""
+"""
+model = RandomForestModel(
+    "training_data/training_data.csv", "camera_id_lat_long.csv")
+pickle.dump(model, open("model.pkl", "wb"))
 """
