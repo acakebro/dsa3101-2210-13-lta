@@ -1,6 +1,6 @@
 Flask
 dash
-plotly
+plotly.express
 pandas
 datetime
 dash_leaflet

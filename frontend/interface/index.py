@@ -177,41 +177,38 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=15
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://0.0.0.0:5000/archive?camera_id='+str(camera_id))
-    archive=pd.read_json(archive_json)
-    variables=archive.copy(deep=True)
+    archive_json = requests.get('http://0.0.0.0:8050/archive?camera_id='+str(camera_id)).json()
+    variables = pd.read_json(archive_json)
     #Convert datetime into YYYYMMDDHHMM format
     variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     variables['Time']=variables['Date']+variables['Time']
-    variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
+    graph_inputs=variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
     #Filter datetime within last timeframe(15 min,30min,1hr)
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
     datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
     datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    variables = variables[variables['Camera_Id'] == int(camera_id)]
-    variables = variables[variables['Time'] <= datetime_curr]
-    variables = variables[variables['Time'] >= datetime_prev]
-    variables['Time']=variables['Time'].str.slice(8,10)+':'+variables['Time'].str.slice(10,12)
+    graph_inputs = graph_inputs[graph_inputs['Time'] <= datetime_curr]
+    graph_inputs = graph_inputs[graph_inputs['Time'] >= datetime_prev]
+    graph_inputs['Time']=graph_inputs['Time'].str.slice(8,10)+':'+graph_inputs['Time'].str.slice(10,12)
     # Plot graph by searching for values in last timeframe(15 min,30min,1hr)
-    speedplot = px.line(variables, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
-    densityplot = px.line(variables, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
+    speedplot = px.line(graph_inputs, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
+    densityplot = px.line(graph_inputs, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
 
     #Load prediction data in table form
-    variables=archive.copy(deep=True)
-    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
-    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
-    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
-    variables['Time']=variables['Date']+variables['Time']
+    #variables=archive.copy(deep=True)
+    #variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
+    #variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    #variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    #variables['Time']=variables['Date']+variables['Time']
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
     datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
     datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
     variables = variables[variables['Time'] <= datetime_curr]
     variables = variables[variables['Time'] >= datetime_prev]
-    variables = variables[variables['Camera_Id'] == int(camera_id)]
     variables = variables.loc[:,['Direction','Density','Average_Speed','Jam']]
     variables['Jam']=variables['Jam'].replace([1],'Jam')
     variables['Jam']=variables['Jam'].replace([0],'No Jam')
