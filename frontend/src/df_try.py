@@ -8,8 +8,8 @@ from dash.dependencies import Input, Output
 
 chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
 
-df = pd.read_csv("/Users/xiaohan/dsa3101-2210-13-lta/backend/Model/training_data.csv")
-#df = pd.read_csv("/backend/Model/training_data.csv")
+# df = pd.read_csv("/Users/xiaohan/dsa3101-2210-13-lta/backend/Model/training_data.csv")
+df = pd.read_csv("/backend/Model/training_data.csv")
  
 # Create the app.
 app = Dash(external_scripts=[chroma], prevent_initial_callbacks=True)
