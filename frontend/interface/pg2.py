@@ -94,8 +94,7 @@ layout = html.Div(
                 html.H2('Speed:', style={'font-weight': 'bold'}),
                 html.H2('Traffic condition:', style={'font-weight': 'bold'}),
                 ],
-                style={'display':'none','padding':'20px','text-align': 'right'},
-                id='attributes'
+                style={'display':'none','padding':'20px','text-align': 'right'}
                 ),
             html.Div(id = 'datatable')
             ],    
@@ -105,26 +104,33 @@ layout = html.Div(
 
     #Data visualization
     html.Div(children = [
-        html.H2('Past data analysis', style={'font-weight': 'bold'}),
-        dcc.Dropdown(id='timeframe',
-                        options=[
-                            {'label':'last 30 minutes', 'value':'30'},
-                            {'label':'last 1 hour', 'value':'60'}
-                            ],
-                     placeholder='last 15 minutes',
-                     style = {'margin':'20px'}),
-        dcc.Graph(
-            id='speed',
-            style = {'display': 'inline-block', 'width': '450px'}
-        ),       
-        dcc.Graph(
-            id='density',
-            style = {'display': 'inline-block', 'width': '450px'}
-        )
-        ],
-        style = {'margin':'25px'}
-        )
-        ],
+        html.Div(children = [
+            html.H2('Past data analysis', style={'font-weight': 'bold'}),
+            dcc.Dropdown(id='timeframe',
+                            options=[
+                                {'label':'last 30 minutes', 'value':'30'},
+                                {'label':'last 1 hour', 'value':'60'}
+                                ],
+                         placeholder='last 15 minutes',
+                         style = {'margin':'20px','width':'200px'}),
+            dcc.Graph(
+                id='speed',
+                style = {'display': 'inline-block', 'width': '450px'}
+            ),       
+            dcc.Graph(
+                id='density',
+                style = {'display': 'inline-block', 'width': '450px'}
+            )
+            ],
+            style = {'display': 'inline-block'}
+            ),
+        html.Div(children = [
+            html.H2('Congested areas(more than 2 hours of continuous jam)', style={'font-weight': 'bold'}),
+            html.Div(id = 'places')
+            ],
+            style = {'display': 'inline-block'}
+            )])
+    ],
     style = {'background-color': 'rgb(237,250,252)'}
     )
 
