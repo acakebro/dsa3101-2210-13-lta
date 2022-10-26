@@ -328,7 +328,7 @@ def update_map(input_attr, input_agg):
                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
                     else:
                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-         elif input_agg == 'Min':
+        elif input_agg == 'Min':
              df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
              df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
              dicts0 = df0.to_dict('records')
@@ -344,7 +344,7 @@ def update_map(input_attr, input_agg):
                      else:
                          item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         
-         else: # Average
+        else: # Average
              df0 = df.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
              df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Incident','Time']]
              dicts0 = df0.to_dict('records')
