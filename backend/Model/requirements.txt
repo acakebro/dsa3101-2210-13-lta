@@ -1,6 +1,6 @@
-Flask
-numpy
-pandas
-sklearn
-opencv-python
-httplib2
+Flask==2.0.2
+numpy==1.23.4
+pandas==1.2.4
+sklearn==0.0
+opencv-python-headless==4.6.0.66
+httplib2==0.20.4
