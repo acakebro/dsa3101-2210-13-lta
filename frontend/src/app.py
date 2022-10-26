@@ -39,6 +39,11 @@ traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
 df = pd.read_csv("../../backend/Model/training_data.csv")
 
+default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
+                             attribution='<img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'),
+    ], center=[1.3521, 103.8198],
+                          style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
+
 #cameras = [dict(title = str(traffic_images['CameraID'][0]),
 #                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
 
@@ -373,10 +378,6 @@ def update_map(input_attr, input_agg):
                         item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
 
         else: # default map
-            default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
-                             attribution='<img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'),
-    ], center=[1.3521, 103.8198],
-                          style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
             return default_map
 
     geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
