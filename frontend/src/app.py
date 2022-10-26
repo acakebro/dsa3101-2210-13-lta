@@ -40,9 +40,11 @@ traffic_images = pd.read_csv("traffic_images.csv")
 df = pd.read_csv("../../backend/Model/training_data.csv")
 
 default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
+
                              attribution='< img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href=" ">Singapore Land Authority</a >'),
     ], center=[1.3521, 103.8198],
                           style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
+
 
 folder = "assets/"
 
@@ -311,35 +313,46 @@ def update_map(input_attr, input_agg):
     color_prop0 = 'Density'
     colorscale0 = ['green','yellow','orange','red']
     if input_attr == 'Density':
-
         if input_agg == "Max":
             df0 = df.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
-            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
+            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
             dicts0 = df0.to_dict('records')
             for item in dicts0:
                 if item['Jam']==1:
-                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max   
                 else:
-                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+         elif input_agg == 'Min':
+             df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
+             df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
+             dicts0 = df0.to_dict('records')
+             for item in dicts0:
+                 if item['Jam']==1:
+                     if item['Incident']==1:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                     else:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max   
+                 else:
+                     if item['Incident']==1:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                     else:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         
-        elif input_agg == 'Min':
-
-            df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
-            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
-            dicts0 = df0.to_dict('records')
-            for item in dicts0:
-                if item['Jam']==1:
-                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-                else:
-                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-
-        else: # Average
-
-            df0 = df.groupby(['Camera_Id', 'Longitude','Latitude','Time'])['Density'].mean().reset_index()
-            df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Time']]
-            dicts0 = df0.to_dict('records')
-            for item in dicts0:
-                item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f}'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
+         else: # Average
+             df0 = df.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
+             df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Incident','Time']]
+             dicts0 = df0.to_dict('records')
+             for item in dicts0:
+                 if item['Incident']==1:
+                     item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f} <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
+                 else:
+                     item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f} <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
 
     else:       # Average Speed
         if input_agg == "Average":
@@ -349,12 +362,19 @@ def update_map(input_attr, input_agg):
             dicts0 = df0.to_dict('records')
             for item in dicts0:
                 if item['Jam']==1:
-                    item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item[color_prop0])
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0])
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
                 else:
-                    item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item[color_prop0])
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0])
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
 
         else:
            return default_map
+
 
     geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
     geobuf0 = dlx.geojson_to_geobuf(geojson0)

@@ -105,26 +105,38 @@ layout = html.Div(
 
     #Data visualization
     html.Div(children = [
-        html.H2('Past data analysis', style={'font-weight': 'bold'}),
-        dcc.Dropdown(id='timeframe',
-                        options=[
-                            {'label':'last 30 minutes', 'value':'30'},
-                            {'label':'last 1 hour', 'value':'60'}
-                            ],
-                     placeholder='last 15 minutes',
-                     style = {'margin':'20px'}),
-        dcc.Graph(
-            id='speed',
-            style = {'display': 'inline-block', 'width': '450px'}
-        ),       
-        dcc.Graph(
-            id='density',
-            style = {'display': 'inline-block', 'width': '450px'}
-        )
+        html.Div(children = [
+            html.H2('Past data analysis', style={'font-weight': 'bold'}),
+            dcc.Dropdown(id='timeframe',
+                            options=[
+                                {'label':'last 30 minutes', 'value':'30'},
+                                {'label':'last 1 hour', 'value':'60'}
+                                ],
+                         placeholder='last 15 minutes',
+                         style = {'margin':'20px','width':'200px'}
+                         ),
+            dcc.Graph(
+                id='speed',
+                style = {'display': 'inline-block', 'width': '450px'}
+                ),       
+            dcc.Graph(
+                id='density',
+                style = {'display': 'inline-block', 'width': '450px'}
+                )
+            ],
+            ),
+        html.Div(children = [
+            html.H2('Congested areas(> 2 hours of continuous jam)',
+                    style={'font-weight': 'bold'}
+                    ),
+            html.Div(id = 'places')
+            ],
+            style = {'width': '700px','margin':'auto'}
+            )
         ],
-        style = {'margin':'25px'}
+        style = {'display':'flex','align-items':'center','justify-content':'center'}    
         )
-        ],
+    ],
     style = {'background-color': 'rgb(237,250,252)'}
     )
 
