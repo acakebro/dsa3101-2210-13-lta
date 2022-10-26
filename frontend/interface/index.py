@@ -4,23 +4,25 @@ import dash_bootstrap_components as dbc
 import dash,os
 import plotly.express as px
 import pandas as pd
+import dash_leaflet as dl
+import dash_leaflet.express as dlx
+from dash_extensions.javascript import assign
 from datetime import datetime, date,timedelta
 from flask import Flask
 import requests
-import csv
-from time import strftime,localtime
 
 import pg1,pg2,pg3
 
 from api_calls import ApiCall
 
 #api_obj = ApiCall("../app")
-api_obj = ApiCall("../interface")
-api_obj.download_images()
+#api_obj = ApiCall("../interface")
+#api_obj.download_images()
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
 data = pd.read_csv("train_data.csv")
+df = pd.read_csv("../../backend/Model/training_data.csv")
 
 def Navbar():
 
@@ -106,6 +108,23 @@ d_exp_cam = {
         'Woodlands Ave 2': ['9705']
              }
 
+chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
+
+
+point_to_layer = assign("""function(feature, latlng, context){
+    const {min, max, colorscale, circleOptions, colorProp} = context.props.hideout;
+    const csc = chroma.scale(colorscale).domain([min, max]);  // chroma lib to construct colorscale
+    circleOptions.fillColor = csc(feature.properties[colorProp]);  // set color based on color prop.
+    return L.circleMarker(latlng, circleOptions);  // sender a simple circle marker.
+    }""")
+
+default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
+
+                             attribution='< img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href=" ">Singapore Land Authority</a >'),
+    ], center=[1.3521, 103.8198],
+                          style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
+
+
 nav = Navbar()
 
 
@@ -113,7 +132,8 @@ nav = Navbar()
 server = Flask(__name__)
 
 app = dash.Dash(__name__, server=server,
-                external_stylesheets=[dbc.themes.BOOTSTRAP], 
+                external_stylesheets=[dbc.themes.BOOTSTRAP],
+                external_scripts = [chroma],
                 meta_tags=[{"name": "viewport", "content": "width=device-width"}],
                 suppress_callback_exceptions=True)
 
@@ -149,11 +169,10 @@ def update_camera(road_name):
 #Enter camera id,date,time and timerange to find speed and density over time of past data
 @app.callback(
 [Output('img','children'),
-Output('attributes','style'),
-Output('speed','figure'),
+ Output('attributes','style'),
+ Output('speed','figure'),
 Output('density','figure'),
-Output('datatable','children'),
-Output('places','children')],
+Output('datatable','children')],
 [Input('camera_id','value'),
 Input('traffic_date','date'),
 Input('traffic_time','value'),
@@ -168,15 +187,13 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         camera_id='1001'
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
-    if time is None:
-        time=strftime("%H%M", localtime()),
     #Make hidden attributes appear
     attributes_style={'display':'inline-block','padding':'20px','text-align': 'right'}
     date_time+=str(time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
-        if camera_id in file[:4]:
+        if camera_id in file:
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
     if timeframe is None:
         timeframe=15
@@ -185,7 +202,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     archive_json = requests.get('http://0.0.0.0:8050/archive?camera_id='+str(camera_id)).json()
     variables = pd.read_json(archive_json)
     #Convert datetime into YYYYMMDDHHMM format
-    variables['Date']=variables['Date'].str.slice(0,6)+variables['Date'].str.slice(6,)
+    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     variables['Time']=variables['Date']+variables['Time']
@@ -204,64 +221,31 @@ def update_plot(camera_id,traffic_date,time,timeframe):
 
     #Load prediction data in table form
     #variables=archive.copy(deep=True)
-    #variables['Date']=variables['Date'].str.slice(0,6)+variables['Date'].str.slice(6,)
+    #variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
     #variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
     #variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     #variables['Time']=variables['Date']+variables['Time']
-    table=variables
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
     datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
     datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    table = table[table['Time'] <= datetime_curr]
-    table = table[table['Time'] >= datetime_prev]
-    table = table.loc[:,['Direction','Density','Average_Speed','Jam']]
-    table['Jam']=table['Jam'].replace([1],'Jam')
-    table['Jam']=table['Jam'].replace([0],'No Jam')
-    table=table.T
-    datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
-
-    #Table of congested areas
-    variables=variables.assign(DateTime=variables['Time'])
-    variables['DateTime']=variables['DateTime'].apply(lambda x:datetime(int(x[:4]),int(x[4:6]),int(x[6:8]),int(x[8:10]),int(x[10:])))
-    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=30)
-    datetime_range = datetime_curr - timedelta(hours=2, minutes=30)
-    places={}
-    with open("Image_ROI.csv") as file:
-        read_file=csv.reader(file)
-        next(read_file, None)
-        for camera,roi,direction in read_file:
-            areas=variables
-            areas=areas[areas['Camera_Id']== int(camera)]
-            areas=areas[areas['Direction']== direction]
-            areas=areas[areas['DateTime']<= datetime_curr]
-            areas=areas[areas['DateTime']>= datetime_range]
-            temp=areas['DateTime']
-            for time in temp:
-                if time<=datetime_prev:
-                    break
-                time_range=areas[areas['DateTime']>= time - timedelta(hours=0, minutes=120)]
-                if 0 in time_range['Jam']:
-                    continue
-                else:
-                    realtime=time.strftime("%d%m%Y %H:%M")
-                    if realtime not in places.keys():
-                        places[realtime]=[]
-                    places[realtime]+=[[camera,direction]]
-    df = pd.DataFrame(data=places)
-    places=[dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True,header=False,size='sm')]
-    return img,attributes_style,speedplot,densityplot,datatable,places
+    variables = variables[variables['Time'] <= datetime_curr]
+    variables = variables[variables['Time'] >= datetime_prev]
+    variables = variables.loc[:,['Direction','Density','Average_Speed','Jam']]
+    variables['Jam']=variables['Jam'].replace([1],'Jam')
+    variables['Jam']=variables['Jam'].replace([0],'No Jam')
+    variables=variables.T
+    table=[dbc.Table.from_dataframe(variables, striped=True, bordered=True, hover=True,header=False,size='lg')]
+    return img,attributes_style,speedplot,densityplot,table
 
 @app.callback(
     Output(component_id='img_out', component_property='children'),
     Input(component_id='exp_dd', component_property='value'),
-    #Input(component_id='reg_dd', component_property='value')
 )
 
 
 def filter_image(input_exp):
-    image_path = os.listdir(image_folder)
+    image_path = list(filter(lambda x: "jpg" in x, os.listdir(image_folder)))
     if input_exp != 'All':
         exp_filter = input_exp
         camid = d_exp_cam[exp_filter]
@@ -272,10 +256,123 @@ def filter_image(input_exp):
         return create_Img(filtered_image_path)
     return create_Img(image_path)
 
+@app.callback(
+    Output(component_id = 'aggregation', component_property = 'options'),
+    Input(component_id = 'attribute', component_property = 'value'),
+    )
 
+def update_dd(attr):
+    all_agg = ["Max", "Min", "Average"]
+    if attr == "Speed":
+        return [{'label': "Average", 'value': "Average"}]
+
+    return [{'label': x, 'value': x} for x in all_agg]
+
+@app.callback(
+    Output(component_id = 'aggregation', component_property = 'value'),
+    Input(component_id = 'attribute', component_property = 'value'),
+    )
+
+def auto_select_avg(attr):
+    if attr == "Speed":
+        return "Average"
+
+
+@app.callback(
+    Output(component_id = 'variable', component_property = 'children'),
+    Input(component_id = 'attribute', component_property = 'value'),
+    Input(component_id = 'aggregation', component_property = 'value')
+    )
+
+def update_map(input_attr, input_agg):
+    color_prop0 = 'Density'
+    colorscale0 = ['green','yellow','orange','red']
+    if input_attr == 'Density':
+        if input_agg == "Max":
+            df0 = df.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                if item['Jam']==1:
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max   
+                else:
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+        elif input_agg == 'Min':
+             df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
+             df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
+             dicts0 = df0.to_dict('records')
+             for item in dicts0:
+                 if item['Jam']==1:
+                     if item['Incident']==1:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                     else:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max   
+                 else:
+                     if item['Incident']==1:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                     else:
+                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+        
+        else: # Average
+             df0 = df.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
+             df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Incident','Time']]
+             dicts0 = df0.to_dict('records')
+             for item in dicts0:
+                 if item['Incident']==1:
+                     item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f} <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
+                 else:
+                     item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f} <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
+
+    else:       # Average Speed
+        if input_agg == "Average":
+            df0 = df.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            colorscale0 = ['green','yellow','orange','red'] 
+            color_prop0 = 'Average_Speed'
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                if item['Jam']==1:
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0])
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
+                else:
+                    if item['Incident']==1:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item[color_prop0])
+                    else:
+                        item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
+
+        else:
+           return default_map
+
+
+    geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
+    geobuf0 = dlx.geojson_to_geobuf(geojson0)
+    vmax0 = df[color_prop0].max()
+    colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density per lane', opacity=0.9)
+    geojson0 = dl.GeoJSON(data=geobuf0, id="geojson", format="geobuf",
+                    zoomToBounds=True,  # when true, zooms to bounds when data changes
+                    options=dict(pointToLayer=point_to_layer),  # how to draw points
+                    superClusterOptions=dict(radius=50),   # adjust cluster size
+                    hideout=dict(colorProp=color_prop0, circleOptions=dict(fillOpacity=0.7, stroke=False, radius=7),
+                              min=0, max=vmax0, colorscale=colorscale0))
+    fullmap = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
+                             attribution='<img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'),
+    geojson0, colorbar0], center=[1.3521, 103.8198],
+                          style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
+
+
+    return fullmap
 
 
 
 if __name__ == '__main__':
     #app.run_server(host='0.0.0.0',debug=True, port=8050)
     app.run_server(debug=True, port = 8051)
+    
+
