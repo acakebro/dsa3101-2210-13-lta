@@ -5,6 +5,8 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_curve, auc
 import datetime
 import pickle
+import matplotlib.pyplot as plt
+from sklearn.metrics import accuracy_score, confusion_matrix, precision_score, recall_score, roc_auc_score, roc_curve, f1_score
 
 
 class RandomForestModel:
@@ -24,11 +26,12 @@ class RandomForestModel:
         return data
 
     def __trainModel(self):
-        train = self.training
+        train = self.training.copy()
         labels = train.pop("Jam")
         train = self.toDummy(train)
+        seed = 50
         x_train, x_test, y_train, y_test = train_test_split(
-            train, labels, test_size=0.25
+            train, labels, test_size=0.25, random_state=seed
         )
         model = RandomForestClassifier()
         model.fit(x_train, y_train)
@@ -114,6 +117,57 @@ class RandomForestModel:
     def exportModel(self):
         pickle.dump(self.model, open("model.pkl", "wb"))
 
+    def getAUC(self):
+        seed = 50
+        train = self.training
+        labels = train.pop("Jam")
+        train = self.toDummy(train)
+        x_train, x_test, y_train, y_test = train_test_split(
+            train, labels, test_size=0.25, random_state=seed
+        )
+        y_pred = self.model.predict(x_test)
+        train_probs = self.model.predict_proba(x_train)[:, 1]
+        probs = self.model.predict_proba(x_test)[:, 1]
+        train_predictions = self.model.predict(x_train)
+
+        def evaluate_model(y_pred, probs, train_predictions, train_probs):
+            baseline = {}
+            baseline['recall'] = recall_score(y_test,
+                                              [1 for _ in range(len(y_test))])
+            baseline['precision'] = precision_score(y_test,
+                                                    [1 for _ in range(len(y_test))])
+            baseline['roc'] = 0.5
+            results = {}
+            results['recall'] = recall_score(y_test, y_pred)
+            results['precision'] = precision_score(y_test, y_pred)
+            results['roc'] = roc_auc_score(y_test, probs)
+            train_results = {}
+            train_results['recall'] = recall_score(
+                y_train,       train_predictions)
+            train_results['precision'] = precision_score(
+                y_train, train_predictions)
+            train_results['roc'] = roc_auc_score(y_train, train_probs)
+            for metric in ['recall', 'precision', 'roc']:
+                print(
+                    f'{metric.capitalize()} Baseline: {round(baseline[metric], 2)} Test: {round(results[metric], 2)} Train: {round(train_results[metric], 2)}')
+            # Calculate false positive rates and true positive rates
+            base_fpr, base_tpr, _ = roc_curve(
+                y_test, [1 for _ in range(len(y_test))])
+            model_fpr, model_tpr, _ = roc_curve(y_test, probs)
+            plt.figure(figsize=(8, 6))
+            plt.rcParams['font.size'] = 16
+            # Plot both curves
+            plt.plot(base_fpr, base_tpr, 'r--', label='baseline')
+            plt.plot(model_fpr, model_tpr, 'b', label='AUC = %0.2f' %
+                     results.get('roc'))
+            plt.legend()
+            plt.xlabel('False Positive Rate')
+            plt.ylabel('True Positive Rate')
+            plt.title('ROC Curve')
+            plt.show()
+
+        evaluate_model(y_pred, probs, train_predictions, train_probs)
+
 
 # ----------------------------PIPELINE-----------------------------------------------
 """
@@ -125,4 +179,9 @@ print(model.predict("2701", "Johor", "22/10/2022", "08:50"))
 model = RandomForestModel(
     "training_data/training_data.csv", "camera_id_lat_long.csv")
 pickle.dump(model, open("model.pkl", "wb"))
+"""
+"""
+model = RandomForestModel(
+    "training_data/training_data.csv", "camera_id_lat_long.csv")
+model.getAUC()
 """
