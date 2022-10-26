@@ -248,6 +248,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
                     places[realtime]+=[[camera,direction]]
     df = pd.DataFrame(data=places)
     places=[dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True,header=False,size='sm')]
+
     return img,attributes_style,speedplot,densityplot,datatable,places
 
 @app.callback(
