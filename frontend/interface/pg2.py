@@ -70,7 +70,6 @@ layout = html.Div(
             dcc.Input(id="traffic_time",
                       type="text",
                       placeholder="HHMM",
-                      value=strftime("%H%M", localtime()),
                       style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
             ])
         
@@ -135,7 +134,10 @@ layout = html.Div(
             )
         ],
         style = {'display':'flex','align-items':'center','justify-content':'center'}    
-        )
+        ),
+    html.A(html.Button('Refresh Page'),
+            href='/page2'
+           )
     ],
     style = {'background-color': 'rgb(237,250,252)'}
     )
