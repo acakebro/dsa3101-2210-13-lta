@@ -168,19 +168,30 @@ app.layout = html.Div(children=[
     # map
     html.Div(
         children=[
-            html.H3('Select what you would like to view.'),
+            html.H3('Select Attribute'),
+            # Add a dropdown with identifier
+            dcc.Dropdown(id = 'attribute',
+            options=[
+                {'label':'Density', 'value': 'Density'},
+                {'label':'Speed', 'value': 'Speed'},],
+                         value = 'Density',
+                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                         ),
+        
+            html.H3('Select Aggregation'),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'aggregation',
             options=[
-                {'label':'Max Traffic Density', 'value': 'Max Traffic Density'},
-                {'label':'Min Traffic Density', 'value': 'Min Traffic Density'},
-                {'label':'Average Traffic Density', 'value': 'Average Traffic Density'},
-                {'label':'Average Traffic Speed', 'value':'Average Traffic Speed'}],
-                         value = 'Max Traffic Density',
-                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'})
-            ],
+                {'label':'Max', 'value': 'Max'},
+                {'label':'Min', 'value': 'Min'},
+                {'label':'Average', 'value': 'Average'},],
+                         value = 'Max',
+                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                         )],
             style={'width':'500px', 'height':'200px', 'vertical-align':'top',
-                   'padding':'20px', 'margin':'auto', 'display':'flex','align-items': 'center'}),
+                   'padding':'20px', 'margin':'auto', 'display':'flex','align-items': 'center'}
+        ),
+    
     html.Div(id = 'variable',
         style = {'width':'90%', 'height':'80vh', 'margin':'0 auto', 'position':'relative'}
              ),
@@ -190,22 +201,11 @@ app.layout = html.Div(children=[
 
     # filter box
     html.Div(children = [
-    html.H2("Select Region: ", style = {'margin':'5px'}),
-    dcc.Dropdown(id = "reg_dd",
-                 options = [
-            {'label': 'All', 'value': 'All Regions'},                     
-            {'label':'North', 'value':'North'},
-            {'label':'East', 'value':'East'},
-            {'label':'West', 'value':'West'},
-            {'label':'Central', 'value':'Central'},
-            {'label':'North-East', 'value':'North-East'}],
-                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '10px auto', 'cursor': 'pointer'}),
-    html.Br(),
+
     html.H2("Select Direction: ", style = {'margin':'5px'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
-            {'label': 'All' + " (" + str(len(os.listdir(folder))) + ")", 'value': 'All'},
+            {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(folder))))) + ")", 'value': 'All'},
             {'label':'KPE' + " (" + str(len(d_exp_cam['KPE'])) + ")", 'value':'KPE'},
             {'label':'ECP' + " (" + str(len(d_exp_cam['ECP'])) + ")", 'value':'ECP'},
             {'label':'KJE' + " (" + str(len(d_exp_cam['KJE'])) + ")", 'value':'KJE'},
@@ -273,12 +273,11 @@ app.layout = html.Div(children=[
 @app.callback(
     Output(component_id='img_out', component_property='children'),
     Input(component_id='exp_dd', component_property='value'),
-    Input(component_id='reg_dd', component_property='value')
 )
 
 
-def filter_image(input_exp, input_reg):
-    image_path = os.listdir(folder)
+def filter_image(input_exp):
+    image_path = list(filter(lambda x: "jpg" in x, os.listdir(folder)))
     if input_exp != 'All':
         exp_filter = input_exp
         camid = d_exp_cam[exp_filter]
@@ -289,54 +288,76 @@ def filter_image(input_exp, input_reg):
         return create_Img(filtered_image_path)
     return create_Img(image_path)
 
+
+@app.callback(
+    Output(component_id = 'aggregation', component_property = 'options'),
+    Input(component_id = 'attribute', component_property = 'value'),
+    )
+
+def update_dd(attr):
+    all_agg = ["Max", "Min", "Average"]
+    if attr == "Speed":
+        return [{'label': "Average", 'value': "Average"}]
+
+    return [{'label': x, 'value': x} for x in all_agg]
+    
+
+
 @app.callback(
     Output(component_id = 'variable', component_property = 'children'),
+    Input(component_id = 'attribute', component_property = 'value'),
     Input(component_id = 'aggregation', component_property = 'value')
     )
 
-def update_map(input_selected):
+def update_map(input_attr, input_agg):
     color_prop0 = 'Density'
     colorscale0 = ['green','yellow','orange','red']
-    if input_selected == 'Max Traffic Density':
+    if input_attr == 'Density':
 
-        df0 = df.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
-        df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
-        dicts0 = df0.to_dict('records')
-        for item in dicts0:
-            if item['Jam']==1:
-                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-            else:
-                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+        if input_agg == "Max":
+            df0 = df.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                if item['Jam']==1:
+                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                else:
+                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         
-    elif input_selected == 'Min Traffic Density':
+        elif input_agg == 'Min':
 
-        df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
-        df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
-        dicts0 = df0.to_dict('records')
-        for item in dicts0:
-            if item['Jam']==1:
-                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-            else:
-                item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-    elif input_selected == 'Average Traffic Density':
+            df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
+            df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Time']]
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                if item['Jam']==1:
+                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
+                else:
+                    item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
 
-        df0 = df.groupby(['Camera_Id', 'Longitude','Latitude','Time'])['Density'].mean().reset_index()
-        df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Time']]
-        dicts0 = df0.to_dict('records')
-        for item in dicts0:
-            item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f}'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
-        
-    elif input_selected =='Average Traffic Speed':
-        df0 = df.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
-        colorscale0 = ['green','yellow','orange','red'] 
-        color_prop0 = 'Average_Speed'
-        dicts0 = df0.to_dict('records')
-        for item in dicts0:
-            if item['Jam']==1:
-                item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item[color_prop0])
-            else:
-                item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item[color_prop0])
-                
+        else: # Average
+
+            df0 = df.groupby(['Camera_Id', 'Longitude','Latitude','Time'])['Density'].mean().reset_index()
+            df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Time']]
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                item["tooltip"] = 'Camera {} <br/>Average traffic density: {:.2f}'.format(item['Camera_Id'], item[color_prop0]) # bind tooltip max
+
+    else:       # Average Speed
+        if input_agg == "Average":
+            df0 = df.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            colorscale0 = ['green','yellow','orange','red'] 
+            color_prop0 = 'Average_Speed'
+            dicts0 = df0.to_dict('records')
+            for item in dicts0:
+                if item['Jam']==1:
+                    item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: Yes'.format(item['Camera_Id'], item[color_prop0])
+                else:
+                    item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No'.format(item['Camera_Id'], item[color_prop0])
+
+        else:
+           return # default map
+
     geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
     geobuf0 = dlx.geojson_to_geobuf(geojson0)
     vmax0 = df[color_prop0].max()
