@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  web1:
+    build: ./backend/Model
+    container_name: backend
+    ports: 
+      - "5000:8050"
+  web2:
+    build: ./frontend/interface
+    container_name: frontend
+    ports: 
+      - "8050:8050"
