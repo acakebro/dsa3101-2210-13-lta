@@ -15,12 +15,13 @@ class RandomForestModel:
         self.model = self.__trainModel()
 
     def toDummy(self, data):
-        data = data.drop(['Time', 'Date', 'Average_Speed',
-                         'Vehicle_Count', 'Density', 'Incident'], axis=1)
+        data = data.drop(
+            ["Time", "Date", "Average_Speed", "Vehicle_Count", "Density", "Incident"],
+            axis=1,
+        )
         for col in data.dtypes[data.dtypes == "object"].index:
             for_dummy = data.pop(col)
-            data = pd.concat(
-                [data, pd.get_dummies(for_dummy, prefix=col)], axis=1)
+            data = pd.concat([data, pd.get_dummies(for_dummy, prefix=col)], axis=1)
         return data
 
     def __trainModel(self):
@@ -33,8 +34,7 @@ class RandomForestModel:
         model = RandomForestClassifier()
         model.fit(x_train, y_train)
         y_pred = model.predict(x_test)
-        false_positive_rate, true_positive_rate, thresholds = roc_curve(
-            y_test, y_pred)
+        false_positive_rate, true_positive_rate, thresholds = roc_curve(y_test, y_pred)
         roc_auc = auc(false_positive_rate, true_positive_rate)
 
         n_estimators = [1, 2, 4, 8, 16, 32, 64, 100, 200]
@@ -56,13 +56,14 @@ class RandomForestModel:
             roc_auc = auc(false_positive_rate, true_positive_rate)
             test_results.append(roc_auc)
 
-        index = test_results.index(min(test_results))
+        index = test_results.index(max(test_results))
         best_n = n_estimators[index]
         model = RandomForestClassifier(n_estimators=best_n)
         model.fit(train, labels)
         self.test_df = pd.DataFrame(columns=list(train.columns))
         self.test_df = self.test_df.append(
-            pd.Series(dtype='float64'), ignore_index=True)
+            pd.Series(dtype="float64"), ignore_index=True
+        )
         return model
 
     def __is_weekday(self, day):
@@ -79,8 +80,7 @@ class RandomForestModel:
     def __is_peak(self, time):
         peak_hours = [
             {"Start": datetime.time(8, 0, 0), "End": datetime.time(10, 0, 0)},
-            {"Start": datetime.time(18, 0, 0),
-             "End": datetime.time(20, 30, 0)},
+            {"Start": datetime.time(18, 0, 0), "End": datetime.time(20, 30, 0)},
         ]
         is_peak_bool = False
         for peak_hour in peak_hours:
@@ -97,8 +97,7 @@ class RandomForestModel:
         time = datetime.datetime.strptime(time, "%H:%M").time()
         is_weekday = self.__is_weekday(day)
         is_peak = self.__is_peak(time)
-        cam_lat_long = self.cam_lat_long[self.cam_lat_long["CameraID"] == int(
-            cam_id)]
+        cam_lat_long = self.cam_lat_long[self.cam_lat_long["CameraID"] == int(cam_id)]
         direction = "Direction_" + road.upper()
         test = self.test_df.copy()
         test.Camera_Id = int(cam_id)
