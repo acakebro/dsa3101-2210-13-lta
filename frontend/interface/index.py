@@ -8,7 +8,8 @@ import dash_leaflet as dl
 import dash_leaflet.express as dlx
 from dash_extensions.javascript import assign
 from datetime import datetime, date,timedelta
-from flask import Flask
+from flask import Flask, jsonify, request, send_file
+from glob import glob
 import requests
 
 import pg1,pg2,pg3
@@ -22,7 +23,7 @@ from api_calls import ApiCall
 image_folder="assets"
 directory = os.fsencode(image_folder)
 data = pd.read_csv("train_data.csv")
-df = pd.read_csv("../../backend/Model/training_data.csv")
+df = pd.read_csv("training_data.csv")
 
 def Navbar():
 
@@ -145,6 +146,43 @@ app.layout = html.Div([
     html.Div(id='page-content', children=[]), 
 ])
 
+# to be updated when finalised
+
+
+@app.server.route("/stats", methods=["GET"])
+def get_stats():
+    camera_id = request.args.get('camera_id')
+    df = pd.read_csv('traffic_stats.csv')
+    match_df = df.loc[df['Camera_Id'] == int(camera_id)]
+    result_df = match_df[['Density', 'Average_Speed', 'Incident']]
+    return jsonify(result_df.to_dict(orient="records"))
+
+# for past data
+# to update to GET if filtering is required
+
+
+@app.server.route("/archive")
+def return_past_data():
+    df = pd.read_csv('traffic_stats.csv')
+    result_df = df[['Date', 'Time', 'Density', 'Average_Speed']]
+    return jsonify(result_df.to_dict(orient="index"))
+
+# for prediction based on user input
+
+
+@app.server.route("/prediction", methods=["GET"])
+def make_prediction():
+    time = request.args.get('time')
+    date = request.args.get('date')
+    camera_id = int(request.args.get('camera_id'))
+    road = request.args.get('road')
+    model = pickle.load(open("model.pkl", "rb"))
+    result = model.predict(camera_id, road, date, time)
+    if result == 0:
+        return jsonify({'prediction': 'No Jam'})
+    elif result == 1:
+        return jsonify({'prediction': 'Jam'})
+    
 @app.callback(Output('page-content', 'children'),
               Input('url', 'pathname'))
 
@@ -199,7 +237,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=15
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://0.0.0.0:8050/archive?camera_id='+str(camera_id)).json()
+    archive_json = requests.get('http://backend:8050/archive?camera_id='+str(camera_id)).json()
     variables = pd.read_json(archive_json)
     #Convert datetime into YYYYMMDDHHMM format
     variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
@@ -372,7 +410,7 @@ def update_map(input_attr, input_agg):
 
 
 if __name__ == '__main__':
-    #app.run_server(host='0.0.0.0',debug=True, port=8050)
-    app.run_server(debug=True, port = 8051)
+    app.run_server(host='0.0.0.0',debug=True, port=8050)
+    #app.run_server(debug=True, port = 8051)
     
 
