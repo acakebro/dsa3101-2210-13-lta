@@ -59,7 +59,7 @@ class RandomForestModel:
             roc_auc = auc(false_positive_rate, true_positive_rate)
             test_results.append(roc_auc)
 
-        index = test_results.index(min(test_results))
+        index = test_results.index(max(test_results))
         best_n = n_estimators[index]
         model = RandomForestClassifier(n_estimators=best_n)
         model.fit(train, labels)
