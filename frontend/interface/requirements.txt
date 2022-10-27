@@ -9,4 +9,4 @@ httplib2
 requests
 dash_extensions
 
-#protobuf==3.20.*
+protobuf==3.20.1
