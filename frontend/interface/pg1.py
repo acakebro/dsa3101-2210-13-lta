@@ -139,17 +139,17 @@ layout = html.Div(children=[
     # map
     html.Div(
         children=[
-            html.H3('Select Attribute'),
+            html.H4('Select Attribute', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'attribute',
             options=[
                 {'label':'Density', 'value': 'Density'},
                 {'label':'Speed', 'value': 'Speed'},],
                          value = 'Density',
-                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
                          ),
         
-            html.H3('Select Aggregation'),
+            html.H4('Select Aggregation', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'aggregation',
             options=[
@@ -157,10 +157,10 @@ layout = html.Div(children=[
                 {'label':'Min', 'value': 'Min'},
                 {'label':'Average', 'value': 'Average'},],
                          value = 'Max',
-                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
                          )],
-            style={'width':'500px', 'height':'200px', 'vertical-align':'top',
-                   'padding':'20px', 'margin':'auto', 'display':'flex','align-items': 'center'}
+            style={'width':'45%', 'vertical-align':'top', 'padding':'20px',
+                   'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'}
         ),
     
     html.Div(id = 'variable',
@@ -172,7 +172,7 @@ layout = html.Div(children=[
 
     # filter box
     html.Div(children = [
-    html.H2("Select Direction: ", style = {'margin':'5px'}),
+    html.H4("Select Direction: ", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(image_folder))))) + ")", 'value': 'All'},
@@ -206,12 +206,10 @@ layout = html.Div(children=[
             {'label':'Choa Chu Kang' + " (" + str(len(d_exp_cam['Choa Chu Kang'])) + ")", 'value':'Choa Chu Kang'},
             {'label':'Woodlands Ave 2' + " (" + str(len(d_exp_cam['Woodlands Ave 2'])) + ")", 'value':'Woodlands Ave 2'}],
                  value = 'All',
-                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '10px auto', 'cursor': 'pointer',
-                          'border-radius': '5px'})
-    ], style = {'border': '1px solid black', 'width': '20%', 'display': 'inline-block',
-                'text-align': 'center', 'margin-left': '150px',
-                'border-radius': '10px'},
+                 style = {'display': 'inline-block', 'width':'170px','margin': '0 auto',
+                          'cursor': 'pointer','border-radius': '5px'})
+    ], style = {'width': '25%', 'display': 'inline-block','text-align': 'center', 'border-radius':'5px',
+                'padding':'20px', 'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'},
              ),
 
     # table
@@ -232,5 +230,5 @@ layout = html.Div(children=[
     
 
     ],
-                      style = {'background-color': 'rgb(237,250,252)'}
+                      style = {'background-color': 'white'}
                       )
