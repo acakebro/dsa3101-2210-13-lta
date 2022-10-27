@@ -74,7 +74,13 @@ app.layout = html.Div(
         style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
     ], style={'text-align':'center', 'display':'inline-block', 'width':'100%'})
 
+@app.callback(
+Output('camera_id','options'),
+Input('road_name','value'))
 
+def update_camera(road_name):
+    df=data[data["Direction"]==road_name]
+    return [{'label': i, 'value': str(i)} for i in df['camera_id'].unique()]
     # predictions
     #html.H3("Here is the prediction for the road condition.")
 

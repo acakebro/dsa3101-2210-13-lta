@@ -25,11 +25,12 @@ class RandomForestModel:
         return data
 
     def __trainModel(self):
-        train = self.training
+        train = self.training.copy()
         labels = train.pop("Jam")
         train = self.toDummy(train)
+        seed = 50
         x_train, x_test, y_train, y_test = train_test_split(
-            train, labels, test_size=0.25
+            train, labels, test_size=0.25, random_state=seed
         )
         model = RandomForestClassifier()
         model.fit(x_train, y_train)

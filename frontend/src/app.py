@@ -23,7 +23,6 @@ import os
 from api_calls import ApiCall
 
 
-
 #api_obj = ApiCall("../src")
 #api_obj.download_images()
 
@@ -40,16 +39,11 @@ traffic_images = pd.read_csv("traffic_images.csv")
 df = pd.read_csv("../../backend/Model/training_data.csv")
 
 default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
-                             attribution='<img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href="http://SLA.gov.sg">Singapore Land Authority</a>'),
+
+                             attribution='< img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href=" ">Singapore Land Authority</a >'),
     ], center=[1.3521, 103.8198],
                           style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
 
-#cameras = [dict(title = str(traffic_images['CameraID'][0]),
-#                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
-
-cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
-                children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
-               ) for i in range(len(traffic_images))]
 
 folder = "assets/"
 
@@ -173,17 +167,16 @@ app.layout = html.Div(children=[
     # map
     html.Div(
         children=[
-            html.H3('Select Attribute'),
+            html.H4('Select Attribute', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'attribute',
             options=[
                 {'label':'Density', 'value': 'Density'},
                 {'label':'Speed', 'value': 'Speed'},],
                          value = 'Density',
-                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
                          ),
-        
-            html.H3('Select Aggregation'),
+            html.H4('Select Aggregation', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'aggregation',
             options=[
@@ -191,10 +184,10 @@ app.layout = html.Div(children=[
                 {'label':'Min', 'value': 'Min'},
                 {'label':'Average', 'value': 'Average'},],
                          value = 'Max',
-                style={'width':'250px', 'margin':'20px', 'display': 'inline-block'}
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
                          )],
-            style={'width':'500px', 'height':'200px', 'vertical-align':'top',
-                   'padding':'20px', 'margin':'auto', 'display':'flex','align-items': 'center'}
+            style={'width':'45%', 'vertical-align':'top',
+                   'padding':'20px', 'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'}
         ),
     
     html.Div(id = 'variable',
@@ -207,7 +200,7 @@ app.layout = html.Div(children=[
     # filter box
     html.Div(children = [
 
-    html.H2("Select Direction: ", style = {'margin':'5px'}),
+    html.H4("Select Direction", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(folder))))) + ")", 'value': 'All'},
@@ -241,12 +234,10 @@ app.layout = html.Div(children=[
             {'label':'Choa Chu Kang' + " (" + str(len(d_exp_cam['Choa Chu Kang'])) + ")", 'value':'Choa Chu Kang'},
             {'label':'Woodlands Ave 2' + " (" + str(len(d_exp_cam['Woodlands Ave 2'])) + ")", 'value':'Woodlands Ave 2'}],
                  value = 'All',
-                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '10px auto', 'cursor': 'pointer',
+                 style = {'display': 'inline-block', 'width':'170px','margin': '0 auto', 'cursor': 'pointer',
                           'border-radius': '5px'})
-    ], style = {'border': '1px solid black', 'width': '20%', 'display': 'inline-block',
-                'text-align': 'center', 'margin-left': '150px',
-                'border-radius': '10px'},
+    ], style = {'width': '25%', 'display': 'inline-block','text-align': 'center', 'border-radius':'5px',
+                'padding':'20px', 'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'},
              ),
 
     # table
@@ -258,7 +249,7 @@ app.layout = html.Div(children=[
     # time
     html.Div([
         html.Br(),
-        html.H3("Time: " + datetime.now().strftime("%d/%m/%Y  %I:%M %p"),
+        html.H4("Time: " + datetime.now().strftime("%d/%m/%Y  %I:%M %p"),
                 style = {'text-align': 'right',
                          'margin': '10px'})]),
 
@@ -271,7 +262,7 @@ app.layout = html.Div(children=[
     
 
     ],
-                      style = {'background-color': 'rgb(237,250,252)'}
+                      style = {'background-color': 'white'}
                       )
 
 
@@ -333,7 +324,7 @@ def update_map(input_attr, input_agg):
                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): Yes'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
                     else:
                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
-         elif input_agg == 'Min':
+        elif input_agg == 'Min':
              df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
              df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Incident','Time']]
              dicts0 = df0.to_dict('records')
@@ -349,7 +340,7 @@ def update_map(input_attr, input_agg):
                      else:
                          item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0]) # bind tooltip max
         
-         else: # Average
+        else: # Average
              df0 = df.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
              df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Incident','Time']]
              dicts0 = df0.to_dict('records')
@@ -377,8 +368,9 @@ def update_map(input_attr, input_agg):
                     else:
                         item["tooltip"] = 'Camera {} <br/>Average speed along all lanes: {:.2f} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item[color_prop0])
 
-        else: # default map
-            return default_map
+        else:
+           return default_map
+
 
     geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
     geobuf0 = dlx.geojson_to_geobuf(geojson0)

@@ -12,8 +12,9 @@ import pandas as pd
 from dash.dependencies import Input, Output
 from datetime import datetime, date
 import dash_leaflet as dl
+import dash_leaflet.express as dlx
+from dash_extensions.javascript import assign
 import plotly.graph_objects as go
-import dash_leaflet as dl
 import os
 
 traffic_incidents = pd.read_csv("traffic_incidents.csv")
@@ -21,14 +22,8 @@ traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
 traffic_images = pd.read_csv("traffic_images.csv")
 #train_data = pd.read_csv("train_data.csv")
 
-#cameras = [dict(title = str(traffic_images['CameraID'][0]),
-#                position = [traffic_images['Latitude'][0],traffic_images['Longitude'][0]])]
 
-cameras = [dict(center = [traffic_images['Latitude'][i],traffic_images['Longitude'][i]],
-                children = [dl.Tooltip("Camera ID: " + str(traffic_images['CameraID'][i])), dl.Popup('Circle marker, 20px')],
-               ) for i in range(len(traffic_images))]
-
-folder = "assets/"
+image_folder = "assets/"
 
 date_time = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,0]
 message = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,1]
@@ -38,6 +33,9 @@ traffic_incidents_new = traffic_incidents.drop("Message", axis = 1)
 traffic_incidents_new['Date'] = date
 traffic_incidents_new['Time'] = time
 traffic_incidents_new['Message'] = message
+
+
+
 
 d_exp_cam = {
         'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793',
@@ -124,7 +122,7 @@ d_table_in = dash_table.DataTable(
                 ],
             style_cell = {'padding': '5px',
                           'width': '150px',
-                          'font_family': 'Times New Roman'},
+                          'font_family': 'Tahoma'},
             style_header = {
                 'text-align': 'center',
                 'backgroundColor': 'lightgrey',
@@ -136,34 +134,48 @@ d_table_in = dash_table.DataTable(
 
 layout = html.Div(children=[
     html.H1(children='Title', style = {'text-align':'center'}),
-    html.Br(),
+
 
     # map
-    html.Div(children = [
-        dl.Map(children = [dl.TileLayer()] + [dl.CircleMarker(**i) for i in cameras],
-               style={'width': '100%', 'height': '500px'},
-              center=[1.3521, 103.8198],
-              zoom = 11)
-                  ]),
+    html.Div(
+        children=[
+            html.H4('Select Attribute', style={'font-weight': 'bold'}),
+            # Add a dropdown with identifier
+            dcc.Dropdown(id = 'attribute',
+            options=[
+                {'label':'Density', 'value': 'Density'},
+                {'label':'Speed', 'value': 'Speed'},],
+                         value = 'Density',
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
+                         ),
+        
+            html.H4('Select Aggregation', style={'font-weight': 'bold'}),
+            # Add a dropdown with identifier
+            dcc.Dropdown(id = 'aggregation',
+            options=[
+                {'label':'Max', 'value': 'Max'},
+                {'label':'Min', 'value': 'Min'},
+                {'label':'Average', 'value': 'Average'},],
+                         value = 'Max',
+                style={'width':'120px', 'margin':'0 auto', 'display': 'inline-block'}
+                         )],
+            style={'width':'45%', 'vertical-align':'top', 'padding':'20px',
+                   'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'}
+        ),
+    
+    html.Div(id = 'variable',
+        style = {'width':'90%', 'height':'80vh', 'margin':'0 auto', 'position':'relative'}
+             ),
+    
+    html.Br(),
     html.Br(),
 
     # filter box
     html.Div(children = [
-    html.H2("Select Region: ", style = {'margin':'5px'}),
-    dcc.Dropdown(id = "region_dd",
-                 options = [
-            {'label':'North', 'value':'North'},
-            {'label':'East', 'value':'East'},
-            {'label':'West', 'value':'West'},
-            {'label':'Central', 'value':'Central'},
-            {'label':'North-East', 'value':'North-East'}],
-                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '10px auto'}),
-    html.Br(),
-    html.H2("Select Direction: ", style = {'margin':'5px'}),
+    html.H4("Select Direction: ", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
-            {'label': 'All' + " (" + str(len(os.listdir(folder))) + ")", 'value': 'All'},
+            {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(image_folder))))) + ")", 'value': 'All'},
             {'label':'KPE' + " (" + str(len(d_exp_cam['KPE'])) + ")", 'value':'KPE'},
             {'label':'ECP' + " (" + str(len(d_exp_cam['ECP'])) + ")", 'value':'ECP'},
             {'label':'KJE' + " (" + str(len(d_exp_cam['KJE'])) + ")", 'value':'KJE'},
@@ -194,16 +206,16 @@ layout = html.Div(children=[
             {'label':'Choa Chu Kang' + " (" + str(len(d_exp_cam['Choa Chu Kang'])) + ")", 'value':'Choa Chu Kang'},
             {'label':'Woodlands Ave 2' + " (" + str(len(d_exp_cam['Woodlands Ave 2'])) + ")", 'value':'Woodlands Ave 2'}],
                  value = 'All',
-                 style = {'display': 'inline-block', 'width':'200px', 'height': '30px',
-                          'margin': '10px auto'})
-    ], style = {'border': '1px solid black', 'width': '20%', 'display': 'inline-block',
-                'text-align': 'center', 'margin-left': '250px'}
+                 style = {'display': 'inline-block', 'width':'170px','margin': '0 auto',
+                          'cursor': 'pointer','border-radius': '5px'})
+    ], style = {'width': '25%', 'display': 'inline-block','text-align': 'center', 'border-radius':'5px',
+                'padding':'20px', 'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'},
              ),
 
     # table
     html.Div([
         html.Table(children = [d_table_in])],
-               style = {'display': 'inline-block', 'margin-left': '250px'}),
+               style = {'display': 'inline-block', 'margin-left': '150px'}),
 
 
     # time
@@ -218,5 +230,5 @@ layout = html.Div(children=[
     
 
     ],
-                      style = {'background-color': 'rgb(237,250,252)'}
+                      style = {'background-color': 'white'}
                       )
