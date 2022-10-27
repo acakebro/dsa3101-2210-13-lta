@@ -1,61 +1,91 @@
-from dash import dcc, html, Dash, dash_table
+import dash
+import os
 import plotly.express as px
+import plotly.graph_objects as go
 import pandas as pd
 import numpy as np
+from os import listdir
 from dash.dependencies import Input, Output
-from datetime import datetime, date
+from datetime import datetime, date,timedelta
+from time import localtime, strftime
+import dash_bootstrap_components as dbc
+from dash import Dash, html, dcc
 
+app = Dash(__name__, title="frontend")
 
-layout = html.Div(
-    children = [
-        html.H1("Prediction of Traffic Condition"),
-        html.H2("Please choose the day, time, and road you would like to view closely."),
-        html.Br(),
-        html.H3("Select Day of the week"),
-        # Add a dropdown for day of the week
-        dcc.Dropdown(id = "Day of the Week",
-                     options=[
-                         {'label':'Monday', 'value': 'Monday'},
-                         {'label': 'Tuesday', 'value': 'Tuesday'},
-                         {'label': 'Wednesday', 'value': 'Wednesday'},
-                         {'label': 'Thursday', 'value': 'Thursday'},
-                         {'label': 'Friday', 'value': 'Friday'}],
-                         style = {'width': '200px', 'margin':'20px'}),
-        html.H3("Select Time of the day"),
-        # Add a dropdown for time of the day
-        dcc.Dropdown(id = "Time of the day",
-                     options=[
-                         {'label': '00:00', 'value': '12a.m.'},{'label': '01:00', 'value': '1a.m.'},
-                         {'label': '02:00', 'value': '2a.m.'}, {'label': '03:00', 'value': '3a.m.'},
-                         {'label': '04:00', 'value': '4a.m.'}, {'label': '05:00', 'value': '5a.m.'},
-                         {'label': '06:00', 'value': '6a.m.'}, {'label': '07:00', 'value': '7a.m.'},
-                         {'label': '08:00', 'value': '8a.m.'}, {'label': '09:00', 'value': '9a.m.'},
-                         {'label': '10:00', 'value': '10a.m.'}, {'label': '11:00', 'value': '11a.m.'},
-                         {'label': '12:00', 'value': '12p.m.'}, {'label': '13:00', 'value': '1p.m.'},
-                         {'label': '14:00', 'value': '2p.m.'}, {'label': '15:00', 'value': '3p.m.'},
-                         {'label': '16:00', 'value': '4p.m.'}, {'label': '17:00', 'value': '5p.m.'},
-                         {'label': '18:00', 'value': '6p.m.'}, {'label': '19:00', 'value': '7p.m.'},
-                         {'label': '20:00', 'value': '8p.m.'}, {'label': '21:00', 'value': '9p.m.'},
-                         {'label': '22:00', 'value': '10p.m.'}, {'label': '23:00', 'value': '11p.m.'}],
-                         style = {'width': '200px', 'margin':'20px'}),
-        html.H3("Select road"),
-        # Add a dropdown for the road
-        dcc.Dropdown(id = "Road name",
-                     options=[
-                        {'label':'ECP', 'value':'East Coast Parkway'},
-                        {'label':'KPE', 'value':'Kallang-Paya Lebar Expressway'},
-                        {'label':'PIE', 'value':'Pan-Island Expressway'},
-                        {'label':'MCE', 'value':'Marina Coastal Expressway'},
-                        {'label':'SLE', 'value':'Seletar Expressway'},
-                        {'label':'BKE', 'value':'Bukit Timah Expressway'},
-                        {'label':'KJE', 'value':'Kranji Expressway'},
-                        {'label':'CTE', 'value':'Central Expressway'},
-                        {'label':'TPE', 'value':'Tampines Expressway'},
-                        {'label':'AYE', 'value':'Ayer Rajah Expressway'},
-                        {'label':'Woodlands', 'value':'Woodlands Checkpoint'},
-                        {'label':'Tuas', 'value':'Tuas Checkpoint'}],
-                        style={'width':'150px','margin':'20px'}),
-        html.H3("Here is the prediction for the road condition you have selected to see."),
-        # need to insert their model here, then can output the result.
-        ])
+app.layout = html.Div(
+    children=[
+    html.H2("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
+    html.H3("Please choose the camera, road, day, and time you would like to view."),
+    html.Div(
+        # Camera dropdown
+        children = [
+        html.H3('Select camera', style={'font-weight': 'bold'}),
+        dcc.Dropdown(id='camera_id',
+                        placeholder='1001',
+                        style={'width':'170px', 'margin':'10px','display': 'inline-block'})
+            ],
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+    html.Div(
+        # Road dropdown
+        children = [
+        html.H3('Select road', style={'font-weight': 'bold'}),
+        dcc.Dropdown(id='road_name',
+        options=[
+                {'label':'ECP', 'value':'ECP'},
+                {'label':'KPE', 'value':'KPE'},
+                {'label':'PIE', 'value':'PIE'},
+                {'label':'MCE', 'value':'MCE'},
+                {'label':'SLE', 'value':'SLE'},
+                {'label':'BKE', 'value':'BKE'},
+                {'label':'KJE', 'value':'KJE'},
+                {'label':'CTE', 'value':'CTE'},
+                {'label':'TPE', 'value':'TPE'},
+                {'label':'AYE', 'value':'AYE'}],
+                placeholder="Select road...",
+                style={'width':'150px','margin':'20px'})
+        ],
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+
+    #Date pick
+    html.Div(
+        children=[
+        html.H3("Select date", style={'font-weight': 'bold'}),
+        dcc.DatePickerSingle(id = "traffic_date",
+                                min_date_allowed = date.today(),
+                                max_date_allowed = date.today()+timedelta(days=30),
+                                # date = date.today(),
+                                initial_visible_month = date.today(),
+                                placeholder='DD/MM/YYYY',
+                                style = {'width':'150px','margin':'20px'})
+        ],
+        style ={'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+
+    #Time input
+    html.Div(
+        children=[
+        html.H3('Select time of the day', style={'font-weight': 'bold'}),
+        dcc.Input(id="traffic_time",
+                      type="text",
+                      placeholder="HHMM",
+                      #value=strftime("%H%M", localtime()),
+                      style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
+        ],
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+    ], style={'text-align':'center', 'display':'inline-block', 'width':'100%'})
+
+@app.callback(
+Output('camera_id','options'),
+Input('road_name','value'))
+
+def update_camera(road_name):
+    df=data[data["Direction"]==road_name]
+    return [{'label': i, 'value': str(i)} for i in df['camera_id'].unique()]
+    # predictions
+    #html.H3("Here is the prediction for the road condition.")
+
+                         
+
+if __name__ == '__main__':
+    app.run_server(debug=True)
                          
