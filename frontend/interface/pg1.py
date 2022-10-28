@@ -206,10 +206,10 @@ layout = html.Div(children=[
             {'label':'Choa Chu Kang' + " (" + str(len(d_exp_cam['Choa Chu Kang'])) + ")", 'value':'Choa Chu Kang'},
             {'label':'Woodlands Ave 2' + " (" + str(len(d_exp_cam['Woodlands Ave 2'])) + ")", 'value':'Woodlands Ave 2'}],
                  value = 'All',
-                 style = {'display': 'inline-block', 'width':'170px','margin': '0 auto',
+                 style = {'display': 'inline-block', 'width':'275px','margin': '0 auto',
                           'cursor': 'pointer','border-radius': '5px'})
     ], style = {'width': '25%', 'display': 'inline-block','text-align': 'center', 'border-radius':'5px',
-                'padding':'20px', 'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'},
+                'padding':'20px', 'margin-left':'150px'},
              ),
 
     # table
