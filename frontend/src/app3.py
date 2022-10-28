@@ -101,20 +101,15 @@ Output('attributes','value'),
  Input('camera_id','value'),
  Input('road_name','value')])
 
-def make_prediction():
-    time = request.args.get('traffic_time')
-    date = request.args.get('traffic_date')
-    camera_id = int(request.args.get('camera_id'))
-    road = request.args.get('road_name')
-    model = pickle.load(open("model.pkl", "rb"))
-    result = model.predict(camera_id, road, date, time)
+def prediction(camera_id, road_name, date, time):
+    prediction_json = requests.get('http://0.0.0.0:5000/prediction?camera_id='+str(camera_id)+'road='+str(road_name)+'date='+str(traffic_date)+'time='+str(traffic_time)
+    
     if result == 0:
-        return jsonify({'prediction': 'No Jam'})
+        return 'No Jam'
     elif result == 1:
-        return jsonify({'prediction': 'Jam'})
+        return 'Jam'
 
                          
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8055)
-
