@@ -123,18 +123,18 @@ layout = html.Div(
                 style = {'display': 'inline-block', 'width': '450px'}
                 )
             ],
-            ),
-        html.Div(children = [
+            )
+        ],
+        style = {'display':'flex','align-items':'center','justify-content':'center'}
+        ),
+    html.Div(children = [
             html.H2('Congested areas(> 2 hours of continuous jam)',
                     style={'font-weight': 'bold'}
                     ),
             html.Div(id = 'places')
             ],
             style = {'width': '700px','margin':'auto'}
-            )
-        ],
-        style = {'display':'flex','align-items':'center','justify-content':'center'}    
-        ),
+            ),
     html.A(html.Button('Refresh Page'),
             href='/page2'
            )

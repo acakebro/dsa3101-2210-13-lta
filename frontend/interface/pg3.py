@@ -11,9 +11,7 @@ from time import localtime, strftime
 import dash_bootstrap_components as dbc
 from dash import Dash, html, dcc
 
-app = Dash(__name__, title="frontend")
-
-app.layout = html.Div(
+layout = html.Div(
     children=[
     html.H2("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
     html.H3("Please choose the camera, road, day, and time you would like to view."),
@@ -74,18 +72,5 @@ app.layout = html.Div(
         style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
     ], style={'text-align':'center', 'display':'inline-block', 'width':'100%'})
 
-@app.callback(
-Output('camera_id','options'),
-Input('road_name','value'))
 
-def update_camera(road_name):
-    df=data[data["Direction"]==road_name]
-    return [{'label': i, 'value': str(i)} for i in df['camera_id'].unique()]
-    # predictions
-    #html.H3("Here is the prediction for the road condition.")
-
-                         
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
                          

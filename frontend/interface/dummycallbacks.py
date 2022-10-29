@@ -155,74 +155,24 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=15
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://0.0.0.0:8050/archive?camera_id='+str(camera_id)).json()
-    variables = pd.read_json(archive_json)
-    #Convert datetime into YYYYMMDDHHMM format
-    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
-    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
-    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
-    variables['Time']=variables['Date']+variables['Time']
-    graph_inputs=variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
-    #Filter datetime within last timeframe(15 min,30min,1hr)
-    table=variables
-    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
-    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
-    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    graph_inputs = graph_inputs[graph_inputs['Time'] <= datetime_curr]
-    graph_inputs = graph_inputs[graph_inputs['Time'] >= datetime_prev]
-    graph_inputs['Time']=graph_inputs['Time'].str.slice(8,10)+':'+graph_inputs['Time'].str.slice(10,12)
-    # Plot graph by searching for values in last timeframe(15 min,30min,1hr)
-    speedplot = px.line(graph_inputs, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
-    densityplot = px.line(graph_inputs, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
+    speeddata = {'Time': ['16:45', '17:45', '18:45','16:45', '17:45', '18:45','16:45', '17:45', '18:45'],
+                 'Average_Speed': [110, 100, 80, 55,30,90,70,48,56],
+                 'Direction':['WOODLANDS','WOODLANDS','WOODLANDS','PIE JURONG','PIE JURONG','PIE JURONG','PIE CHANGI','PIE CHANGI','PIE CHANGI']}
+    densitydata = {'Time': ['16:45', '17:45', '18:45','16:45', '17:45', '18:45','16:45', '17:45', '18:45'],
+                   'Density': [0.8, 0.74, 0.66,0.55,0.43,0.70,0.58,0.50,0.55],
+                   'Direction':['WOODLANDS','WOODLANDS','WOODLANDS','PIE JURONG','PIE JURONG','PIE JURONG','PIE CHANGI','PIE CHANGI','PIE CHANGI']}
+    speedplot = px.line(speeddata, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
+    densityplot = px.line(densitydata, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
 
     #Load prediction data in table form
-    #variables=archive.copy(deep=True)
-    #variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
-    #variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
-    #variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
-    #variables['Time']=variables['Date']+variables['Time']
-    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
-    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
-    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    table = table[table['Time'] <= datetime_curr]
-    table = table[table['Time'] >= datetime_prev]
-    table = table.loc[:,['Direction','Density','Average_Speed','Jam']]
-    table['Jam']=table['Jam'].replace([1],'Jam')
-    table['Jam']=table['Jam'].replace([0],'No Jam')
+    table={'Direction':['WOODLANDS','PIE JURONG','PIE CHANGI'],'Density':[0.07,0,0.07],'Speed':[100,100,100],'Traffic condition':['No Jam','No Jam','No Jam']}
+    table=pd.DataFrame.from_dict(table)
     table=table.T
     datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
 
     #Table of congested areas
-    variables=variables.assign(DateTime=variables['Time'])
-    variables['DateTime']=variables['DateTime'].apply(lambda x:datetime(int(x[:4]),int(x[4:6]),int(x[6:8]),int(x[8:10]),int(x[10:])))
-    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=30)
-    datetime_range = datetime_curr - timedelta(hours=2, minutes=30)
-    places={}
-    with open("Image_ROI.csv") as file:
-        read_file=csv.reader(file)
-        next(read_file, None)
-        for camera,roi,direction in read_file:
-            areas=variables
-            areas=areas[areas['Camera_Id']== int(camera)]
-            areas=areas[areas['Direction']== direction]
-            areas=areas[areas['DateTime']<= datetime_curr]
-            areas=areas[areas['DateTime']>= datetime_range]
-            temp=areas['DateTime']
-            for time in temp:
-                if time<=datetime_prev:
-                    break
-                time_range=areas[areas['DateTime']>= time - timedelta(hours=0, minutes=120)]
-                if 0 in time_range['Jam']:
-                    continue
-                else:
-                    realtime=time.strftime("%d%m%Y %H:%M")
-                    if realtime not in places.keys():
-                        places[realtime]=[]
-                    places[realtime]+=[[camera,direction]]
-    df = pd.DataFrame(data=places)
+    df = {'Areas':['30/10/2022 6:34pm (1001,WOODLANDS),(9702,TPE)','30/10/2022 5:06pm (1505,MCE(ECP))']}
+    df=pd.DataFrame.from_dict(df)
     places=[dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True,header=False,size='sm')]
     return img,attributes_style,speedplot,densityplot,datatable,places
 

@@ -14,7 +14,7 @@ import requests
 
 
 import pg1,pg2,pg3
-import callbacks
+import dummycallbacks
 from maindash import app
 import requests
 
@@ -23,10 +23,6 @@ from api_calls import ApiCall
 #api_obj = ApiCall("../app")
 #api_obj = ApiCall("../interface")
 #api_obj.download_images()
-
-image_folder="assets"
-directory = os.fsencode(image_folder)
-data = pd.read_csv("train_data.csv")
 
 chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
 
