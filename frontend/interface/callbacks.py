@@ -118,8 +118,7 @@ Output('camera_id','options'),
 Input('road_name','value'))
 
 def update_camera(road_name):
-    df=data[data["express_way"]==road_name]
-    return [{'label': i, 'value': str(i)} for i in df['camera_id'].unique()]
+    return [{'label': i, 'value': str(i)} for i in d_exp_cam[str(road_name)]]
 
 #Enter camera id,date,time and timerange to find speed and density over time of past data
 @app.callback(
