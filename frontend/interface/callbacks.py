@@ -2,6 +2,7 @@ from maindash import app
 from dash import dcc,html,dash_table
 from dash.dependencies import Input, Output
 import dash_bootstrap_components as dbc
+from pandas import json_normalize 
 import dash,os
 import plotly.express as px
 import pandas as pd
@@ -13,6 +14,8 @@ from flask import Flask, jsonify, request, send_file
 from glob import glob
 import requests
 import pg1,pg2,pg3
+import csv
+from time import strftime,localtime
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
@@ -118,12 +121,13 @@ Output('camera_id','options'),
 Input('road_name','value'))
 
 def update_camera(road_name):
+    if road_name is None:
+        road_name='KPE'
     return [{'label': i, 'value': str(i)} for i in d_exp_cam[str(road_name)]]
 
 #Enter camera id,date,time and timerange to find speed and density over time of past data
 @app.callback(
 [Output('img','children'),
- Output('attributes','style'),
  Output('speed','figure'),
 Output('density','figure'),
 Output('datatable','children'),
@@ -140,53 +144,51 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         date_time = date_object.strftime('%Y%m%d')
     if camera_id is None:
         camera_id='1001'
+    if time is None:
+        time=strftime("%H%M", localtime()),
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
     #Make hidden attributes appear
-    attributes_style={'display':'inline-block','padding':'20px','text-align': 'right'}
     date_time+=str(time)
+    print(date_time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
         if camera_id in file[:5]:
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
     if timeframe is None:
-        timeframe=15
+        timeframe=60
 
     #Pull prediction data from backend
-    archive_json = requests.get('http://0.0.0.0:8050/archive?camera_id='+str(camera_id)).json()
-    variables = pd.read_json(archive_json)
+    stats_json = requests.get('http://127.0.0.1:5000/stats?camera_id='+str(camera_id)).json()
+    variables = json_normalize(stats_json)
     #Convert datetime into YYYYMMDDHHMM format
-    variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
-    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
+    variables['Density']=variables['Density'].apply(lambda x: x+1)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     variables['Time']=variables['Date']+variables['Time']
-    graph_inputs=variables.sort_values(["Camera_Id","Time"],axis=0, ascending=True,inplace=True,na_position='first')
-    #Filter datetime within last timeframe(15 min,30min,1hr)
-    table=variables
+    variables.sort_values(["Time"],axis=0, ascending=False,inplace=True,na_position='first')
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
     datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    variables = variables[variables['Time'] <= datetime_curr]
+    graph_inputs=variables
+    table=variables
+
+    #Filter datetime within last timeframe(15 min,30min,1hr)
+    temp=graph_inputs.loc[0,'Time']
+    datetime_curr = datetime(int(temp[:4]),int(temp[4:6]),
+                int(temp[6:8]),int(temp[8:10]),int(temp[10:]))
+    datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")    
     datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    graph_inputs = graph_inputs[graph_inputs['Time'] <= datetime_curr]
     graph_inputs = graph_inputs[graph_inputs['Time'] >= datetime_prev]
     graph_inputs['Time']=graph_inputs['Time'].str.slice(8,10)+':'+graph_inputs['Time'].str.slice(10,12)
-    # Plot graph by searching for values in last timeframe(15 min,30min,1hr)
+    # Plot graph by searching for values in last timeframe(1hr,2hr,3hr)
     speedplot = px.line(graph_inputs, x='Time', y='Average_Speed',color="Direction",template='seaborn',title='Speed over time')
     densityplot = px.line(graph_inputs, x='Time', y='Density',color="Direction",template='seaborn',title='Density over time')
 
     #Load prediction data in table form
-    #variables=archive.copy(deep=True)
-    #variables['Date']=variables['Date'].str.slice(0,6)+'20'+variables['Date'].str.slice(6,)
-    #variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%d/%m/%Y").strftime("%Y%m%d"))
-    #variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
-    #variables['Time']=variables['Date']+variables['Time']
-    datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
-    datetime_prev = datetime_curr - timedelta(hours=0, minutes=5)
-    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
-    datetime_prev = datetime.strftime(datetime_prev, "%Y%m%d%H%M")
-    table = table[table['Time'] <= datetime_curr]
-    table = table[table['Time'] >= datetime_prev]
+    table = table[table['Time'] == table.loc[0,'Time']]
     table = table.loc[:,['Direction','Density','Average_Speed','Jam']]
     table['Jam']=table['Jam'].replace([1],'Jam')
     table['Jam']=table['Jam'].replace([0],'No Jam')
@@ -194,36 +196,46 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
 
     #Table of congested areas
+    archive_json = requests.get('http://127.0.0.1:5000/stats?camera_id='+str(camera_id)).json()
+    variables = json_normalize(archive_json)
+    variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
+    variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
+    variables['Time']=variables['Date']+variables['Time']
     variables=variables.assign(DateTime=variables['Time'])
-    variables['DateTime']=variables['DateTime'].apply(lambda x:datetime(int(x[:4]),int(x[4:6]),int(x[6:8]),int(x[8:10]),int(x[10:])))
+    variables['DateTime']=variables['DateTime'].apply(lambda x:datetime(int(x[:4]),int(x[4:6]),
+                                                                    int(x[6:8]),int(x[8:10]),int(x[10:])))
+    variables.sort_values(["Camera_Id","Time"],axis=0, ascending=False,inplace=True,na_position='first')
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
+    datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
+    variables = variables[variables['Time'] <= datetime_curr]
+
+    datetime_curr= variables.loc[0,'DateTime']
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=30)
-    datetime_range = datetime_curr - timedelta(hours=2, minutes=30)
+    datetime_range = datetime_curr - timedelta(hours=3, minutes=0)
     places={}
     with open("Image_ROI.csv") as file:
         read_file=csv.reader(file)
         next(read_file, None)
         for camera,roi,direction in read_file:
             areas=variables
-            areas=areas[areas['Camera_Id']== int(camera)]
+            areas=areas[areas['Camera_Id']== str(camera)]
             areas=areas[areas['Direction']== direction]
-            areas=areas[areas['DateTime']<= datetime_curr]
             areas=areas[areas['DateTime']>= datetime_range]
             temp=areas['DateTime']
             for time in temp:
                 if time<=datetime_prev:
                     break
-                time_range=areas[areas['DateTime']>= time - timedelta(hours=0, minutes=120)]
-                if 0 in time_range['Jam']:
+                time_range=areas[areas['Time']>= time - timedelta(hours=0, minutes=150)]
+                if len(time_range[time_range['Jam']== 0])!=0 or len(time_range[time_range['DateTime']<=time - timedelta(hours=0, minutes=120)])==0:
                     continue
                 else:
-                    realtime=time.strftime("%d%m%Y %H:%M")
+                    realtime=time.strftime("%d/%m %H:%M")
                     if realtime not in places.keys():
                         places[realtime]=[]
-                    places[realtime]+=[[camera,direction]]
+                    places[realtime]+=[(camera,direction)]
     df = pd.DataFrame(data=places)
     places=[dbc.Table.from_dataframe(df, striped=True, bordered=True, hover=True,header=False,size='sm')]
-    return img,attributes_style,speedplot,densityplot,datatable,places
+    return img,speedplot,densityplot,datatable,places
 
 @app.callback(
     Output(component_id='img_out', component_property='children'),
