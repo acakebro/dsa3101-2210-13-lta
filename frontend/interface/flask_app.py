@@ -26,7 +26,7 @@ def get_stats():
     camera_id = request.args.get('camera_id')
     df = pd.read_csv('traffic_stats.csv')
     match_df = df.loc[df['Camera_Id'] == int(camera_id)]
-    result_df = match_df[['Density', 'Average_Speed','Direction','Jam','Date', 'Time']]
+    result_df = match_df[['Density', 'Average_Speed','Direction','Jam','Date','Time']]
     return jsonify(result_df.to_dict(orient="records"))
 
 # for past data
@@ -36,7 +36,7 @@ def get_stats():
 @app.route("/archive")
 def return_past_data():
     df = pd.read_csv('traffic_stats.csv')
-    result_df = df[['Density', 'Average_Speed','Direction','Jam','Date', 'Time']]
+    result_df = df[['Camera_Id','Density', 'Average_Speed','Direction','Jam','Date','Time']]
     return jsonify(result_df.to_dict(orient="records"))
 
 # for prediction based on user input

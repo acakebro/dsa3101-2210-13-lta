@@ -163,7 +163,6 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     stats_json = requests.get('http://127.0.0.1:5000/stats?camera_id='+str(camera_id)).json()
     variables = json_normalize(stats_json)
     #Convert datetime into YYYYMMDDHHMM format
-    variables['Density']=variables['Density'].apply(lambda x: x+1)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     variables['Time']=variables['Date']+variables['Time']
@@ -175,7 +174,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     table=variables
 
     #Filter datetime within last timeframe(15 min,30min,1hr)
-    temp=graph_inputs.loc[0,'Time']
+    temp=graph_inputs.loc[1,'Time']
     datetime_curr = datetime(int(temp[:4]),int(temp[4:6]),
                 int(temp[6:8]),int(temp[8:10]),int(temp[10:]))
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
@@ -196,7 +195,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
 
     #Table of congested areas
-    archive_json = requests.get('http://127.0.0.1:5000/stats?camera_id='+str(camera_id)).json()
+    archive_json = requests.get('http://127.0.0.1:5000/archive').json()
     variables = json_normalize(archive_json)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
