@@ -81,7 +81,8 @@ layout = html.Div(
                 placeholder="Select road...",
                 style={'width':'150px','margin':'20px'})
         ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        ),
         
     html.Div(
         # Camera dropdown
@@ -91,7 +92,8 @@ layout = html.Div(
                         placeholder='1001',
                         style={'width':'170px', 'margin':'10px','display': 'inline-block'})
             ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        ),
 
     #Date pick
     html.Div(
@@ -105,7 +107,8 @@ layout = html.Div(
                                 # placeholder='DD/MM/YYYY',
                                 style = {'width':'150px','margin':'20px'})
         ],
-        style ={'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+        style ={'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        ),
 
     #Time input
     html.Div(
@@ -117,8 +120,8 @@ layout = html.Div(
                       value=strftime("%H%M", localtime()),
                       style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
         ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
-    ],
+        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        ),
     html.Br(),
     html.Br(),
     
@@ -135,9 +138,9 @@ layout = html.Div(
             html.Div(id = 'predict')
             ],    
             style = {'display':'flex','align-items':'center','justify-content':'center'}
-            )
-    ], 
-    style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'rgb(237,250,252)'})
+            ),],
+    style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'rgb(237,250,252)'}
+    )
 
 def update_prediction(camera_id,road,traffic_date,time):
     #Stop update if missing values
