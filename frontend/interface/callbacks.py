@@ -181,7 +181,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     table=variables
 
     #Filter datetime within last timeframe(15 min,30min,1hr)
-    temp=graph_inputs.loc[1,'Time']
+    temp=graph_inputs.loc[0,'Time']
     datetime_curr = datetime(int(temp[:4]),int(temp[4:6]),
                 int(temp[6:8]),int(temp[8:10]),int(temp[10:]))
     datetime_prev = datetime_curr - timedelta(hours=0, minutes=int(timeframe))
