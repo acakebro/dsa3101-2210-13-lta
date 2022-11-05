@@ -140,6 +140,17 @@ layout = html.Div(
     style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'rgb(237,250,252)'})
 
 def update_prediction(camera_id,road,traffic_date,time):
+    #Stop update if missing values
+    if traffic_date is None:
+        traffic_date = date.today().strftime('%d/%m/%Y')
+    if road is None:
+        road='KPE'
+    if camera_id is None:
+        camera_id='1001'
+    if time is None:
+        time = datetime.now().strftime("%H:%M")
+    if time is not None and len(str(time))!=4:
+        raise dash.exceptions.PreventUpdate
     stats = requests.get('http://127.0.0.1:5000/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
     return stats
 
