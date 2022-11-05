@@ -38,8 +38,15 @@ def create_Img(link_list):
                          style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
 
+# need to find how to read from backend the traffic.csv
+df = pd.read_csv('../../backend/Model/training_data.csv')
+df['Date']=pd.to_datetime(df['Date'])
+df['Time']=df['Time'].replace(':','', regex=True)
+df['Time'] = df['Time'].str[:2]
+df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
+df1 = df[df['Date']==df['Date'].max()]
+df2 = df1[df1['Time']==df1['Time'].max()]
 
-df = pd.read_csv("training_data.csv")
 image_folder="assets"
 
 
@@ -289,7 +296,7 @@ def update_map(input_attr, input_agg):
     colorscale0 = ['green','yellow','orange','red']
     if input_attr == 'Density':
         if input_agg == "Max":
-            df0 = df.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            df0 = df2.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
             df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Vehicle_Count','Incident','Time']]
             dicts0 = df0.to_dict('records')
             for item in dicts0:
@@ -304,7 +311,7 @@ def update_map(input_attr, input_agg):
                     else:
                         item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Vehicle Count: {} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0], item['Vehicle_Count']) # bind tooltip max
         elif input_agg == 'Min':
-             df0 = df.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
+             df0 = df2.sort_values('Density', ascending = True).drop_duplicates(subset='Camera_Id').sort_index()
              df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Vehicle_Count','Incident','Time']]
              dicts0 = df0.to_dict('records')
              for item in dicts0:
@@ -320,7 +327,7 @@ def update_map(input_attr, input_agg):
                          item["tooltip"] = 'Camera {} <br/>Traffic density along {}: {:.2f} <br/>Vehicle Count: {} <br/>Jam: No <br/>Incident nearby (200m): No'.format(item['Camera_Id'], item['Direction'], item[color_prop0], item['Vehicle_Count']) # bind tooltip max
         
         else: # Average
-             df0 = df.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
+             df0 = df2.groupby(['Camera_Id', 'Longitude','Latitude', 'Incident','Time'])['Density'].mean().reset_index()
              df0= df0[['Latitude', 'Longitude', 'Camera_Id', color_prop0, 'Incident','Time']]
              dicts0 = df0.to_dict('records')
              for item in dicts0:
@@ -331,7 +338,7 @@ def update_map(input_attr, input_agg):
 
     else:       # Average Speed
         if input_agg == "Average":
-            df0 = df.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
+            df0 = df2.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
             colorscale0 = ['green','yellow','orange','red'] 
             color_prop0 = 'Average_Speed'
             dicts0 = df0.to_dict('records')
@@ -353,7 +360,7 @@ def update_map(input_attr, input_agg):
 
     geojson0 = dlx.dicts_to_geojson(dicts0, lon="Longitude", lat="Latitude")
     geobuf0 = dlx.geojson_to_geobuf(geojson0)
-    vmax0 = df[color_prop0].max()
+    vmax0 = df0[color_prop0].max()
     if input_attr == 'Density':
         colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density per lane', opacity=0.9)
     else:
@@ -371,3 +378,4 @@ def update_map(input_attr, input_agg):
 
 
     return fullmap
+
