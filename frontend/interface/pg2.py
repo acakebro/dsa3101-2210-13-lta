@@ -152,8 +152,8 @@ layout = html.Div(
             dcc.Dropdown(id='timeframe',
                             options=[
                                 {'label':'last 4 hour', 'value':'240'},
-                                {'label':'last 1 hour', 'value':'60'},
-                                {'label':'last 2 hour', 'value':'120'}],
+                                {'label':'last 2 hour', 'value':'120'},
+                                {'label':'last 1 hour', 'value':'60'}],
                          placeholder='last 1 hour',
                          style = {'margin':'20px','width':'200px'}
                          ),
