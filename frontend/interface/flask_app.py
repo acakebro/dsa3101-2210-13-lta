@@ -69,6 +69,25 @@ def run_main():
         time_wait = 15
         time.sleep(time_wait * 60)
 
+@app.route("/incidents")
+def get_incidents():
+    uri = "http://datamall2.mytransport.sg"  # resource URL
+    path = "/ltaodataservice/TrafficIncidents"
+    headers = {
+            "AccountKey": "AO4qMbK3S7CWKSlplQZqlA==",
+            "accept": "application/json",
+    }
+    target = urlparse(uri + path)
+    method = "GET"
+    body = ""
+    h = http.Http()
+    response, content = h.request(target.geturl(), method, body, headers)
+    jsonObj = json.loads(content)
+    data = jsonObj["value"]
+    return data
 
+        
+        
+        
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
