@@ -12,20 +12,28 @@ from flask import Flask, jsonify, request, send_file
 from glob import glob
 import requests
 
+from api_calls import ApiCall
+api_obj = ApiCall("../interface")
+api_obj.download_images()
+api_obj.download_incidents()
 
 import pg1,pg2,pg3
 import callbacks
 from maindash import app
 import requests
 
-from api_calls import ApiCall
 
 #api_obj = ApiCall("../app")
-#api_obj = ApiCall("../interface")
-#api_obj.download_images()
+
 
 chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
 
+point_to_layer = assign("""function(feature, latlng, context){
+    const {min, max, colorscale, circleOptions, colorProp} = context.props.hideout;
+    const csc = chroma.scale(colorscale).domain([min, max]);  // chroma lib to construct colorscale
+    circleOptions.fillColor = csc(feature.properties[colorProp]);  // set color based on color prop.
+    return L.circleMarker(latlng, circleOptions);  // sender a simple circle marker.
+    }""")
 
 def Navbar():
 

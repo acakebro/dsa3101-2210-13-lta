@@ -17,9 +17,9 @@ from dash_extensions.javascript import assign
 import plotly.graph_objects as go
 import os
 
-traffic_incidents = pd.read_csv("traffic_incidents.csv")
-traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
-traffic_images = pd.read_csv("traffic_images.csv")
+traffic_incidents = pd.read_csv("assets/incidents.csv")
+#traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
+#traffic_images = pd.read_csv("traffic_images.csv")
 #train_data = pd.read_csv("train_data.csv")
 
 

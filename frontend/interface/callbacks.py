@@ -39,7 +39,7 @@ def create_Img(link_list):
     return img_list
 
 # need to find how to read from backend the traffic.csv
-df = pd.read_csv('traffic.csv')
+df = pd.read_csv('training_data.csv')
 df['Date']=pd.to_datetime(df['Date'])
 df['Time']=df['Time'].replace(':','', regex=True)
 df['Time'] = df['Time'].str[:2]
