@@ -38,7 +38,7 @@ def create_Img(link_list):
                          style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
 
-# need to find how to read from backend the traffic.csv
+# reading in the generated traffic_stats 
 df_json = requests.get('http://127.0.0.1:5000/archive').json()
 df = json_normalize(df_json)
 # df = pd.read_csv('training_data.csv')
