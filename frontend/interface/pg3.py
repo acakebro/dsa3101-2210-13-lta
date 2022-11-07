@@ -61,6 +61,12 @@ d_exp_cam = {
         'Woodlands Ave 2': ['9705']
              }
 
+def road_options(cam):
+    options=[]
+    for road in d_exp_cam.keys():
+        options+=[{'label':str(road), 'value':str(road)}]
+    return options
+
 layout = html.Div(
     children=[
     html.H2("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
