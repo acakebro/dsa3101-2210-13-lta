@@ -381,4 +381,24 @@ def update_map(input_attr, input_agg):
 
     return fullmap
 
+@app.callback(
+Output('predict','value'),
+[Input('traffic_time','value'),
+ Input('traffic_date','date'),
+ Input('camera_id','value'),
+ Input('road_name','value')])
+
+def update_prediction(camera_id,road,traffic_date,time):
+    if traffic_date is None:
+        traffic_date = date.today().strftime('%d/%m/%Y')
+    if road is None:
+        road='KPE'
+    if camera_id is None:
+        camera_id='1001'
+    if time is None:
+        time = datetime.now().strftime("%H:%M")
+    if time is not None and len(str(time))!=4:
+        raise dash.exceptions.PreventUpdate
+    stats = requests.get('http://127.0.0.1:5000/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
+    return stats
 
