@@ -1,0 +1,88 @@
+﻿Camera_Id,Labels
+1001,KPE (TPE);ECP (City);ECP (Changi)
+1002,KPE (ECP);PIE (Tuas);PIE (Changi)
+1003,PIE (Changi);PIE (Changi);KPE (TPE);KPE (ECP)
+1004,PIE (Tuas);KPE (ECP)
+1005,KPE (ECP);KPE (TPE)
+1006,KPE (ECP);KPE (TPE)
+1501,MPE (ECP)
+1502,MCE (AYE)
+1503,MCE (AYE);MCE (ECP)
+1504,MCE (AYE)
+1505,MCE (ECP)
+1701,Moulmein;City;SLE
+1702,SLE;City
+1703,PIE (Changi);SLE;AYE;PIE (Tuas)
+1704,AYE;SLE
+1705,SLE;CTE
+1706,Yio Chu Kang Rd;SLE;AYE
+1707,Jalan Bukit Merah;AYE;SLE
+1709,City;SLE
+1711,City;SLE
+2701,Johor;Woodlands
+2702,BKE;Causeway
+2703,Woodlands;PIE Jurong;PIE Changi
+2704,Woodlands
+2705,PIE;Woodlands
+2706,Woodlands;PIE
+2707,Woodlands;PIE
+2708,KJE;Woodlands;PIE
+3702,Airport;City
+3704,City;Changi
+3705,Xilin Ave Cahngi Coast Rd;City;Airport
+3793,Changi;City
+3795,AYE/City;Marine Parade
+3796,Changi;AYE/City
+3797,City;Changi
+3798,Changi;City
+4701,City;Jurong
+4702,Jurong;Changi
+4703,Johor;Tuas
+4704,MCE;CTE
+4705,City;Jurong
+4706,Jurong
+4707,City;Johor
+4708,City
+4709,Jurong;City
+4710,Jurong;City
+4712,Johor;City
+4713,AYE;Johor
+4714,Jurong
+4716,Jurong;City
+4798,Telok Blangah
+4799,Sentosa;Telok Blangah
+5794,Jurong;Changi
+5795,Changi;Jurong
+5797,Jurong;Changi
+5798,Jurong;Changi
+5799,Jurong;Changi
+6701,Changi;Jurong;Toa Payoh
+6703,Thomson;Jurong;Changi
+6704,Jurong;Changi
+6705,Jurong;Changi
+6706,Jurong;Changi
+6708,Changi;Tuas
+6710,Jurong;Changi
+6711,Jurong;City;Airport
+6712,Jurong;Changi
+6713,Jurong;Changi
+6714,Changi;KJE
+6715,Tuas;Changi
+6716,Changi;AYE
+7791,SLE;ECP;PIE
+7793,KPE/SLE;PIE;Pasir Ris Dr 12
+7794,PIE;SLE;KPE
+7795,SLE;PIE;KPE
+7796,PIE;SLE;Punggol/Sengkang
+7797,PIE;SLE;CTE
+7798,BKE;TPE;CTE
+8701,PIE;BKE;CCK
+8702,PIE;BKE
+8704,BKE;PIE;CCK
+8706,BKE;PIE
+9701,TPE;BKE
+9702,TPE;BKE
+9703,TPE;BKE/Woodlands;BKE/PIE
+9704,TPE;BKE
+9705,W'lands Ave 2;BKE;TPE
+9706,BKE;TPE
