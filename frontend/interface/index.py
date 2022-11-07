@@ -33,8 +33,9 @@ camid = ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1502', '1503',
          '9701', '9702', '9703', '9704', '9705', '9706']
 
 #api_obj = ApiCall("../app")
-for i in camid:
-    requests.get('http://127.0.0.1:5000/live_image?camera_id='+ i)
+#for i in camid:
+#    image = requests.get('http://127.0.0.1:5000/live_image?camera_id='+ i)
+#    image.save("assets")
 
 
 chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
