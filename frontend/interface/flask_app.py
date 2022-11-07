@@ -42,7 +42,7 @@ def get_stats():
 @app.route("/archive")
 def return_past_data():
     df = pd.read_csv('traffic_stats.csv')
-    result_df = df[['Camera_Id','Density', 'Average_Speed','Direction','Jam','Date','Time']]
+    # result_df = df[['Camera_Id','Density', 'Average_Speed','Direction','Jam','Date','Time']]
     return jsonify(result_df.to_dict(orient="records"))
 
 # for prediction based on user input
