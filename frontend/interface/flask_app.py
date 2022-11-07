@@ -6,6 +6,12 @@ from RandomForest import RandomForestModel
 import time
 import datetime
 import pickle
+from api_calls import ApiCall
+import json
+import urllib
+import urllib.request
+from urllib.parse import urlparse
+import httplib2 as http  # external library
 
 app = Flask(__name__)
 
@@ -71,20 +77,8 @@ def run_main():
 
 @app.route("/incidents")
 def get_incidents():
-    uri = "http://datamall2.mytransport.sg"  # resource URL
-    path = "/ltaodataservice/TrafficIncidents"
-    headers = {
-            "AccountKey": "AO4qMbK3S7CWKSlplQZqlA==",
-            "accept": "application/json",
-    }
-    target = urlparse(uri + path)
-    method = "GET"
-    body = ""
-    h = http.Http()
-    response, content = h.request(target.geturl(), method, body, headers)
-    jsonObj = json.loads(content)
-    data = jsonObj["value"]
-    return data
+    traffic_incidents = pd.read_csv('./assets/incidents.csv')
+    return jsonify(traffic_incidents.to_dict(orient="records"))
 
         
         
