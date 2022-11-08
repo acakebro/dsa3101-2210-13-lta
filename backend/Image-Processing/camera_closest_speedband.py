@@ -1,3 +1,7 @@
+"""
+Get LinkID of closest speedband location for each traffic image camera based on the shortest distance calculated by haversine formula.
+Stored in closest_speedbands.csv.
+"""
 import pandas as pd
 from math import radians, sqrt, sin, asin, cos
 
@@ -28,6 +32,7 @@ speedband_df = pd.read_csv('./docker/speedbands.csv')
 speedbands = speedband_df.iloc[:, -2:].to_dict("records")
 camera_df = pd.read_csv('./docker/camera_id_lat_long.csv')
 
+# get LinkID of closest speedband to each traffic image camera
 index_list = []
 for camera_id in camera_df['CameraID']:
     cam_coords = (camera_df[camera_df['CameraID'] == camera_id].iloc[:, -2:].to_dict("records")[0])
