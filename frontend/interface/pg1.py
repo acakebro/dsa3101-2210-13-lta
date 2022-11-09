@@ -154,7 +154,7 @@ layout = html.Div(children=[
             style={'width':'45%', 'vertical-align':'top', 'padding-left':'20px', 'padding-right': '20px',
                    'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center', 'cursor': 'pointer'}
         ),
-    
+    html.Br(),
     html.Div(id = 'variable',
         style = {'width':'90%', 'height':'80vh', 'margin':'0 auto', 'position':'relative'}
              ),
