@@ -15,11 +15,11 @@ from glob import glob
 import requests
 import pg1,pg2,pg3
 import csv
+import pytz
 from time import strftime,localtime
 
 image_folder="assets"
 directory = os.fsencode(image_folder)
-data = pd.read_csv("train_data.csv")
 
 def create_Img(link_list):
 
@@ -420,5 +420,3 @@ def update_prediction(road,camera_id,traffic_date,time):
         raise dash.exceptions.PreventUpdate
     stats = requests.get('http://backend:5000/prediction?camera_id='+str(camera_id)+'&date='+traffic_date[-2:]+'/'+traffic_date[-5:-3]+'/'+traffic_date[:4]+'&time='+str(time)[:2]+":"+str(time)[2:]+'&road='+str(road)).json()['prediction']
     return stats
-
-
