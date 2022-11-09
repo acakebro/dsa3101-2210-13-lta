@@ -137,26 +137,23 @@ Input('traffic_time','value'),
  Input('timeframe','value')])
 
 def update_plot(camera_id,traffic_date,time,timeframe):
-    #Stop update if missing values
-    if traffic_date is not None:
-        date_object = date.fromisoformat(traffic_date)
-        date_time = date_object.strftime('%Y%m%d')
+    #Default values for filters if empty
     if camera_id is None:
         camera_id='1001'
     if time is None:
-        time=strftime("%H%M", localtime()),
+        time=strftime("%H%M", localtime())
+    if timeframe is None:
+        timeframe=60
+    #Stop update if time not complete
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
-    #Make hidden attributes appear
-    date_time+=str(time)
-    print(date_time)
+    date_object = date.fromisoformat(traffic_date)
+    date_time = date_object.strftime('%Y%m%d')+str(time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
         if camera_id in file[:5]:
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
-    if timeframe is None:
-        timeframe=60
 
     #Pull prediction data from backend
     stats_json = requests.get('http://backend:5000/stats?camera_id='+str(camera_id)).json()
