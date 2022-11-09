@@ -39,7 +39,6 @@ def create_Img(link_list):
     return img_list
 
 
-
 image_folder="assets"
 
 
@@ -110,7 +109,7 @@ point_to_layer = assign("""function(feature, latlng, context){
 def display_page(pathname):
     if pathname == '/page1':
          return pg1.layout
-    elif pathname == '/page2':
+    if pathname == '/page2':
          return pg2.layout
     elif pathname == '/page3':
          return pg3.layout
@@ -160,7 +159,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=60
 
     #Pull prediction data from backend
-    stats_json = requests.get('http://127.0.0.1:9001/stats?camera_id='+str(camera_id)).json()
+    stats_json = requests.get('http://backend:5000/stats?camera_id='+str(camera_id)).json()
     variables = json_normalize(stats_json)
     #Convert datetime into YYYYMMDDHHMM format
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
@@ -195,7 +194,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
 
     #Table of congested areas
-    archive_json = requests.get('http://127.0.0.1:9001/archive').json()
+    archive_json = requests.get('http://backend:5000/archive').json()
     variables = json_normalize(archive_json)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
@@ -278,6 +277,21 @@ def auto_select_avg(attr):
         return "Max"
 
 
+# reading in the generated traffic_stats 
+try:
+    df_json = requests.get('http://backend:5000/archive')
+    df_json = df_json.json()
+    df = json_normalize(df_json)
+# df = pd.read_csv('training_data.csv')
+    df['Date']=pd.to_datetime(df['Date'])
+    df['Time']=df['Time'].replace(':','', regex=True)
+    df['Time'] = df['Time'].str[:2]
+    df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
+    df1 = df[df['Date']==df['Date'].max()]
+    df2 = df1[df1['Time']==df1['Time'].max()]
+except:
+    print('Modelling loading')
+    
 @app.callback(
     Output(component_id = 'variable', component_property = 'children'),
     Input(component_id = 'attribute', component_property = 'value'),
@@ -285,17 +299,7 @@ def auto_select_avg(attr):
     )
 
 def update_map(input_attr, input_agg):
-    # reading in the generated traffic_stats 
-    df_json = requests.get('http://127.0.0.1:9001/archive').json()
-    df = json_normalize(df_json)
-    # df = pd.read_csv('training_data.csv')
-    df['Date']=pd.to_datetime(df['Date'])
-    df['Time']=df['Time'].replace(':','', regex=True)
-    df['Time'] = df['Time'].str[:2]
-    df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
-    df1 = df[df['Date']==df['Date'].max()]
-    df2 = df1[df1['Time']==df1['Time'].max()]
-    
+
     color_prop0 = 'Density'
     colorscale0 = ['green','yellow','orange','red']
     if input_attr == 'Density':
@@ -384,24 +388,35 @@ def update_map(input_attr, input_agg):
     return fullmap
 
 @app.callback(
-Output('predict','value'),
-[Input('traffic_time','value'),
- Input('traffic_date','date'),
- Input('camera_id','value'),
- Input('road_name','value')])
+Output('camera_id1','options'),
+Input('road_name1','value'))
 
-def update_prediction(camera_id,road,traffic_date,time):
-    
+def update_camera1(road_name):
+    if road_name is None:
+        road_name='KPE'
+    return [{'label': i, 'value': str(i)} for i in d_exp_cam[str(road_name)]]
+
+@app.callback(
+    Output('predict','children'),
+    [Input('road_name1','value'),
+     Input('camera_id1','value'),
+     Input('traffic_date1','date'),
+     Input('traffic_time1','value')])
+
+def update_prediction(road,camera_id,traffic_date,time):
     if traffic_date is None:
-        traffic_date = date.today().strftime('%d/%m/%Y')
+        raise dash.exceptions.PreventUpdate
+        # traffic_date = date.today().strftime('%d/%m/%Y')
     if road is None:
-        road='KPE'
+        raise dash.exceptions.PreventUpdate
+        # road='KPE'
     if camera_id is None:
-        camera_id='1001'
+        # camera_id='1001'
+        raise dash.exceptions.PreventUpdate
     if time is None:
-        time = datetime.now().strftime("%H:%M")
+        raise dash.exceptions.PreventUpdate
+        # time = datetime.now().strftime("%H:%M")
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
-    stats = requests.get('http://127.0.0.1:9001/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
+    stats = requests.get('http://backend:5000/prediction?camera_id='+str(camera_id)+'&date='+traffic_date[-2:]+'/'+traffic_date[-5:-3]+'/'+traffic_date[:4]+'&time='+str(time)[:2]+":"+str(time)[2:]+'&road='+str(road)).json()['prediction']
     return stats
-
