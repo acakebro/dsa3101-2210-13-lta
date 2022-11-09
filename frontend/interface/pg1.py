@@ -16,6 +16,7 @@ import dash_leaflet.express as dlx
 from dash_extensions.javascript import assign
 import plotly.graph_objects as go
 import os
+import requests
 
 traffic_incidents = pd.read_csv("assets/incidents.csv")
 #traffic_speedbands = pd.read_csv("traffic_speedbands.csv")
@@ -33,9 +34,6 @@ traffic_incidents_new = traffic_incidents.drop("Message", axis = 1)
 traffic_incidents_new['Date'] = date
 traffic_incidents_new['Time'] = time
 traffic_incidents_new['Message'] = message
-
-
-
 
 d_exp_cam = {
         'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793',
@@ -133,7 +131,7 @@ d_table_in = dash_table.DataTable(
 
 
 layout = html.Div(children=[
-    html.H1(children='Title', style = {'text-align':'center'}),
+    # html.H1(children='title', style = {'text-align':'center'}),
 
 
     # map
@@ -232,3 +230,5 @@ layout = html.Div(children=[
     ],
                       style = {'background-color': 'white'}
                       )
+
+
