@@ -100,7 +100,7 @@ layout = html.Div(
             html.H2('Date:', style={'font-weight': 'bold'}),
             dcc.DatePickerSingle(id = "traffic_date",
                                  min_date_allowed = date(2022,1,1),
-                                 max_date_allowed = date.today(),
+                                 max_date_allowed = date(2023,12,31),
                                  date = date.today(),
                                  initial_visible_month = date.today(),
                                  style = {'display': 'inline-block', 'width':'150px','margin':'20px'}
@@ -170,6 +170,7 @@ layout = html.Div(
         ],
         style = {'display':'flex','align-items':'center','justify-content':'center'}
         ),
+    #Congested areas table
     html.Div(children = [
             html.H2('Congested areas(> 2 hours of continuous jam)',
                     style={'font-weight': 'bold'}
@@ -178,9 +179,6 @@ layout = html.Div(
             ],
             style = {'width': '700px','margin':'auto'}
             ),
-    html.A(html.Button('Refresh Page'),
-            href='/page2'
-           )
     ],
     style = {'background-color': 'rgb(237,250,252)'}
     )
