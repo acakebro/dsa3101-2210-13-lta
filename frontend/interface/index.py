@@ -18,7 +18,7 @@ api_obj = ApiCall("../app")
 api_obj.download_images()
 api_obj.download_incidents()
 
-import pg1,pg2,pg3
+import pg1, pg2,pg3
 import callbacks
 from maindash import app
 import requests
@@ -32,7 +32,6 @@ camid = ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1502', '1503',
          '6710', '6711', '6712', '6713', '6714', '6715', '6716', '7791', '7793',
          '7794', '7795', '7796', '7797', '7798', '8701', '8702', '8704', '8706',
          '9701', '9702', '9703', '9704', '9705', '9706']
-
 
 chroma = "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js"  # js lib used for colors
 
@@ -82,6 +81,5 @@ app.layout = html.Div([
 
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0',debug=True, port=8050)
-    #app.run_server(debug=True, port = 8051)
     
 
