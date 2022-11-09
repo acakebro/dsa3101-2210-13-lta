@@ -38,16 +38,7 @@ def create_Img(link_list):
                          style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
 
-# reading in the generated traffic_stats 
-df_json = requests.get('http://127.0.0.1:5000/archive').json()
-df = json_normalize(df_json)
-# df = pd.read_csv('training_data.csv')
-df['Date']=pd.to_datetime(df['Date'])
-df['Time']=df['Time'].replace(':','', regex=True)
-df['Time'] = df['Time'].str[:2]
-df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
-df1 = df[df['Date']==df['Date'].max()]
-df2 = df1[df1['Time']==df1['Time'].max()]
+
 
 image_folder="assets"
 
@@ -294,6 +285,17 @@ def auto_select_avg(attr):
     )
 
 def update_map(input_attr, input_agg):
+    # reading in the generated traffic_stats 
+    df_json = requests.get('http://127.0.0.1:9001/archive').json()
+    df = json_normalize(df_json)
+    # df = pd.read_csv('training_data.csv')
+    df['Date']=pd.to_datetime(df['Date'])
+    df['Time']=df['Time'].replace(':','', regex=True)
+    df['Time'] = df['Time'].str[:2]
+    df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
+    df1 = df[df['Date']==df['Date'].max()]
+    df2 = df1[df1['Time']==df1['Time'].max()]
+    
     color_prop0 = 'Density'
     colorscale0 = ['green','yellow','orange','red']
     if input_attr == 'Density':
@@ -389,6 +391,7 @@ Output('predict','value'),
  Input('road_name','value')])
 
 def update_prediction(camera_id,road,traffic_date,time):
+    
     if traffic_date is None:
         traffic_date = date.today().strftime('%d/%m/%Y')
     if road is None:
@@ -399,6 +402,6 @@ def update_prediction(camera_id,road,traffic_date,time):
         time = datetime.now().strftime("%H:%M")
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
-    stats = requests.get('http://127.0.0.1:5000/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
+    stats = requests.get('http://127.0.0.1:9001/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
     return stats
 
