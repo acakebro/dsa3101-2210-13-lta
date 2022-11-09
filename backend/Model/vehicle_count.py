@@ -140,10 +140,10 @@ class VehicleCount:
                 roi_img = self.__roi(img, roi_coords)
                 vehicle_boxes = self.vehicle_detector.detect_vehicles(roi_img)
                 vehicle_count = len(vehicle_boxes)
-                density = vehicle_count / 0.1*3
-                # Approximate length of road to be 100m
+                density = vehicle_count / (0.100 * 3)
+                # Approximate length of road to be 100m with an average of 3 lanes
                 jam = 0
-                if avg_speed <= 30 or density >= 7/0.3 : #consider 7 cars as high density
+                if avg_speed <= 30 or density >= 0.07:
                     jam = 1
                 result_list.append(
                     [
