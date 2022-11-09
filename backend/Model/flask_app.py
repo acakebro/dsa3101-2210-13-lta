@@ -6,6 +6,12 @@ from RandomForest import RandomForestModel
 import time
 import datetime
 import pickle
+from api_calls import ApiCall
+import json
+import urllib
+import urllib.request
+from urllib.parse import urlparse
+import httplib2 as http  # external library
 
 app = Flask(__name__)
 
@@ -26,7 +32,7 @@ def get_stats():
     camera_id = request.args.get('camera_id')
     df = pd.read_csv('traffic_stats.csv')
     match_df = df.loc[df['Camera_Id'] == int(camera_id)]
-    result_df = match_df[['Density', 'Average_Speed', 'Incident']]
+    result_df = match_df[['Density', 'Average_Speed','Direction','Jam','Date','Time']]
     return jsonify(result_df.to_dict(orient="records"))
 
 # for past data
@@ -36,8 +42,8 @@ def get_stats():
 @app.route("/archive")
 def return_past_data():
     df = pd.read_csv('traffic_stats.csv')
-    result_df = df[['Date', 'Time', 'Density', 'Average_Speed']]
-    return jsonify(result_df.to_dict(orient="index"))
+    # result_df = df[['Camera_Id','Density', 'Average_Speed','Direction','Jam','Date','Time']]
+    return jsonify(df.to_dict(orient="records"))
 
 # for prediction based on user input
 
@@ -69,6 +75,13 @@ def run_main():
         time_wait = 15
         time.sleep(time_wait * 60)
 
+@app.route("/incidents")
+def get_incidents():
+    traffic_incidents = pd.read_csv('./assets/incidents.csv')
+    return jsonify(traffic_incidents.to_dict(orient="records"))
 
+        
+        
+        
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
