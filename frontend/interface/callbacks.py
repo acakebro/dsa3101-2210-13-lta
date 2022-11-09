@@ -38,8 +38,10 @@ def create_Img(link_list):
                          style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
 
-# need to find how to read from backend the traffic.csv
-df = pd.read_csv('training_data.csv')
+# reading in the generated traffic_stats 
+df_json = requests.get('http://127.0.0.1:5000/archive').json()
+df = json_normalize(df_json)
+# df = pd.read_csv('training_data.csv')
 df['Date']=pd.to_datetime(df['Date'])
 df['Time']=df['Time'].replace(':','', regex=True)
 df['Time'] = df['Time'].str[:2]
@@ -378,4 +380,25 @@ def update_map(input_attr, input_agg):
 
 
     return fullmap
+
+@app.callback(
+Output('predict','value'),
+[Input('traffic_time','value'),
+ Input('traffic_date','date'),
+ Input('camera_id','value'),
+ Input('road_name','value')])
+
+def update_prediction(camera_id,road,traffic_date,time):
+    if traffic_date is None:
+        traffic_date = date.today().strftime('%d/%m/%Y')
+    if road is None:
+        road='KPE'
+    if camera_id is None:
+        camera_id='1001'
+    if time is None:
+        time = datetime.now().strftime("%H:%M")
+    if time is not None and len(str(time))!=4:
+        raise dash.exceptions.PreventUpdate
+    stats = requests.get('http://127.0.0.1:5000/prediction?camera_id='+str(camera_id)+'&date='+str(traffic_date)+'&time='+str(time)+'&road='+str(road)).json()['prediction']
+    return stats
 

@@ -14,6 +14,7 @@ import requests
 
 from api_calls import ApiCall
 api_obj = ApiCall("../app")
+
 api_obj.download_images()
 api_obj.download_incidents()
 
