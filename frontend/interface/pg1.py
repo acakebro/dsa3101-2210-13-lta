@@ -36,28 +36,20 @@ tz = pytz.timezone('Asia/Singapore')
 ct = datetime.now(tz=tz)
 
 d_exp_cam = {
-        'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793',
-                     '7794', '7795'],
-        'ECP': ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1503',
-                '1505', '7791'],
+        'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793','7794', '7795'],
+        'ECP': ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1503','1505', '7791'],
         'KJE': ['2708', '6714'],
-        'SLE': ['1701', '1702', '1703', '1704', '1705', '1706', '1707', '1709',
-               '1711', '7791', '7793', '7795', '7796', '7797'],
+        'SLE': ['1701', '1702', '1703', '1704', '1705', '1706', '1707', '1709','1711', '7791',
+                '7793', '7795', '7796', '7797'],
         'MCE': ['1501', '1502', '1503', '1504', '1505', '4704'],
         'CTE': ['1705', '4704', '7797', '7798'], 
-        'TPE': ['1001', '1003', '1005', '1006', '7798', '9701', '9702', '9703',
-                '9704', '9705', '9706'], 
-        'BKE': ['2702', '7798', '8701', '8702', '8704', '8706', '9701', '9702',
-                '9703', '9704', '9705', '9706'], 
-        'PIE': ['1002', '1003', '1004', '1703', '2703', '2705', '2706', '2707',
-                '2708', '7791', '7793', '7794', '7795', '7796', '7797', '8701',
-                '8702', '8704', '8706', '9703'],  
-        'AYE': ['1502', '1503', '1504', '1703', '1704', '1706', '1707', '3795',
-                '3796', '4713', '6716'],
-        'Woodlands Causeway/Johor': ['2701', '2702', '2703', '2704', '2705',
-                                     '2706', '2707', '2708', '9703'], 
-        'Tuas/Johor': ['1002', '1004', '1703', '4703', '4707', '4712', '4713',
-                       '6708', '6715', ],
+        'TPE': ['1001', '1003', '1005', '1006', '7798', '9701', '9702', '9703', '9704', '9705','9706'], 
+        'BKE': ['2702', '7798', '8701', '8702', '8704', '8706', '9701', '9702', '9703', '9704', '9705', '9706'], 
+        'PIE': ['1002', '1003', '1004', '1703', '2703', '2705', '2706', '2707','2708', '7791', '7793',
+                '7794', '7795','7796', '7797', '8701','8702', '8704', '8706', '9703'],  
+        'AYE': ['1502', '1503', '1504', '1703', '1704', '1706', '1707', '3795','3796', '4713', '6716'],
+        'Woodlands Causeway/Johor': ['2701', '2702', '2703', '2704', '2705','2706', '2707', '2708', '9703'], 
+        'Tuas/Johor': ['1002', '1004', '1703', '4703', '4707', '4712', '4713','6708', '6715', ],
         'Changi': ['1001', '1002', '1003', '1703', '2703', '3704', '3793', '3796',
                    '3797', '3798', '4702', '5794', '5795', '5797', '5798', '5799',
                    '6701', '6703', '6704', '6705', '6706', '6708', '6710', '6712',
@@ -87,16 +79,16 @@ d_exp_cam = {
 def create_Img(link_list):
     # Add a component that will render an image
     img_list = [html.Div(children = [
-        html.H5("ID: " + str(link_list[i][:4]),
+        html.H6("ID: " + str(link_list[i][:4]),
                 style = {'text-align': 'center',
                          'text-decoration': 'underline',
-                         'margin': '50px 5px 1px 5px'}),
+                         'margin': '50px 5px 1px 5px', 'font-size':12}),
         html.Img(
         title = str(link_list[i][:4]),
         src= folder + link_list[i],
-        style = {'display': 'inline-block', 'width': '420px', 'height': '250px',
+        style = {'display': 'inline-block', 'width': '340px', 'height': '202px',
                  'margin': '20px',
-                 'border': '3px solid black'}),
+                 'border': '2px solid black'}),
         html.Br()],
                          style = {'display':'inline-block'}) for i in range(len(link_list))]
     return img_list
@@ -125,29 +117,31 @@ d_table_in = dash_table.DataTable(
                 'text-align': 'center',
                 'backgroundColor': 'lightgrey',
                 'fontWeight': 'bold',
-                'fontSize': '18px'},
+                'fontSize': '15px'},
             merge_duplicate_headers = True
             )
 
 
 layout = html.Div(children=[
-
     html.Br(),
+    #html.H4('Map Overview', style={'font-weight': 'bold', 'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+    html.Br(),
+    #html.Br(),
     
     # map
     html.Div(
         children=[
-            html.H5('Select Attribute', style={'font-weight': 'bold'}),
+            html.H6('Select Attribute', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'attribute',
             options=[
                 {'label':'Density', 'value': 'Density'},
                 {'label':'Speed', 'value': 'Speed'},],
                          value = 'Density',
-                style={'width':'150px', 'margin':'0 auto', 'display': 'inline-block'}
+                style={'width':'110px', 'margin':'0 auto', 'display': 'inline-block', 'cursor': 'pointer'}
                          ),
         
-            html.H5('Select Aggregation', style={'font-weight': 'bold'}),
+            html.H6('Select Aggregation', style={'font-weight': 'bold'}),
             # Add a dropdown with identifier
             dcc.Dropdown(id = 'aggregation',
             options=[
@@ -155,10 +149,10 @@ layout = html.Div(children=[
                 {'label':'Min', 'value': 'Min'},
                 {'label':'Average', 'value': 'Average'},],
                          value = 'Max',
-                style={'width':'150px', 'margin':'0 auto', 'display': 'inline-block'}
+                style={'width':'110px', 'margin':'0 auto', 'display': 'inline-block', 'cursor': 'pointer'}
                          )],
-            style={'width':'55%', 'vertical-align':'top', 'padding':'20px',
-                   'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center'}
+            style={'width':'45%', 'vertical-align':'top', 'padding-left':'20px', 'padding-right': '20px',
+                   'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center', 'cursor': 'pointer'}
         ),
     
     html.Div(id = 'variable',
@@ -169,14 +163,24 @@ layout = html.Div(children=[
     html.Div(
         html.H6("Time: " + ct.strftime("%d/%m/%Y  %I:%M %p"),
                 style = {'text-align': 'right',
-                         'margin': '10px'})),
+                         'margin': '40px', 'font-size':12})),
+
+
+    html.Br(),
+    # table
+    html.Div([
+        html.Table(children = [d_table_in])],
+               style = {'font-size':13, 'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
+
+    # time
+    html.Div(
+        html.H6("Time: " + ct.strftime("%d/%m/%Y  %I:%M %p"),
+                style = {'text-align': 'right','margin': '40px','font-size':12})),
     
     html.Br(),
-    html.Br(),
-
     # filter box
     html.Div(children = [
-    html.H5("Select Direction: ", style={'font-weight': 'bold'}),
+    html.H5("Select Direction to view traffic images", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(image_folder))))) + ")", 'value': 'All'},
@@ -210,26 +214,12 @@ layout = html.Div(children=[
             {'label':'Choa Chu Kang' + " (" + str(len(d_exp_cam['Choa Chu Kang'])) + ")", 'value':'Choa Chu Kang'},
             {'label':'Woodlands Ave 2' + " (" + str(len(d_exp_cam['Woodlands Ave 2'])) + ")", 'value':'Woodlands Ave 2'}],
                  value = 'All',
-                 style = {'display': 'inline-block', 'width':'270px','margin': '0 auto',
-                          'cursor': 'pointer','border-radius': '5px'})
-    ], style = {'width': '25%', 'display': 'inline-block','text-align': 'center', 'border-radius':'5px',
-                'padding':'20px', 'margin-left':'200px'},
+                 style = {'width':'280px','margin': '0 auto', 'display': 'inline-block','cursor': 'pointer','border-radius': '5px'})
+    ], style = {'width':'50%','padding-left':'20px', 'padding-right': '20px','display':'flex','align-items':'center','justify-content':'center'},
              ),
 
-    # table
-    html.Div([
-        html.Table(children = [d_table_in])],
-               style = {'display': 'inline-block', 'margin-left': '150px'}),
-
-
-    # time
-    html.Div(
-        html.H6("Time: " + ct.strftime("%d/%m/%Y  %I:%M %p"),
-                style = {'text-align': 'right',
-                         'margin': '10px'})),
-
     # images
-        html.Div(id = "img_out", style = {'text-align':'center', 'font-size':18})
+        html.Div(id = "img_out", style = {'text-align':'center', 'font-size':13})
 
     
 
