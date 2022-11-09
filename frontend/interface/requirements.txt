@@ -8,5 +8,6 @@ dash_bootstrap_components
 httplib2
 requests
 dash_extensions
+pytz
 
 protobuf==3.20.1
