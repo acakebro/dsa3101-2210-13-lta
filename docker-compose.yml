@@ -4,11 +4,11 @@ services:
     build: ./backend/Model
     container_name: backend
     ports: 
-      - "5000:5000"
+      - "9001:5000"
   web2:
     build: ./frontend/interface
     container_name: frontend
     ports: 
-      - "8050:8050"
+      - "9000:8050"
 
 #To make changes must delete dsa3101-2210-13-lta_web1/dsa3101-2210-13-lta_web2 under images

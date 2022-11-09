@@ -13,7 +13,7 @@ from glob import glob
 import requests
 
 from api_calls import ApiCall
-api_obj = ApiCall("../interface")
+api_obj = ApiCall("../app")
 api_obj.download_images()
 api_obj.download_incidents()
 
@@ -32,7 +32,7 @@ camid = ['1001', '1002', '1003', '1004', '1005', '1006', '1501', '1502', '1503',
          '7794', '7795', '7796', '7797', '7798', '8701', '8702', '8704', '8706',
          '9701', '9702', '9703', '9704', '9705', '9706']
 
-#api_obj = ApiCall("../app")
+
 #for i in camid:
 #    image = requests.get('http://127.0.0.1:5000/live_image?camera_id='+ i)
 #    image.save("assets")
@@ -85,7 +85,7 @@ app.layout = html.Div([
 
 
 if __name__ == '__main__':
-    #app.run_server(host='0.0.0.0',debug=True, port=8050)
-    app.run_server(debug=True, port = 8051)
+    app.run_server(host='0.0.0.0',debug=True, port=8050)
+    #app.run_server(debug=True, port = 8051)
     
 

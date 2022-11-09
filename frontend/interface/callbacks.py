@@ -167,7 +167,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
         timeframe=60
 
     #Pull prediction data from backend
-    stats_json = requests.get('http://127.0.0.1:5000/stats?camera_id='+str(camera_id)).json()
+    stats_json = requests.get('http://127.0.0.1:9001/stats?camera_id='+str(camera_id)).json()
     variables = json_normalize(stats_json)
     #Convert datetime into YYYYMMDDHHMM format
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
@@ -202,7 +202,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     datatable=[dbc.Table.from_dataframe(table, striped=True, bordered=True, hover=True,header=False)]
 
     #Table of congested areas
-    archive_json = requests.get('http://127.0.0.1:5000/archive').json()
+    archive_json = requests.get('http://127.0.0.1:9001/archive').json()
     variables = json_normalize(archive_json)
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
