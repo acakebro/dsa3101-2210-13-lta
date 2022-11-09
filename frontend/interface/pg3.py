@@ -76,7 +76,7 @@ layout = html.Div(
         # Road dropdown
         children = [
         html.H3('Select road', style={'font-weight': 'bold'}),
-        dcc.Dropdown(id='road_name',
+        dcc.Dropdown(id='road_name1',
         options=road_options(d_exp_cam),
                 placeholder="Select road...",
                 style={'width':'150px','margin':'20px'})
@@ -88,7 +88,7 @@ layout = html.Div(
         # Camera dropdown
         children = [
         html.H3('Select camera', style={'font-weight': 'bold'}),
-        dcc.Dropdown(id='camera_id',
+        dcc.Dropdown(id='camera_id1',
                         placeholder='1001',
                         style={'width':'170px', 'margin':'10px','display': 'inline-block'})
             ],
@@ -99,12 +99,12 @@ layout = html.Div(
     html.Div(
         children=[
         html.H3("Select date", style={'font-weight': 'bold'}),
-        dcc.DatePickerSingle(id = "traffic_date",
+        dcc.DatePickerSingle(id = "traffic_date1",
                                 min_date_allowed = date.today(),
                                 max_date_allowed = date.today()+timedelta(days=30),
                                 date = date.today(),
                                 initial_visible_month = date.today(),
-                                # placeholder='DD/MM/YYYY',
+                                placeholder='DD/MM/YYYY',
                                 style = {'width':'150px','margin':'20px'})
         ],
         style ={'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
@@ -114,10 +114,10 @@ layout = html.Div(
     html.Div(
         children=[
         html.H3('Select time of the day', style={'font-weight': 'bold'}),
-        dcc.Input(id="traffic_time",
+        dcc.Input(id="traffic_time1",
                       type="text",
-                      placeholder="HHMM",
                       value=strftime("%H%M", localtime()),
+                      placeholder="HHMM",
                       style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
         ],
         style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
@@ -139,7 +139,7 @@ layout = html.Div(
             ],    
             style = {'display':'flex','align-items':'center','justify-content':'center'}
             ),],
-    style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'rgb(237,250,252)'}
+    style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'white'}
     )
 
                          
