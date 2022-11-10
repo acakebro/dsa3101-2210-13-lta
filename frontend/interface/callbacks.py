@@ -142,7 +142,7 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     if camera_id is None:
         camera_id='1001'
     if time is None:
-        time=strftime("%H%M", localtime())
+        time=2359
     if timeframe is None:
         timeframe=60
     #Stop update if time not complete
