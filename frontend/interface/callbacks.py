@@ -27,7 +27,8 @@ def create_Img(link_list):
         html.H2("ID: " + str(link_list[i][:4]),
                 style = {'text-align': 'center',
                          'text-decoration': 'underline',
-                         'margin': '50px 5px 1px 5px'}),
+                         'margin': '50px 5px 1px 5px',
+                         'font-size': '22px'}),
         html.Img(
         title = str(link_list[i][:4]),
         src= image_folder + "/" + link_list[i],
