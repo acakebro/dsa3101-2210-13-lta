@@ -10,8 +10,8 @@ LTA Modelling by group 13
 │   ├── Image-Processing - final scripts we used to get data from images and their saved outputs 
 │   └── Model - finalised scripts that we containerise 
 ├── frontend 
-│   ├── interface 
-│   ├── src 
+│   ├── interface -all files that we containerise 
+│   ├── src - individual work with sample data to do local testing
 │   ├── Procfile 
 │   └── runtime.txt 
 ├── .gitattributes 
