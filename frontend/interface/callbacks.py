@@ -137,23 +137,26 @@ Input('traffic_time','value'),
  Input('timeframe','value')])
 
 def update_plot(camera_id,traffic_date,time,timeframe):
-    #Default values for filters if empty
+    #Stop update if missing values
+    if traffic_date is not None:
+        date_object = date.fromisoformat(traffic_date)
+        date_time = date_object.strftime('%Y%m%d')
     if camera_id is None:
         camera_id='1001'
     if time is None:
-        time=strftime("%H%M", localtime())
-    if timeframe is None:
-        timeframe=60
-    #Stop update if time not complete
+        time=strftime("%H%M", localtime()),
     if time is not None and len(str(time))!=4:
         raise dash.exceptions.PreventUpdate
-    date_object = date.fromisoformat(traffic_date)
-    date_time = date_object.strftime('%Y%m%d')+str(time)
+    #Make hidden attributes appear
+    date_time+=str(time)
+    print(date_time)
     #Search for image by datetime and camera_id
     for filename in os.listdir(directory):
         file = os.fsdecode(filename)
         if camera_id in file[:5]:
             img=[html.Img(src=image_folder+'/'+file,style={'height':'360px', 'width':'480px'})]
+    if timeframe is None:
+        timeframe=60
 
     #Pull prediction data from backend
     stats_json = requests.get('http://backend:5000/stats?camera_id='+str(camera_id)).json()
@@ -273,21 +276,12 @@ def auto_select_avg(attr):
     else:
         return "Max"
 
+default_map = dl.Map([dl.TileLayer(url='https://maps-{s}.onemap.sg/v3/Grey/{z}/{x}/{y}.png', maxZoom=13, minZoom=12,
 
-# reading in the generated traffic_stats 
-try:
-    df_json = requests.get('http://backend:5000/archive')
-    df_json = df_json.json()
-    df = json_normalize(df_json)
-# df = pd.read_csv('training_data.csv')
-    df['Date']=pd.to_datetime(df['Date'])
-    df['Time']=df['Time'].replace(':','', regex=True)
-    df['Time'] = df['Time'].str[:2]
-    df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
-    df1 = df[df['Date']==df['Date'].max()]
-    df2 = df1[df1['Time']==df1['Time'].max()]
-except:
-    print('Modelling loading')
+                             attribution='< img src="https://www.onemap.gov.sg/docs/maps/images/oneMap64-01.png" style="height:20px;width:20px;"/> OneMap | Map data &copy; contributors, <a href=" ">Singapore Land Authority</a >'),
+    ], center=[1.3521, 103.8198],
+                          style={'width': '90%', 'height': '80vh', 'margin': "auto", "display": "block", "position": "relative"},)
+
     
 @app.callback(
     Output(component_id = 'variable', component_property = 'children'),
@@ -296,6 +290,21 @@ except:
     )
 
 def update_map(input_attr, input_agg):
+
+    # reading in the generated traffic_stats 
+    try:
+        df_json = requests.get('http://backend:5000/archive')
+        df_json = df_json.json()
+        df = json_normalize(df_json)
+        # df = pd.read_csv('training_data.csv')
+        df['Date']=pd.to_datetime(df['Date'])
+        df['Time']=df['Time'].replace(':','', regex=True)
+        df['Time'] = df['Time'].str[:2]
+        df['Time'] = df['Time'].apply(pd.to_numeric,errors='coerce')
+        df1 = df[df['Date']==df['Date'].max()]
+        df2 = df1[df1['Time']==df1['Time'].max()]
+    except:
+        return default_map
 
     color_prop0 = 'Density'
     colorscale0 = ['green','yellow','orange','red']
