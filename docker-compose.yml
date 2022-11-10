@@ -12,4 +12,5 @@ services:
       - "9000:8050"
     volumes:
       - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro
 #To make changes must delete dsa3101-2210-13-lta_web1/dsa3101-2210-13-lta_web2 under images
