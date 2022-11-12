@@ -124,7 +124,7 @@ layout = html.Div(
     html.Br(),
     html.Br(),
 
-    #Image and predictions
+    #Image and statistics
     html.Div(
             children=[
             #Image after filter
