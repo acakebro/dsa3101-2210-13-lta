@@ -69,13 +69,13 @@ def road_options(cam):
 
 layout = html.Div(
     children=[
-    html.H2("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
-    html.H3("Please choose the camera, road, day, and time you would like to view."),
+    html.H4("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
+    html.H5("Please choose the camera, road, day, and time you would like to view."),
         
     html.Div(
         # Road dropdown
         children = [
-        html.H3('Select road', style={'font-weight': 'bold'}),
+        html.H6('Select road', style={'font-weight': 'bold'}),
         dcc.Dropdown(id='road_name1',
         options=road_options(d_exp_cam),
                 placeholder="Select road...",
@@ -87,7 +87,7 @@ layout = html.Div(
     html.Div(
         # Camera dropdown
         children = [
-        html.H3('Select camera', style={'font-weight': 'bold'}),
+        html.H6('Select camera', style={'font-weight': 'bold'}),
         dcc.Dropdown(id='camera_id1',
                         placeholder='1001',
                         style={'width':'170px', 'margin':'10px','display': 'inline-block'})
@@ -98,7 +98,7 @@ layout = html.Div(
     #Date pick
     html.Div(
         children=[
-        html.H3("Select date", style={'font-weight': 'bold'}),
+        html.H6("Select date", style={'font-weight': 'bold'}),
         dcc.DatePickerSingle(id = "traffic_date1",
                                 min_date_allowed = date.today(),
                                 max_date_allowed = date.today()+timedelta(days=30),
@@ -113,7 +113,7 @@ layout = html.Div(
     #Time input
     html.Div(
         children=[
-        html.H3('Select time of the day', style={'font-weight': 'bold'}),
+        html.H6('Select time of the day', style={'font-weight': 'bold'}),
         dcc.Input(id="traffic_time1",
                       type="text",
                       value=strftime("%H%M", localtime()),
@@ -131,7 +131,7 @@ layout = html.Div(
             #Prediction attributes
             html.Div(
                 children=[
-                html.H2('Traffic condition:', style={'font-weight': 'bold'}),
+                html.H5('Traffic condition:', style={'font-weight': 'bold'}),
                 ],
                 style={'padding':'20px','text-align': 'right'},
                 ),
