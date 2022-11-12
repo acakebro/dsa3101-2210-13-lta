@@ -90,10 +90,8 @@ layout = html.Div(
         children=[
         html.H6("Select date", style={'font-weight': 'bold'}),
         dcc.DatePickerSingle(id = "traffic_date1",
-                                min_date_allowed = date.today(),
-                                max_date_allowed = date.today()+timedelta(days=30),
-                                date = date.today(),
-                                initial_visible_month = date.today(),
+                                min_date_allowed = date.today(), max_date_allowed = date.today()+timedelta(days=30),
+                                date = date.today(), initial_visible_month = date.today(),
                                 placeholder='DD/MM/YYYY',
                                 style = {'width':'150px','margin':'20px'})
         ],
@@ -104,9 +102,7 @@ layout = html.Div(
     html.Div(
         children=[
         html.H6('Select time of the day', style={'font-weight': 'bold'}),
-        dcc.Input(id="traffic_time1",
-                      type="text",
-                      value=strftime("%H%M", localtime()),
+        dcc.Input(id="traffic_time1", type="text", value=strftime("%H%M", localtime()),
                       placeholder="HHMM",
                       style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
         ],
@@ -122,8 +118,7 @@ layout = html.Div(
             html.Div(
                 children=[
                 html.H5('Traffic condition:', style={'font-weight': 'bold'}),
-                ],
-                style={'padding':'20px','text-align': 'right'},
+                ],style={'padding':'20px','text-align': 'right'},
                 ),
             html.Div(id = 'predict')
             ],    
