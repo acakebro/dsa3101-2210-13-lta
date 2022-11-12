@@ -69,8 +69,11 @@ def road_options(cam):
 
 layout = html.Div(
     children=[
+    html.Br(),
+    html.Br(),
     html.H4("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
     html.H5("Please choose the camera, road, day, and time you would like to view."),
+    html.Br(),
         
     html.Div(
         # Road dropdown
