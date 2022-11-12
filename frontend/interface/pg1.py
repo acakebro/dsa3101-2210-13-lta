@@ -180,7 +180,7 @@ layout = html.Div(children=[
     html.Br(),
     # filter box
     html.Div(children = [
-    html.H6("Select Direction to view traffic images", style={'font-weight': 'bold'}),
+    html.H6("Select Road to view traffic images", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(image_folder))))) + ")", 'value': 'All'},
