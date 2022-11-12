@@ -18,6 +18,7 @@ LTA Modelling by group 13
 ├── .gitignore 
 └── docker-compose.yml 
 ````
+````
 | How to use the code and deploy the interface?
 | git clone git@github.com:acakebro/dsa3101-2210-13-lta.git
 | open docker desktop
@@ -29,4 +30,5 @@ LTA Modelling by group 13
 | check it by doing ls in the docker terminal
 | after traffic_stats.csv appears in the backend container directory
 | open frontend in browser
+````
 
