@@ -180,6 +180,6 @@ layout = html.Div(
             style = {'width': '700px','margin':'auto'}
             ),
     ],
-    style = {'background-color': 'rgb(237,250,252)'}
+    style = {'background-color': 'white'}
     )
 
