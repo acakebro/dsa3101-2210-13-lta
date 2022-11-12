@@ -126,7 +126,6 @@ layout = html.Div(children=[
     html.Br(),
     #html.H4('Map Overview', style={'font-weight': 'bold', 'width':'100%','display':'flex','align-items':'center','justify-content':'center'}),
     html.Br(),
-    #html.Br(),
     
     # map
     html.Div(
@@ -154,6 +153,7 @@ layout = html.Div(children=[
             style={'width':'45%', 'vertical-align':'top', 'padding-left':'20px', 'padding-right': '20px',
                    'margin':'0 auto', 'display':'flex','align-items': 'center', 'justify-content':'center', 'cursor': 'pointer'}
         ),
+ 
     html.Br(),
     html.Div(id = 'variable',
         style = {'width':'90%', 'height':'80vh', 'margin':'0 auto', 'position':'relative'}
@@ -180,7 +180,7 @@ layout = html.Div(children=[
     html.Br(),
     # filter box
     html.Div(children = [
-    html.H5("Select Direction to view traffic images", style={'font-weight': 'bold'}),
+    html.H6("Select Direction to view traffic images", style={'font-weight': 'bold'}),
     dcc.Dropdown(id = "exp_dd",
                  options = [
             {'label': 'All' + " (" + str(len(list(filter(lambda x: "jpg" in x, os.listdir(image_folder))))) + ")", 'value': 'All'},
