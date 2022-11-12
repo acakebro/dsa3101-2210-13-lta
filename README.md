@@ -18,15 +18,15 @@ LTA Modelling by group 13
 ├── .gitignore 
 └── docker-compose.yml 
 ````
-How to use the code and deploy the interface?
-git clone git@https://acakebro/dsa3101-2210-13-lta.git
-open docker desktop
-In shell:
-cd dsa3101-2210-13-lta
-docker compose up
-go to docker desktop, enter the backend container, click on open in browser
-wait for around 15 mins for the file traffic_stats.csv to appear
-check it by doing ls in the docker terminal
-after traffic_stats.csv appears in the backend container directory
-open frontend in browser
+| How to use the code and deploy the interface?
+| git clone git@github.com:acakebro/dsa3101-2210-13-lta.git
+| open docker desktop
+| In shell:
+| cd dsa3101-2210-13-lta
+| docker compose up
+| go to docker desktop, click on open backend container in browser
+| wait for around 15 mins for the file traffic_stats.csv to appear
+| check it by doing ls in the docker terminal
+| after traffic_stats.csv appears in the backend container directory
+| open frontend in browser
 
