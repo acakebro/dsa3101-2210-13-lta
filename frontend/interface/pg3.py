@@ -62,9 +62,9 @@ layout = html.Div(
         dcc.Dropdown(id='road_name1',
         options=road_options(d_exp_cam),
                 placeholder="Select road...",
-                style={'width':'134px','margin':'0 auto', 'display': 'inline-block'})
+                style={'width':'200px','margin':'0 auto', 'display': 'inline-block'})
         ],
-        style = {'width':'35.4%','display':'flex','margin-left':'500px','align-items':'center','justify-content':'center'}
+        style = {'width':'41.4%','display':'flex','margin-left':'480px','align-items':'center','justify-content':'center'}
         ),
 
     html.Br(),
@@ -73,10 +73,10 @@ layout = html.Div(
         children = [
         html.H6('Select camera', style={'font-weight': 'bold'}),
         dcc.Dropdown(id='camera_id1',
-                        placeholder='1001',
-                        style={'width':'137px', 'margin':'0 auto','display': 'inline-block', 'justify-content':'center'})
+                        placeholder='Select camera...',
+                        style={'width':'203px', 'margin':'0 auto','display': 'inline-block', 'justify-content':'center'})
             ],
-        style = {'width':'33.8%','margin-left':'500px','display':'flex','align-items':'center', 'justify-content':'center'}
+        style = {'width':'39.8%','margin-left':'480px','display':'flex','align-items':'center'}
         ),
 
     html.Br(),
@@ -86,11 +86,11 @@ layout = html.Div(
         html.H6("Select date", style={'font-weight': 'bold'}),
         dcc.DatePickerSingle(id = "traffic_date1",
                                 min_date_allowed = date.today(), max_date_allowed = date.today()+timedelta(days=60),
-                                date = date.today(), initial_visible_month = date.today(),
+                                initial_visible_month = date.today(),
                                 placeholder='DD/MM/YYYY',
-                                style = {'width':'150px','margin':'0 auto', 'border-radius': '0 auto'})
+                                style = {'width':'400px','margin':'0 auto', 'border-radius': '0 auto', 'font_family': 'Tahoma'})
         ],
-        style ={'margin-left':'500px','width':'35.5%','display':'flex','align-items':'center','justify-content':'center'}
+        style ={'margin-left':'480px','width':'37%','display':'flex','align-items':'center','justify-content':'center'}
         ),
 
     html.Br(),
@@ -98,11 +98,12 @@ layout = html.Div(
     html.Div(
         children=[
         html.H6('Select time of the day', style={'font-weight': 'bold'}),
-        dcc.Input(id="traffic_time1", type="text", value=strftime("%H%M", localtime()),
+        dcc.Input(id="traffic_time1", type="text",
                       placeholder="HHMM",
-                      style = {'width':'126px','margin':'0 auto', 'height':'30px', 'display': 'inline-block'})
+                      style = {'width':'190px','margin':'0 auto', 'height':'32px',
+                               'fontSize': '15px','display': 'inline-block', 'align-items':'center','justify-content':'center'})
         ],
-        style = {'width':'29.3%','margin-left':'500px','display':'flex','align-items':'center','justify-content':'center'}
+        style = {'width':'35.3%','margin-left':'480px','display':'flex','align-items':'center','justify-content':'center'}
         ),
     html.Br(),
     html.Br(),
