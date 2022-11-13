@@ -12,6 +12,74 @@ import os
 import sys
 import pathlib
 
+# traffic incidents table
+default_incident = dash_table.DataTable(
+        columns = [{"name": ["Traffic Incidents", i], "id": i} for i in ['Date','Time','Message']],
+        data=[
+            {'column-{}'.format(i):
+             '' for i in range(1, 5)}
+            for j in range(5)],
+        cell_selectable=False,
+        sort_action='native',
+        editable=False,
+        style_as_list_view = True,
+        style_header = {
+                'text-align': 'center',
+                'backgroundColor': 'lightgrey',
+                'fontWeight': 'bold',
+                'fontSize': '15px'},
+        merge_duplicate_headers = True,
+        style_cell = {'padding': '5px',
+                      'width': '245px',
+                      'font_family': 'Tahoma'},
+        page_action = 'native',
+        page_current = 0,
+        page_size = 10
+    )
+
+try: 
+    traffic_incidents = requests.get('http://backend:5000/incidents')
+    traffic_incidents = traffic_incidents.json()
+    traffic_incidents = json_normalize(traffic_incidents)
+
+    date_time = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,0]
+    message = traffic_incidents['Message'].str.split(" ", 1, expand = True).iloc[:,1]
+    time = date_time.str.split(")", expand = True).iloc[:,1]
+    date = date_time.str.split(")", expand = True).iloc[:,0].str[1:]
+    traffic_incidents_new = traffic_incidents.drop("Message", axis = 1)
+    traffic_incidents_new['Date'] = date
+    traffic_incidents_new['Time'] = time
+    traffic_incidents_new['Message'] = message
+
+    d_table_in = dash_table.DataTable(
+            data=traffic_incidents_new.iloc[:5,:].to_dict('records'),
+            columns = [{"name": ["Traffic Incidents", i], "id": i} for i in traffic_incidents_new.columns[-3:]],
+            cell_selectable=False,
+            sort_action='native',
+            #filter_action= False,
+            page_action = 'native',
+            page_current = 0,
+            page_size = 10,
+            style_as_list_view = True,
+            style_cell_conditional = [
+                {'if':{'column_id': 'Date'},
+                 'text-align': 'center'},
+                {'if':{'column_id': 'Time'},
+                 'text-align': 'center'}
+                ],
+            style_cell = {'padding': '5px',
+                          'width': '230px',
+                          'font_family': 'Tahoma'},
+            style_header = {
+                'text-align': 'center',
+                'backgroundColor': 'lightgrey',
+                'fontWeight': 'bold',
+                'fontSize': '15px'},
+            merge_duplicate_headers = True
+            )
+except:
+    d_table_in = default_incident
+
 # get live images
 image_folder = "assets/"
 
