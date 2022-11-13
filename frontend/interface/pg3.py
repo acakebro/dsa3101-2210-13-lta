@@ -1,16 +1,9 @@
 import dash
-import os
-import plotly.express as px
-import plotly.graph_objects as go
-import pandas as pd
-import numpy as np
-from os import listdir
-from dash.dependencies import Input, Output
 from datetime import datetime, date,timedelta
 from time import localtime, strftime
-import dash_bootstrap_components as dbc
 from dash import Dash, html, dcc
-import requests
+from dash.dependencies import Input, Output
+from dash import Dash, html, dcc
 
 d_exp_cam = {
         'KPE': ['1001', '1002', '1003', '1004', '1005', '1006', '7793','7794', '7795'],
@@ -58,7 +51,7 @@ layout = html.Div(
     children=[
     html.Br(),
     html.Br(),
-    html.H4("Prediction of traffic condition in 30 days", style={'align-items':'center'}),
+    html.H4("Prediction of traffic condition in 2 months", style={'align-items':'center'}),
     html.H5("Please choose the camera, road, day, and time you would like to view."),
     html.Br(),
         
@@ -69,44 +62,47 @@ layout = html.Div(
         dcc.Dropdown(id='road_name1',
         options=road_options(d_exp_cam),
                 placeholder="Select road...",
-                style={'width':'150px','margin':'20px'})
+                style={'width':'134px','margin':'0 auto', 'display': 'inline-block'})
         ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        style = {'width':'35.4%','display':'flex','margin-left':'500px','align-items':'center','justify-content':'center'}
         ),
-        
+
+    html.Br(),
     html.Div(
         # Camera dropdown
         children = [
         html.H6('Select camera', style={'font-weight': 'bold'}),
         dcc.Dropdown(id='camera_id1',
                         placeholder='1001',
-                        style={'width':'170px', 'margin':'10px','display': 'inline-block'})
+                        style={'width':'137px', 'margin':'0 auto','display': 'inline-block', 'justify-content':'center'})
             ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        style = {'width':'33.8%','margin-left':'500px','display':'flex','align-items':'center', 'justify-content':'center'}
         ),
 
+    html.Br(),
     #Date pick
     html.Div(
         children=[
         html.H6("Select date", style={'font-weight': 'bold'}),
         dcc.DatePickerSingle(id = "traffic_date1",
-                                min_date_allowed = date.today(), max_date_allowed = date.today()+timedelta(days=30),
+                                min_date_allowed = date.today(), max_date_allowed = date.today()+timedelta(days=60),
                                 date = date.today(), initial_visible_month = date.today(),
                                 placeholder='DD/MM/YYYY',
-                                style = {'width':'150px','margin':'20px'})
+                                style = {'width':'150px','margin':'0 auto', 'border-radius': '0 auto'})
         ],
-        style ={'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        style ={'margin-left':'500px','width':'35.5%','display':'flex','align-items':'center','justify-content':'center'}
         ),
 
+    html.Br(),
     #Time input
     html.Div(
         children=[
         html.H6('Select time of the day', style={'font-weight': 'bold'}),
         dcc.Input(id="traffic_time1", type="text", value=strftime("%H%M", localtime()),
                       placeholder="HHMM",
-                      style = {'display': 'inline-block', 'width':'100px','height':'30px','margin':'25px'})
+                      style = {'width':'126px','margin':'0 auto', 'height':'30px', 'display': 'inline-block'})
         ],
-        style = {'width':'100%','display':'flex','align-items':'center','justify-content':'center'}
+        style = {'width':'29.3%','margin-left':'500px','display':'flex','align-items':'center','justify-content':'center'}
         ),
     html.Br(),
     html.Br(),
@@ -126,5 +122,3 @@ layout = html.Div(
             ),],
     style={'text-align':'center', 'display':'inline-block', 'width':'100%', 'background-color': 'white'}
     )
-
-                         
