@@ -4,7 +4,7 @@ LTA Modelling by group 13
 ````
 ├── backend 
 │   ├── Exploratory Scripts 
-│   └──  API-Exploration - making api calls and understanding the data we have 
+│   │   └──  API-Exploration - making api calls and understanding the data we have 
 │   │   └──  Dummy - combining the functions using dummy values to output a data frame 
 │   │   └──  Image-Processing-Related - other ways we tried to process the image 
 │   ├── Image-Processing - final scripts we used to get data from images and their saved outputs 
@@ -26,10 +26,9 @@ How to use the code and deploy the interface?
    cd dsa3101-2210-13-lta
    docker compose up
 4. go to docker desktop, click on open backend container in browser
-5. wait for around 15 mins for the file traffic_stats.csv to appear
+5. wait for around 15 mins for the file traffic_stats.csv to appear in /app and incidents.csv to appear in /app/assets
 6. check it by doing ls in the docker terminal
-7. after traffic_stats.csv appears in the backend container directory
-8. open frontend in browser
+7. after traffic_stats.csv appears in the backend container directory, restart frontend before opening it in browser
 
 Take note that every run of the container, you need to remove frontend and backend images for data to be up to date.
 ````
