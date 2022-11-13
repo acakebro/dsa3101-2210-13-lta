@@ -56,7 +56,7 @@ class ApiCall:
         df = pd.DataFrame(data)
 
         df['AvgSpeed'] = df['SpeedBand'].apply(
-            lambda x: 100 if (x == 8) else x * 10 - 4.5)
+            lambda x: x * 10 - 4.5)
 
         df["Location"] = df["Location"].apply(lambda x: x.split(" "))
         df[
