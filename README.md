@@ -26,7 +26,7 @@ How to use the code and deploy the interface?
    cd dsa3101-2210-13-lta
    docker compose up
 4. go to docker desktop, click on open backend container in browser
-5. wait for around 15 mins for the file traffic_stats.csv to appear
+5. wait for around 15 mins for the file traffic_stats.csv to appear in /app and incidents.csv to appear in /app/assets
 6. check it by doing ls in the docker terminal
 7. after traffic_stats.csv appears in the backend container directory
 8. open frontend in browser
