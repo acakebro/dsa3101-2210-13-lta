@@ -28,7 +28,7 @@ How to use the code and deploy the interface?
 4. go to docker desktop, click on open backend container in browser
 5. wait for around 15 mins for the file traffic_stats.csv to appear in /app and incidents.csv to appear in /app/assets
 6. check it by doing ls in the docker terminal
-7. after traffic_stats.csv appears in the backend container directory, open frontend in browser
+7. after traffic_stats.csv appears in the backend container directory, restart frontend before opening it in browser
 
 Take note that every run of the container, you need to remove frontend and backend images for data to be up to date.
 ````
