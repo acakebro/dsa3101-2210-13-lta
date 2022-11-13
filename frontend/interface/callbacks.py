@@ -281,7 +281,6 @@ def update_map(input_attr, input_agg):
         df_json = requests.get('http://backend:5000/archive')
         df_json = df_json.json()
         df = json_normalize(df_json)
-        # df = pd.read_csv('training_data.csv')
         df['Date']=pd.to_datetime(df['Date'])
         df['Time']=df['Time'].replace(':','', regex=True)
         df['Time'] = df['Time'].str[:2]
@@ -292,8 +291,8 @@ def update_map(input_attr, input_agg):
         return default_map
 
     color_prop0 = 'Density'
-    colorscale0 = ['green','yellow','orange','red']
     if input_attr == 'Density':
+        colorscale0 = ['green','yellow','orange','red']
         if input_agg == "Max":
             df0 = df2.sort_values('Density', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
             df0= df0[['Latitude', 'Longitude', 'Direction', 'Camera_Id', 'Jam',color_prop0, 'Vehicle_Count','Incident','Time']]
@@ -337,8 +336,7 @@ def update_map(input_attr, input_agg):
 
     else:       # Average Speed
         if input_agg == "Average":
-            df0 = df2.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index()
-            colorscale0 = ['green','yellow','orange','red'] 
+            df0 = df2.sort_values('Average_Speed', ascending = False).drop_duplicates(subset='Camera_Id').sort_index() 
             color_prop0 = 'Average_Speed'
             dicts0 = df0.to_dict('records')
             for item in dicts0:
@@ -361,8 +359,10 @@ def update_map(input_attr, input_agg):
     geobuf0 = dlx.geojson_to_geobuf(geojson0)
     vmax0 = df0[color_prop0].max()
     if input_attr == 'Density':
+        colorscale0 = ['green','yellow','orange','red']
         colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='density per lane', opacity=0.9)
     else:
+        colorscale0 = ['red','orange','yellow','green']
         colorbar0 = dl.Colorbar(colorscale=colorscale0, width=20, height=150, min=0, max=vmax0, unit='km/h', opacity=0.9)
     geojson0 = dl.GeoJSON(data=geobuf0, id="geojson", format="geobuf",
                     zoomToBounds=True,  # when true, zooms to bounds when data changes
