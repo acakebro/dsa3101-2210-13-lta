@@ -404,6 +404,6 @@ def update_prediction(road,camera_id,traffic_date,time):
     if time is None:
         return 'Please type in a time.'
     if time is not None and len(str(time))!=4:
-        return 'Please type in a time in the foramat of HHMM.'
+        return 'Please type in a time in the format of HHMM.'
     stats = requests.get('http://backend:5000/prediction?camera_id='+str(camera_id)+'&date='+traffic_date[-2:]+'/'+traffic_date[-5:-3]+'/'+traffic_date[:4]+'&time='+str(time)[:2]+":"+str(time)[2:]+'&road='+str(road)).json()['prediction']
     return stats
