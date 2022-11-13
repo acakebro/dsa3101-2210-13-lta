@@ -395,19 +395,15 @@ def update_camera1(road_name):
      Input('traffic_time1','value')])
 
 def update_prediction(road,camera_id,traffic_date,time):
-    if traffic_date is None:
-        raise dash.exceptions.PreventUpdate
-        # traffic_date = date.today().strftime('%d/%m/%Y')
     if road is None:
-        raise dash.exceptions.PreventUpdate
-        # road='KPE'
+        return 'Please select a road.'
     if camera_id is None:
-        # camera_id='1001'
-        raise dash.exceptions.PreventUpdate
+        return 'Please select a cameraID.'
+    if traffic_date is None:
+        return 'Please select a traffic date.'
     if time is None:
-        raise dash.exceptions.PreventUpdate
-        # time = datetime.now().strftime("%H:%M")
+        return 'Please type in a time.'
     if time is not None and len(str(time))!=4:
-        raise dash.exceptions.PreventUpdate
+        return 'Please type in a time in the foramat of HHMM.'
     stats = requests.get('http://backend:5000/prediction?camera_id='+str(camera_id)+'&date='+traffic_date[-2:]+'/'+traffic_date[-5:-3]+'/'+traffic_date[:4]+'&time='+str(time)[:2]+":"+str(time)[2:]+'&road='+str(road)).json()['prediction']
     return stats
