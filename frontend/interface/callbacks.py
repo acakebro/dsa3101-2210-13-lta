@@ -150,12 +150,13 @@ def update_plot(camera_id,traffic_date,time,timeframe):
     variables['Date']=variables['Date'].apply(lambda x: datetime.strptime(x, "%Y-%m-%d").strftime("%Y%m%d"))
     variables['Time']=variables['Time'].apply(lambda x: datetime.strptime(x, "%H:%M:%S").strftime("%H%M"))
     variables['Time']=variables['Date']+variables['Time']
-    variables.sort_values(["Time"],axis=0, ascending=False,inplace=True,na_position='first')
     datetime_curr= datetime(int(date_time[:4]),int(date_time[4:6]),int(date_time[6:8]),int(date_time[8:10]),int(date_time[10:]))
     datetime_curr = datetime.strftime(datetime_curr, "%Y%m%d%H%M")
     variables = variables[variables['Time'] <= datetime_curr]
     graph_inputs=variables
     table=variables
+    graph_inputs.sort_values(["Time"],axis=0, ascending=True,inplace=True,na_position='first')
+    table.sort_values(["Time"],axis=0, ascending=False,inplace=True,na_position='first')
 
     #Filter datetime within last timeframe(15 min,30min,1hr)
     temp=graph_inputs.loc[0,'Time']
