@@ -30,6 +30,6 @@ How to use the code and deploy the interface?
 6. check it by doing ls in the docker terminal
 7. after traffic_stats.csv appears in the backend container directory, restart frontend before opening it in browser
 
-Take note that every run of the container, you need to remove frontend and backend images for data to be up to date.
+Take note that if you have modified any code, you need to remove the images every run of the container, for data to be up to date.
 ````
 
